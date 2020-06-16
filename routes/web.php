@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::namespace('Auth')
+    ->name('auth.')
+    ->group(function () {
+        Route::get('/login', 'LoginController@showLoginForm')->name('login');
+
+        Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
+
+    });
+
 Route::prefix('/dashboard')
     ->name('dashboard.')
     ->namespace('Dashboard')
@@ -24,4 +33,4 @@ Route::prefix('/dashboard')
         Route::get('/', 'HomeController@index')->name('home');
     });
 
-Route::redirect('/', '/dashboard');
+Route::redirect('/', '/login');

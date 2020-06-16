@@ -73,3 +73,15 @@ label.form-info.h3 {
 .fz-1 {
     font-size: 1rem;
 }
+
+body.auth {
+    height: 100vh;
+}
+
+body.auth.text-light form.auth input {
+    color: #333;
+}
+
+form.auth.user-form .invalid-feedback {
+    margin-bottom: -.8rem
+}
