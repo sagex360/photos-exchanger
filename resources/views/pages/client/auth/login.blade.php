@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('auth-content')
-    <x-forms.sign-in-client/>
+    <x-forms.auth.sign-in-client/>
 
     <br>
     <p>
