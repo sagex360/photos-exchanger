@@ -6,7 +6,7 @@
 
     <title> @yield('title') </title>
 
-    @section('head_styles')
+    @section('head-styles')
         <x-styles.bootstrap/>
         <x-styles.fontawesome/>
 
@@ -19,7 +19,7 @@
 
 @yield('content')
 
-@section('bottom_scripts')
+@section('bottom-scripts')
     <x-scripts.jquery/>
 @show
 </body>

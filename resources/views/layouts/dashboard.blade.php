@@ -1,6 +1,6 @@
 @extends('layouts.root.generic')
 
-@section('head_styles')
+@section('head-styles')
     @parent
     <link href="{{ asset('libs/fonts/circular-std/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/dashboard/style.css') }}">
@@ -15,7 +15,7 @@
     </div>
 @endsection
 
-@section('bottom_scripts')
+@section('bottom-scripts')
     @parent
     <x-scripts.bootstrap-bundle/>
     <x-scripts.jquery-slimscroll/>
