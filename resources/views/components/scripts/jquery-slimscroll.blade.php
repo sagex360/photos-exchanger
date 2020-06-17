@@ -1,3 +1,3 @@
-@section('jquery-slimscroll')
-    <script src="{{ asset('libs/slimscroll/jquery.slimscroll.js') }}"></script>
-@show
+@sectionOnce('jquery-slimscroll')
+<script src="{{ asset('libs/slimscroll/jquery.slimscroll.js') }}"></script>
+@showSectionOnce
