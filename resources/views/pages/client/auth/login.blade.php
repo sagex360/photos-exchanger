@@ -5,7 +5,7 @@
 
     <br>
     <p>
-        {{ trans('texts.auth.has-no-account') }}
+        {{ trans('texts.auth.have-no-account') }}
         <a href="{{ route('auth.register') }}">{{ trans('texts.auth.sign-up') }}</a>
     </p>
 @overwrite

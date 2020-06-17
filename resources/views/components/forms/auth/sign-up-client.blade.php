@@ -1,21 +1,19 @@
 <form method="post" class="@section('form-class') auth @show ">
     @csrf
     @section('auth-form-header')
-        <h2>{{ trans('texts.auth.sign-in') }}</h2>
+        <h2>{{ trans('texts.auth.sign-up') }}</h2>
     @show
+
+    <x-forms.auth.elements.name-input/>
 
     <x-forms.auth.elements.login-input/>
 
     <x-forms.auth.elements.password-input name="password"
                                           :label="trans('texts.auth.password')"/>
 
-    @section('remember-checkbox')
-        <input id="remember" name="remember" type="checkbox" @if(old('remember')) checked="checked" @endif>
-    @show
+    <x-forms.auth.elements.password-input name="password_confirmation"
+                                          :label="trans('texts.auth.password-confirmation')"/>
 
-    @section('remember-label')
-        <label for="remember" class="form-info">{{ trans('texts.auth.remember') }}</label>
-    @show
-
+    <br>
     <x-forms.auth.elements.submit-button/>
 </form>

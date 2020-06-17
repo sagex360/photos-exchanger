@@ -12,15 +12,22 @@ return [
     */
 
     'auth'      => [
-        'sign-in'           => 'Sign in',
+        'sign-in' => 'Sign in',
+        'sign-up' => 'Sign up',
+
         'login'             => 'Login (email)',
         'login-placeholder' => 'Login',
-        'password'          => 'Password',
-        'remember'          => 'Remember',
-        'submit'            => 'Go',
 
-        'sign-up'       => 'Sign up',
-        'has-no-account' => 'Has no account?',
+        'name' => 'Name',
+
+        'password'              => 'Password',
+        'password-confirmation' => 'Password Confirmation',
+
+        'remember' => 'Remember',
+        'submit'   => 'Go',
+
+        'have-no-account'      => 'Have no account?',
+        'already-have-account' => 'Already have account?',
     ],
     'dashboard' => [
         'index' => [

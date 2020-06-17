@@ -8,5 +8,6 @@ final class RegisterController extends \App\Http\Controllers\Auth\RegisterContro
 {
     public function showRegistrationForm()
     {
+        return view('pages.client.auth.register');
     }
 }
