@@ -34,4 +34,9 @@ final class Login
     {
         return $this->email === $other->email;
     }
+
+    public function __toString()
+    {
+        return $this->value();
+    }
 }
