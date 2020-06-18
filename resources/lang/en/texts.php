@@ -30,9 +30,19 @@ return [
         'already-have-account' => 'Already have account?',
     ],
     'dashboard' => [
-        'index' => [
+        'index'   => [
             'header' => 'You are in dashboard!'
         ],
+        'sidebar' => [
+            'menu'      => 'Menu',
+            'dashboard' => 'Dashboard',
+
+            'files'        => 'Files',
+            'all-files'    => 'All files',
+            'add-new-file' => 'Add new',
+
+            'logout' => 'Logout',
+        ]
     ],
 
 ];
