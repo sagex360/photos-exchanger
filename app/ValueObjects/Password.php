@@ -38,13 +38,18 @@ final class Password
         return new static($hashedPassword, true);
     }
 
+    public function hash()
+    {
+        return $this->hash;
+    }
+
     public function equals(Password $other): bool
     {
         return $this->hash === $other->hash;
     }
 
-    public function hash()
+    public function __toString()
     {
-        return $this->hash;
+        return $this->hash();
     }
 }
