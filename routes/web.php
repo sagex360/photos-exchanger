@@ -16,15 +16,26 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('Auth')
     ->name('auth.')
     ->group(function () {
-        Route::get('/login', 'LoginController@showLoginForm')->name('login');
+        Route::get('/login', 'LoginController@showLoginForm')
+            ->middleware('guest')
+            ->name('login');
 
-        Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
+        Route::post('/login', 'LoginController@login')
+            ->name('login.perform');
+
+        Route::get('/register', 'RegisterController@showRegistrationForm')
+            ->middleware('guest')
+            ->name('register');
+
+        Route::post('/register', 'RegisterController@register')
+            ->name('register.perform');
 
     });
 
 Route::prefix('/dashboard')
     ->name('dashboard.')
     ->namespace('Dashboard')
+    ->middleware('auth:web')
     ->group(function () {
 
         Route::resource('files', 'FilesController')
