@@ -37,6 +37,18 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           target="_self"
+                           href="{{ route('auth.logout.perform') }}"
+                           onclick="event.preventDefault(); document.getElementById('admin-logout-post-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout</a>
+                        <form id="admin-logout-post-form" action="{{ route('auth.logout.perform') }}" method="post"
+                              style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
                 </ul>
             </div>
         </nav>

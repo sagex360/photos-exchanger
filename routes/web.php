@@ -30,6 +30,8 @@ Route::namespace('Auth')
         Route::post('/register', 'RegisterController@register')
             ->name('register.perform');
 
+        Route::post('/logout', 'LoginController@logout')
+            ->name('logout.perform');
     });
 
 Route::prefix('/dashboard')

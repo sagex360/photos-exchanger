@@ -9,12 +9,19 @@ use App\Exceptions\UserNotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Login\LoginClientRequest;
 use App\Providers\RouteServiceProvider;
-use App\Services\Auth\GuardResolver;
 use App\Services\Auth\Login\LoginClientCommand;
 use Illuminate\Support\Facades\Auth;
 
 final class LoginController extends Controller
 {
+    /** @var LoginClientCommand */
+    protected $command;
+
+    public function __construct(LoginClientCommand $command)
+    {
+        $this->command = $command;
+    }
+
     public function showLoginForm()
     {
         return view('pages.client.auth.login');
@@ -22,13 +29,12 @@ final class LoginController extends Controller
 
     /**
      * @param LoginClientRequest $request
-     * @param LoginClientCommand $command
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function login(LoginClientRequest $request, LoginClientCommand $command)
+    public function login(LoginClientRequest $request)
     {
         try {
-            $command->login($request->createDto());
+            $this->command->login($request->createDto());
 
         } catch (UserNotFoundException|UserAuthenticationFailed $e) {
             return redirect()->back()
@@ -37,7 +43,14 @@ final class LoginController extends Controller
         }
 
         return redirect()->route(
-            RouteServiceProvider::homeRoute($command->getGuard())
+            RouteServiceProvider::homeRoute($this->command->getGuard())
         );
+    }
+
+    public function logout()
+    {
+        $this->command->logout(Auth::user());
+
+        return redirect()->route(RouteServiceProvider::loginRoute($this->command->getGuard()));
     }
 }
