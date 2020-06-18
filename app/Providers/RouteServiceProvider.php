@@ -23,6 +23,16 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
+    public static function homeRoute(?string $guard)
+    {
+        return 'dashboard.home';
+    }
+
+    public static function loginRoute(?string $guard)
+    {
+        return 'auth.login';
+    }
+
     /**
      * Define your route model bindings, pattern filters, etc.
      *
