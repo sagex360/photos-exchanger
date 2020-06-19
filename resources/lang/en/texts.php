@@ -42,7 +42,21 @@ return [
             'add-new-file' => 'Add new',
 
             'logout' => 'Logout',
+        ],
+        'files'   => [
+            'select-file' => 'Select File',
+            'enter-description' => 'Enter description',
+            'select-date-to-delete' => 'Date to be deleted at',
+
+            'create' => [
+                'new'    => 'Create new file',
+                'submit' => 'Create'
+            ],
         ]
     ],
+
+    'datepicker' => [
+        'date' => 'Date'
+    ]
 
 ];
