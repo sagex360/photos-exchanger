@@ -13,15 +13,16 @@
     </div>
 
     <div class="form-group form-row align-items-start">
-        <label for="content" class="form-info h3 mb-2 mt-0 col-12">
+        <label for="description" class="form-info h3 mb-2 mt-0 col-12">
             {{ trans('texts.dashboard.files.enter-description') }}:
         </label>
         <div class="col-12">
-            <x-forms.elements.textarea name="content">
-                {{ old('content', $post->content ?? '') }}
+            <x-forms.elements.textarea name="description"
+                                       :placeholder="trans('texts.dashboard.files.enter-description')">
+                {{ old('description', $file->description ?? '') }}
             </x-forms.elements.textarea>
 
-            <x-forms.elements.error-feedback name="content"/>
+            <x-forms.elements.error-feedback name="description"/>
         </div>
     </div>
 
@@ -30,7 +31,7 @@
             {{ trans('texts.dashboard.files.select-date-to-delete') }}:
         </label>
         <div class="col-7">
-            <x-forms.elements.datepicker name="date_to_delete"/>
+            <x-forms.elements.datepicker name="date_to_delete" :value="old('date_to_delete')"/>
 
             <x-forms.elements.error-feedback name="date_to_delete"/>
         </div>

@@ -1,9 +1,10 @@
-@props(['id' => $name, 'name'])
-<input name="{{ $name }}" id="{{ $id }}" type="text"
+@props(['id' => $name, 'name', 'value' => ''])
+<input id="{{ $id }}" type="text"
        placeholder="{{ trans('texts.datepicker.date') }}" title="{{ trans('texts.datepicker.date') }}"
        class="form-control form-control-sm table-input-middle @error($name) is-invalid @enderror"
-       value="{{ request($name) }}"
-       data-datepicker>
+       data-datepicker data-pass-to="[name={{$name}}]">
+
+<input type="hidden" name="{{ $name }}" value="{{ $value }}">
 
 @section('head-styles')
     @parent
