@@ -19,30 +19,30 @@ use Illuminate\Support\Carbon;
 /**
  * App\Models\Client
  *
- * @property int $id
- * @property Name $name
- * @property Login $email
- * @property Carbon|null $email_verified_at
- * @property Password $password
- * @property string|null $remember_token
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property int                                                        $id
+ * @property Name                                                       $name
+ * @property Login                                                      $email
+ * @property Carbon|null                                                $email_verified_at
+ * @property Password                                                   $password
+ * @property string|null                                                $remember_token
+ * @property Carbon|null                                                $created_at
+ * @property Carbon|null                                                $updated_at
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
- * @property-read int|null $notifications_count
- * @method static Builder|\App\Models\Client newModelQuery()
- * @method static Builder|\App\Models\Client newQuery()
- * @method static Builder|\App\Models\Client query()
- * @method static Builder|\App\Models\Client whereCreatedAt($value)
- * @method static Builder|\App\Models\Client whereEmail($value)
- * @method static Builder|\App\Models\Client whereEmailVerifiedAt($value)
- * @method static Builder|\App\Models\Client whereId($value)
- * @method static Builder|\App\Models\Client whereName($value)
- * @method static Builder|\App\Models\Client wherePassword($value)
- * @method static Builder|\App\Models\Client whereRememberToken($value)
- * @method static Builder|\App\Models\Client whereUpdatedAt($value)
+ * @property-read int|null                                              $notifications_count
+ * @method static Builder|Client newModelQuery()
+ * @method static Builder|Client newQuery()
+ * @method static Builder|Client query()
+ * @method static Builder|Client whereCreatedAt($value)
+ * @method static Builder|Client whereEmail($value)
+ * @method static Builder|Client whereEmailVerifiedAt($value)
+ * @method static Builder|Client whereId($value)
+ * @method static Builder|Client whereName($value)
+ * @method static Builder|Client wherePassword($value)
+ * @method static Builder|Client whereRememberToken($value)
+ * @method static Builder|Client whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Client extends Authenticatable
+final class Client extends Authenticatable
 {
     use Notifiable;
 
@@ -69,4 +69,9 @@ class Client extends Authenticatable
 
         'email_verified_at' => 'datetime',
     ];
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }
