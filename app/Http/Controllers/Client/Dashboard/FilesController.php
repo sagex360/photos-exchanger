@@ -2,18 +2,33 @@
 
 namespace App\Http\Controllers\Client\Dashboard;
 
+use App\Exceptions\CouldNotSaveFileException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Files\StoreFileRequest;
+use App\Http\Requests\Dashboard\Files\UpdateFileRequest;
+use App\Repositories\Files\FilesRepository;
 use App\Services\Files\CreateFileCommand;
-use Illuminate\Contracts\Container\BindingResolutionException;
+use App\Services\Files\DeleteFilesCompletelyCommand;
+use App\Services\Files\UpdateFileCommand;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 final class FilesController extends Controller
 {
+    /**
+     * @var FilesRepository
+     */
+    protected FilesRepository $filesRepository;
+
+    public function __construct(FilesRepository $filesRepository)
+    {
+        $this->filesRepository = $filesRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +36,9 @@ final class FilesController extends Controller
      */
     public function index()
     {
-
+//        return view('pages.client.dashboard.files.index', [
+//            'files' => $this->filesRepository->all()
+//        ]);
     }
 
     /**
@@ -40,7 +57,7 @@ final class FilesController extends Controller
      * @param StoreFileRequest  $request
      * @param CreateFileCommand $command
      * @return RedirectResponse
-     * @throws BindingResolutionException
+     * @throws CouldNotSaveFileException
      */
     public function store(StoreFileRequest $request, CreateFileCommand $command)
     {
@@ -57,40 +74,49 @@ final class FilesController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        //
+        return view('pages.client.dashboard.files.edit', [
+            'file' => $this->filesRepository->find($id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param int     $id
-     * @return Response
+     * @param int               $id
+     * @param UpdateFileRequest $request
+     * @param UpdateFileCommand $command
+     * @return RedirectResponse
+     * @throws CouldNotSaveFileException
      */
-    public function update(Request $request, $id)
+    public function update(int $id, UpdateFileRequest $request, UpdateFileCommand $command)
     {
-        //
+        $file = $command->execute($request->createDto($id));
+
+        return redirect()->route('dashboard.files.show', $file);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return Response
+     * @param int                          $id
+     * @param DeleteFilesCompletelyCommand $command
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id, DeleteFilesCompletelyCommand $command)
     {
-        //
+        $command->execute(Collection::make([$this->filesRepository->find($id)]));
+
+        return redirect()->route('dashboard.files.index');
     }
 }

@@ -4,10 +4,14 @@
 namespace App\Events\Files;
 
 
-final class FileCreated
+final class FileUpdated
 {
     protected int $fileId;
 
+    /**
+     * FileUpdated constructor.
+     * @param int $fileId
+     */
     public function __construct(int $fileId)
     {
         $this->fileId = $fileId;

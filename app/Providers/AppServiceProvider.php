@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Client\Dashboard\FilesController;
 use App\Jobs\DeleteOverdueFilesJob;
 use App\Repositories\Files\EloquentFilesRepository;
+use App\Repositories\Files\FilesRepository;
 use App\Services\Files\DeleteFilesCompletelyCommand;
+use App\Services\Files\UpdateFileCommand;
 use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
 
@@ -38,6 +41,15 @@ final class AppServiceProvider extends ServiceProvider
 
             $job->handle($filesRepo, $deleteFilesCommand);
         });
+
+        /**************************** FilesRepository bindings ********************************/
+        $app->when(FilesController::class)
+            ->needs(FilesRepository::class)
+            ->give(EloquentFilesRepository::class);
+
+        $app->when(UpdateFileCommand::class)
+            ->needs(FilesRepository::class)
+            ->give(EloquentFilesRepository::class);
     }
 
     /**
