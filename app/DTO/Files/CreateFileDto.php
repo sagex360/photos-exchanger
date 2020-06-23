@@ -22,18 +22,18 @@ class CreateFileDto
      * CreateFileDto constructor.
      * @param int             $userId
      * @param UploadedFile    $image
-     * @param DeletionDate    $dateToDelete
      * @param FileDescription $description
+     * @param DeletionDate    $dateToDelete
      */
     public function __construct(int $userId,
                                 UploadedFile $image,
-                                DeletionDate $dateToDelete,
-                                FileDescription $description)
+                                FileDescription $description,
+                                DeletionDate $dateToDelete)
     {
         $this->userId = $userId;
         $this->image = $image;
-        $this->dateToDelete = $dateToDelete;
         $this->description = $description;
+        $this->dateToDelete = $dateToDelete;
     }
 
     public function getUserId(): int

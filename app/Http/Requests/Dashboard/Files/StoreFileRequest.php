@@ -9,18 +9,10 @@ use App\Rules\Groups\File\FileDescriptionRules;
 use App\Rules\Groups\File\FileImageRules;
 use App\ValueObjects\DeletionDate\DeletionDateFactory;
 use App\ValueObjects\FileDescription;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Auth;
 
 final class StoreFileRequest extends AppFormRequest
 {
-    protected function passedValidation()
-    {
-        $this->merge([
-            'description' => "{$this->input('description')}"
-        ]);
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -40,17 +32,19 @@ final class StoreFileRequest extends AppFormRequest
 
     /**
      * @return CreateFileDto
-     * @throws BindingResolutionException
      */
     public function createDto()
     {
-        $dateFactory = $this->container->make(DeletionDateFactory::class);
-
         return new CreateFileDto(
             Auth::id(),
             $this->file('file'),
-            $dateFactory->fromFormat(FileDateRules::DATE_FORMAT, $this->input('date_to_delete')),
-            FileDescription::create((string)$this->input('description'))
+            FileDescription::create(
+                (string)$this->input('description')
+            ),
+            DeletionDateFactory::fromFormat(
+                FileDateRules::DATE_FORMAT,
+                $this->input('date_to_delete')
+            )
         );
     }
 }
