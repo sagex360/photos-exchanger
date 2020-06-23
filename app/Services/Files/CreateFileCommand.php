@@ -6,6 +6,7 @@ namespace App\Services\Files;
 
 use App\DTO\Files\CreateFileDto;
 use App\Events\Files\FileCreated;
+use App\Exceptions\CouldNotSaveFileException;
 use App\Models\File;
 use Illuminate\Contracts\Events\Dispatcher;
 
@@ -20,6 +21,11 @@ class CreateFileCommand
         $this->filesUploader = $imageUploader;
     }
 
+    /**
+     * @param CreateFileDto $dto
+     * @return File
+     * @throws CouldNotSaveFileException
+     */
     public function create(CreateFileDto $dto): File
     {
         $file = new File();
@@ -34,5 +40,7 @@ class CreateFileCommand
 
             return $file;
         }
+
+        throw new CouldNotSaveFileException(trans('texts.dashboard.files.errors.update'));
     }
 }
