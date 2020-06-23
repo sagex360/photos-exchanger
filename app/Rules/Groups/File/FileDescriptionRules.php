@@ -13,7 +13,7 @@ class FileDescriptionRules extends RulesGroup
     protected function rules()
     {
         return [
-            'nullable',
+            'required',
             'string',
             'max:' . self::MAX_SIZE,
         ];

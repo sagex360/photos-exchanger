@@ -13,7 +13,7 @@ class FileDateRules extends RulesGroup
     protected function rules()
     {
         return [
-            'required',
+            'nullable',
             'date_format:' . self::DATE_FORMAT,
             'after:now'
         ];
