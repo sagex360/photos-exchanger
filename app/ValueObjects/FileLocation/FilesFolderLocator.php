@@ -4,6 +4,8 @@
 namespace App\ValueObjects\FileLocation;
 
 
+use InvalidArgumentException;
+
 /**
  * Class FilesFolderLocator
  * @package App\ValueObjects\FileLocation
@@ -11,12 +13,21 @@ namespace App\ValueObjects\FileLocation;
  */
 final class FilesFolderLocator
 {
+    /**
+     * @param string $disk
+     * @throws InvalidArgumentException
+     */
+    protected function invalidDiskType(string $disk)
+    {
+        throw new InvalidArgumentException("Unknown disk type: '$disk'");
+    }
+
     public function locate(string $disk)
     {
-        if ($disk === 'local') {
-            return 'uploads';
+        if ($disk === 'public') {
+            return 'uploads/files';
         }
 
-        throw new \InvalidArgumentException("Unknown disk type: '$disk'");
+        $this->invalidDiskType($disk);
     }
 }

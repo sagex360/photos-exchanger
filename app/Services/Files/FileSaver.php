@@ -11,7 +11,7 @@ use Illuminate\Http\UploadedFile;
 
 final class FileSaver
 {
-    protected string $disk = 'local';
+    protected string $disk = 'public';
 
     protected FilesystemManager $filesystemManager;
 
