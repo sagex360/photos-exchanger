@@ -17,7 +17,9 @@ final class CreateFilesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
 
-            $table->string('real_name');
+            $table->string('storage');
+            $table->string('file_name');
+
             $table->text('description');
 
             $table->timestamp('will_be_deleted_at')->nullable();
