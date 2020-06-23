@@ -11,6 +11,7 @@ use App\ValueObjects\FileLocation\FileLocation;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\File
@@ -29,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|File whereWillBeDeletedAt($value)
  * @mixin Eloquent
  * @property-read Client     $user
+ * @method static Builder|File overdue()
  * @method static Builder|File whereFileName($value)
  * @method static Builder|File whereStorage($value)
  */
@@ -45,5 +47,14 @@ final class File extends Model
     public function user()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeOverdue(Builder $query)
+    {
+        return $query->where('will_be_deleted_at', '<=', Carbon::now());
     }
 }
