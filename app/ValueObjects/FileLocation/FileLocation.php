@@ -4,7 +4,7 @@
 namespace App\ValueObjects\FileLocation;
 
 
-use App\Exceptions\CouldNotSaveFileException;
+use App\Exceptions\CouldNotPersistFileException;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Http\UploadedFile;
@@ -43,7 +43,7 @@ final class FileLocation
         );
 
         if (!$saveResult) {
-            throw new CouldNotSaveFileException('Could not save file to ' . $this->fullPath());
+            throw new CouldNotPersistFileException('Could not save file to ' . $this->fullPath());
         }
 
         return $this;
@@ -74,5 +74,10 @@ final class FileLocation
     public function fullPath()
     {
         return Str::finish($this->folderLocator->locate($this->storage()), '/') . $this->fileName();
+    }
+
+    public function url()
+    {
+        return $this->folderLocator->link($this->storage(), $this->fullPath());
     }
 }

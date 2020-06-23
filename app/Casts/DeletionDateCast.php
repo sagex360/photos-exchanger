@@ -11,7 +11,7 @@ class DeletionDateCast implements CastsAttributes
 {
     protected string $dateFormat;
 
-    public function __construct(string $dateFormat = 'Y-m-d H:i:s.u')
+    public function __construct(string $dateFormat = 'Y-m-d H:i:s')
     {
         $this->dateFormat = $dateFormat;
     }

@@ -30,4 +30,13 @@ final class FilesFolderLocator
 
         $this->invalidDiskType($disk);
     }
+
+    public function link(string $disk, string $fullPath)
+    {
+        if ($disk === 'public') {
+            return config('filesystems.disks.public.url') . "/$fullPath";
+        }
+
+        $this->invalidDiskType($disk);
+    }
 }

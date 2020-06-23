@@ -44,14 +44,26 @@ return [
             'logout' => 'Logout',
         ],
         'files'   => [
-            'select-file' => 'Select File',
-            'enter-description' => 'Enter description',
+            'select-file'           => 'Select File',
+            'enter-description'     => 'Enter description',
             'select-date-to-delete' => 'Date to be deleted at',
 
             'create' => [
-                'new'    => 'Create new file',
+                'title'  => 'Create new file',
                 'submit' => 'Create'
             ],
+            'edit'   => [
+                'current-content' => 'File contents',
+                'title'           => 'Edit file information',
+                'submit'          => 'Save',
+            ],
+            'delete' => [
+                'button' => 'Delete',
+            ],
+
+            'errors' => [
+                'update' => 'Could not update file information',
+            ]
         ]
     ],
 
