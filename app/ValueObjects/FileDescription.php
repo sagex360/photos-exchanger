@@ -6,28 +6,20 @@ namespace App\ValueObjects;
 
 final class FileDescription
 {
-    protected string $realName;
-
     protected string $description;
 
-    private function __construct(string $readName, string $description)
+    private function __construct(string $description)
     {
-        $this->realName = $readName;
         $this->description = $description;
     }
 
-    public static function create(string $realName, string $description): self
+    public static function create(string $description): self
     {
-        return new static($realName, $description);
+        return new static($description);
     }
 
     public function description(): string
     {
         return $this->description;
-    }
-
-    public function realName(): string
-    {
-        return $this->realName;
     }
 }

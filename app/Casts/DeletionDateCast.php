@@ -3,19 +3,17 @@
 namespace App\Casts;
 
 use App\ValueObjects\DeletionDate\DeletionDate;
-use App\ValueObjects\DeletionDate\IlluminateCarbonDeletionDateFactory;
+use App\ValueObjects\DeletionDate\DeletionDateFactory;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 
 class DeletionDateCast implements CastsAttributes
 {
-    const DATE_FORMAT = 'Y-m-d H:i:s.u';
+    protected string $dateFormat;
 
-    protected IlluminateCarbonDeletionDateFactory $deletionDateFactory;
-
-    public function __construct(IlluminateCarbonDeletionDateFactory $deletionDateFactory)
+    public function __construct(string $dateFormat = 'Y-m-d H:i:s.u')
     {
-        $this->deletionDateFactory = $deletionDateFactory;
+        $this->dateFormat = $dateFormat;
     }
 
     /**
@@ -29,7 +27,7 @@ class DeletionDateCast implements CastsAttributes
      */
     public function get($model, string $key, $value, $attributes)
     {
-        return $this->deletionDateFactory->fromFormat(self::DATE_FORMAT, $value);
+        return DeletionDateFactory::fromFormat($this->dateFormat, $value);
     }
 
     /**
@@ -48,7 +46,7 @@ class DeletionDateCast implements CastsAttributes
         }
 
         return [
-            $key => $setDate->toDateTimeString()
+            $key => $setDate->format($this->dateFormat)
         ];
     }
 }

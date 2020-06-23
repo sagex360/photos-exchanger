@@ -9,10 +9,8 @@ class FileDescriptionTest extends TestCase
 {
     public function testSuccessfulCreation()
     {
-        $name = uniqid();
-        $fileDescription = FileDescription::create($name, 'some description');
+        $fileDescription = FileDescription::create('some description');
 
-        $this->assertSame($name, $fileDescription->realName());
-        $this->assertSame($fileDescription->description(), 'some description');
+        $this->assertSame('some description', $fileDescription->description());
     }
 }

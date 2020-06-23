@@ -9,8 +9,12 @@ use InvalidArgumentException;
 
 class FileDescriptionCast implements CastsAttributes
 {
-    const REAL_NAME_KEY = 'real_name';
-    const DESCRIPTION_KEY = 'description';
+    protected string $descriptionKey;
+
+    public function __construct(string $descriptionKey = 'description')
+    {
+        $this->descriptionKey = $descriptionKey;
+    }
 
     /**
      * Cast the given value.
@@ -24,8 +28,7 @@ class FileDescriptionCast implements CastsAttributes
     public function get($model, string $key, $value, $attributes)
     {
         return FileDescription::create(
-            $attributes[self::REAL_NAME_KEY],
-            $attributes[self::DESCRIPTION_KEY]
+            $attributes[$this->descriptionKey]
         );
     }
 
@@ -34,19 +37,18 @@ class FileDescriptionCast implements CastsAttributes
      *
      * @param Model           $model
      * @param string          $key
-     * @param FileDescription $setDescription
+     * @param FileDescription $fileDescription
      * @param array           $attributes
      * @return array
      */
-    public function set($model, string $key, $setDescription, $attributes)
+    public function set($model, string $key, $fileDescription, $attributes)
     {
-        if (!$setDescription instanceof FileDescription) {
-            throw new InvalidArgumentException('Parameter $setDate must be instance of ' . FileDescription::class);
+        if (!$fileDescription instanceof FileDescription) {
+            throw new InvalidArgumentException('Parameter $setDescription must be instance of ' . FileDescription::class);
         }
 
         return [
-            self::REAL_NAME_KEY   => $setDescription->realName(),
-            self::DESCRIPTION_KEY => $setDescription->description()
+            $this->descriptionKey => $fileDescription->description()
         ];
     }
 }

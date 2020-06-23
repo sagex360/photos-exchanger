@@ -8,8 +8,10 @@ use App\Casts\PasswordCast;
 use App\ValueObjects\Login;
 use App\ValueObjects\Name;
 use App\ValueObjects\Password;
+use Eloquent;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -40,7 +42,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Client wherePassword($value)
  * @method static Builder|Client whereRememberToken($value)
  * @method static Builder|Client whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
+ * @property-read Collection|File[]                                     $files
+ * @property-read int|null                                              $files_count
  */
 final class Client extends Authenticatable
 {

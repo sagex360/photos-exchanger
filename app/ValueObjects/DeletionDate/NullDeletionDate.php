@@ -10,7 +10,7 @@ final class NullDeletionDate implements DeletionDate
     {
     }
 
-    public static function instance()
+    public static function instance(): self
     {
         static $instance = null;
 
@@ -21,12 +21,12 @@ final class NullDeletionDate implements DeletionDate
         return $instance;
     }
 
-    public function toDateTimeString()
+    public function format(string $format): ?string
     {
-        return '';
+        return null;
     }
 
-    public function expired()
+    public function expired(): bool
     {
         return false;
     }

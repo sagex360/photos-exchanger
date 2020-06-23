@@ -19,13 +19,13 @@ final class NotNullDeletionDate implements DeletionDate
         $this->date = $date;
     }
 
-    public function expired()
+    public function expired(): bool
     {
         return !$this->date->isAfter($this->date::now());
     }
 
-    public function toDateTimeString()
+    public function format(string $format): string
     {
-        return $this->date->toDateTimeString();
+        return $this->date->format($format);
     }
 }

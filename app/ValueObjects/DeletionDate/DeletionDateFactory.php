@@ -6,14 +6,9 @@ namespace App\ValueObjects\DeletionDate;
 
 use Illuminate\Support\Carbon;
 
-final class IlluminateCarbonDeletionDateFactory
+final class DeletionDateFactory
 {
-    public function at(Carbon $date): DeletionDate
-    {
-        return new NotNullDeletionDate($date);
-    }
-
-    public function fromFormat(string $format, ?string $time, $zone = null): DeletionDate
+    public static function fromFormat(string $format, ?string $time, $zone = null): DeletionDate
     {
         if ($time === null || $time === '') {
             return NullDeletionDate::instance();

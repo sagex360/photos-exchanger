@@ -43,11 +43,6 @@ final class Password
         return $this->hash;
     }
 
-    public function equals(Password $other): bool
-    {
-        return $this->hash === $other->hash;
-    }
-
     public function __toString()
     {
         return $this->hash();

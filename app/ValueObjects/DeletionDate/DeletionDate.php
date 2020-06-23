@@ -5,7 +5,7 @@ namespace App\ValueObjects\DeletionDate;
 
 interface DeletionDate
 {
-    public function expired();
+    public function expired(): bool;
 
-    public function toDateTimeString();
+    public function format(string $format): ?string;
 }
