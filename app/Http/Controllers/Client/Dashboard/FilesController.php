@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Client\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Files\StoreFileRequest;
+use App\Services\Files\CreateFileCommand;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -34,12 +37,16 @@ final class FilesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreFileRequest $request
-     * @return void
+     * @param StoreFileRequest  $request
+     * @param CreateFileCommand $command
+     * @return RedirectResponse
+     * @throws BindingResolutionException
      */
-    public function store(StoreFileRequest $request)
+    public function store(StoreFileRequest $request, CreateFileCommand $command)
     {
-        dd($request->all());
+        $file = $command->create($request->createDto());
+
+        return redirect()->route('dashboard.files.edit', $file);
     }
 
     /**
@@ -68,7 +75,7 @@ final class FilesController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param int $id
+     * @param int     $id
      * @return Response
      */
     public function update(Request $request, $id)
