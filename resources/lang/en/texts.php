@@ -49,6 +49,23 @@ return [
             'enter-description'     => 'Enter description',
             'select-date-to-delete' => 'Date to be deleted at',
 
+            'table' => [
+                'name'        => 'File Name',
+                'description' => 'Short Description',
+                'actions'     => 'Actions',
+
+                'buttons' => [
+                    'view' => 'View',
+                    'edit' => 'Edit'
+                ],
+
+                'empty' => 'You have not uploaded a single file.'
+            ],
+
+            'index'  => [
+                'title'   => 'List of files',
+                'add-new' => 'Add new',
+            ],
             'create' => [
                 'title'  => 'Create new file',
                 'submit' => 'Create'

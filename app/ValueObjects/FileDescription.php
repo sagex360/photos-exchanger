@@ -4,6 +4,8 @@
 namespace App\ValueObjects;
 
 
+use Illuminate\Support\Str;
+
 final class FileDescription
 {
     const MIN_PUBLIC_NAME = 1;
@@ -11,6 +13,8 @@ final class FileDescription
 
     const MAX_PUBLIC_NAME = 255;
     const MAX_DESCRIPTION = 65535;
+
+    const SHORT_DESCRIPTION_LIMIT = 50;
 
     protected string $publicName;
     protected string $description;
@@ -54,5 +58,10 @@ final class FileDescription
     public function publicName(): string
     {
         return $this->publicName;
+    }
+
+    public function shortDescription(): string
+    {
+        return Str::limit($this->description(), self::SHORT_DESCRIPTION_LIMIT, '...');
     }
 }

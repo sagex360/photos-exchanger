@@ -18,4 +18,9 @@ final class EloquentFilesRepository implements FilesRepository
     {
         return File::findOrFail($id);
     }
+
+    public function findByUserId(int $userId): Collection
+    {
+        return File::whereUserId($userId)->get();
+    }
 }

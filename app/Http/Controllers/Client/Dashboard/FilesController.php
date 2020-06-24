@@ -10,6 +10,7 @@ use App\Repositories\Files\FilesRepository;
 use App\Services\Files\CreateFileCommand;
 use App\Services\Files\DeleteFilesCompletelyCommand;
 use App\Services\Files\UpdateFileCommand;
+use Auth;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
@@ -32,13 +33,16 @@ final class FilesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function index()
     {
-//        return view('pages.client.dashboard.files.index', [
-//            'files' => $this->filesRepository->all()
-//        ]);
+        $files = $this->filesRepository->findByUserId(Auth::id());
+
+        return view('pages.client.dashboard.files.index', [
+            'filesCount' => $files->count(),
+            'files'      => $files,
+        ]);
     }
 
     /**
