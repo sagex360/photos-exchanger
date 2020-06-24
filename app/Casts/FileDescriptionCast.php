@@ -10,10 +10,13 @@ use InvalidArgumentException;
 class FileDescriptionCast implements CastsAttributes
 {
     protected string $descriptionKey;
+    protected string $publicNameKey;
 
-    public function __construct(string $descriptionKey = 'description')
+    public function __construct(string $descriptionKey = 'description',
+                                string $publicNameKey = 'public_name')
     {
         $this->descriptionKey = $descriptionKey;
+        $this->publicNameKey = $publicNameKey;
     }
 
     /**
@@ -28,6 +31,7 @@ class FileDescriptionCast implements CastsAttributes
     public function get($model, string $key, $value, $attributes)
     {
         return FileDescription::create(
+            $attributes[$this->publicNameKey],
             $attributes[$this->descriptionKey]
         );
     }
@@ -48,7 +52,8 @@ class FileDescriptionCast implements CastsAttributes
         }
 
         return [
-            $this->descriptionKey => $fileDescription->description()
+            $this->publicNameKey  => $fileDescription->publicName(),
+            $this->descriptionKey => $fileDescription->description(),
         ];
     }
 }

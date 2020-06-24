@@ -45,6 +45,7 @@ return [
         ],
         'files'   => [
             'select-file'           => 'Select File',
+            'enter-name'            => 'File Name',
             'enter-description'     => 'Enter description',
             'select-date-to-delete' => 'Date to be deleted at',
 

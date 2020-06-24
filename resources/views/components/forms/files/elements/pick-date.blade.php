@@ -1,17 +1,17 @@
-@props(['file' => optional($file ?? null)])
+@props(['date' => optional($date ?? null)])
 @php
     /**
-     * @var \App\Models\File $file
+     * @var \App\ValueObjects\DeletionDate\DeletionDate $date
      */
 @endphp
 
-<div class="form-group form-row align-items-start">
+<div class="form-group form-row align-items-start mt-4">
     <label for="name" class="form-info h3 m-0 col-5">
         {{ trans('texts.dashboard.files.select-date-to-delete') }}:
     </label>
     <div class="col-7">
         <x-forms.elements.datepicker name="date_to_delete"
-                                     :value="old('date_to_delete', optional($file->will_be_deleted_at)->format('Y-m-d'))"/>
+                                     :value="old('date_to_delete', $date->format('Y-m-d'))"/>
 
         <x-forms.elements.error-feedback name="date_to_delete"/>
     </div>

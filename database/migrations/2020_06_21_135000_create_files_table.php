@@ -20,6 +20,7 @@ final class CreateFilesTable extends Migration
             $table->string('storage');
             $table->string('file_name');
 
+            $table->string('public_name');
             $table->text('description');
 
             $table->timestamp('will_be_deleted_at')->nullable();

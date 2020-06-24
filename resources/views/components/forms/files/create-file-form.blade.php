@@ -3,6 +3,8 @@
 
     <x-forms.files.elements.browse-file/>
 
+    <x-forms.files.elements.input-public-name/>
+
     <x-forms.files.elements.input-description/>
 
     <x-forms.files.elements.pick-date/>

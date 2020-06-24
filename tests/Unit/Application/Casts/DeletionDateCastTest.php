@@ -16,7 +16,7 @@ class DeletionDateCastTest extends TestCase
         $file = new File();
         $file->user_id = 1;
         $file->will_be_deleted_at = NullDeletionDate::instance();
-        $file->description = FileDescription::create('some description');
+        $file->description = FileDescription::create('some name', 'some description');
 
         $this->assertInstanceOf(NullDeletionDate::class, $file->will_be_deleted_at);
         $file->will_be_deleted_at = new NotNullDeletionDate(Carbon::tomorrow());

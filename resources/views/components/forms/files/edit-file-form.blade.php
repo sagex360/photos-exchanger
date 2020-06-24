@@ -10,9 +10,11 @@
 
     <x-forms.files.elements.current-file-content :file="$file"/>
 
-    <x-forms.files.elements.input-description :file="$file"/>
+    <x-forms.files.elements.input-public-name :description="$file->description"/>
 
-    <x-forms.files.elements.pick-date :file="$file"/>
+    <x-forms.files.elements.input-description :description="$file->description"/>
+
+    <x-forms.files.elements.pick-date :date="$file->will_be_deleted_at"/>
 
     <div class="row">
         <div class="col-7">

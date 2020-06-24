@@ -1,7 +1,7 @@
-@props(['file' => optional($file ?? null)])
+@props(['description' => optional($description ?? null)])
 @php
     /**
-     * @var \App\Models\File $file
+     * @var \App\ValueObjects\FileDescription $description
      */
 @endphp
 
@@ -13,7 +13,7 @@
         <x-forms.elements.textarea name="description"
                                    required="required"
                                    :placeholder="trans('texts.dashboard.files.enter-description')">
-            {{ old('description', optional($file->description)->description()) }}
+            {{ old('description', $description->description()) }}
         </x-forms.elements.textarea>
 
         <x-forms.elements.error-feedback name="description"/>
