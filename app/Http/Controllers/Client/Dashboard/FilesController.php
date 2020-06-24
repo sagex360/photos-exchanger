@@ -74,11 +74,13 @@ final class FilesController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function show($id)
+    public function show(int $id)
     {
-        dd($id);
+        return view('pages.client.dashboard.files.show', [
+            'file' => $this->filesRepository->find($id)
+        ]);
     }
 
     /**

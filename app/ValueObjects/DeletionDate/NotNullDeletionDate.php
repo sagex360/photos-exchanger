@@ -28,4 +28,9 @@ final class NotNullDeletionDate implements DeletionDate
     {
         return $this->date->format($format);
     }
+
+    public function readable(): string
+    {
+        return $this->format('d.m.Y');
+    }
 }

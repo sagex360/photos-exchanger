@@ -20,14 +20,18 @@ final class NullDeletionDate implements DeletionDate
 
         return $instance;
     }
+    public function expired(): bool
+    {
+        return false;
+    }
 
     public function format(string $format): ?string
     {
         return null;
     }
 
-    public function expired(): bool
+    public function readable(): ?string
     {
-        return false;
+        return trans('texts.dashboard.files.show.no-day-was-set');
     }
 }

@@ -70,6 +70,18 @@ return [
                 'title'  => 'Create new file',
                 'submit' => 'Create'
             ],
+            'show'   => [
+                'title' => 'File information',
+
+                'name'        => 'Name',
+                'description' => 'Description',
+                'contents'    => 'Contents',
+
+                'will-be-deleted-at' => 'Will be deleted at',
+                'no-day-was-set'     => 'No day was set',
+                'delete-now'         => 'Delete now',
+
+            ],
             'edit'   => [
                 'current-content' => 'File contents',
                 'title'           => 'Edit file information',

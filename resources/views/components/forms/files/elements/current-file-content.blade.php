@@ -9,7 +9,7 @@
         {{ trans('texts.dashboard.files.edit.current-content') }}:
     </div>
     <div class="col-9">
-        <img src="{{ $file->location->url() }}"
-             class="rounded mx-auto d-block img-fluid" alt="{{ $file->description->description() }}">
+        <x-images.main :src="$file->location->url()"
+                       :alt="$file->description->publicName()"/>
     </div>
 </div>

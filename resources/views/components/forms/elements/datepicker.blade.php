@@ -2,7 +2,7 @@
 <input id="{{ $id }}" type="text"
        placeholder="{{ trans('texts.datepicker.date') }}" title="{{ trans('texts.datepicker.date') }}"
        class="form-control form-control-sm table-input-middle @error($name) is-invalid @enderror"
-       data-datepicker data-pass-to="[name={{$name}}]">
+       data-datepicker data-pass-to="[name={{$name}}]" {{ $attributes }}>
 
 <input type="hidden" name="{{ $name }}" value="{{ $value }}">
 
