@@ -7,10 +7,20 @@ $(function () {
         clearBtn: true,
         multidate: false,
     }).on('changeDate', function (e) {
-        let dateInUTC = new Date(e.date.getTime() - (e.date.getTimezoneOffset() * 60000));
+        console.log('changed')
+    }).on('hide', function (e) {
+        console.log(e);
 
-        // format date Y-m-d for back end
-        let formatted = dateInUTC.toISOString().split('T')['0'];
+        try {
+            let dateInUTC = new Date(e.date.getTime() - (e.date.getTimezoneOffset() * 60000));
+
+            // format date Y-m-d for back end
+            var formatted = dateInUTC.toISOString().split('T')['0'];
+        } catch (e) {
+            formatted = '';
+        }
+
         $dateGateway.val(formatted);
+
     }).datepicker('setDate', new Date($dateGateway.val()))
 });
