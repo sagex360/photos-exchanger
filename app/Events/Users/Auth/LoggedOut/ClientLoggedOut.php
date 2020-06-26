@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Events\Users\Auth;
+namespace App\Events\Users\Auth\LoggedOut;
 
 
 use App\Events\Users\ClientsRelatedEvents;

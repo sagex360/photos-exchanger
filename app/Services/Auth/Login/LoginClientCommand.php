@@ -5,8 +5,8 @@ namespace App\Services\Auth\Login;
 
 
 use App\DTO\Auth\Login\LoginClientDto;
-use App\Events\Users\Auth\ClientLoggedOut;
 use App\Events\Users\Auth\LoggedIn\ClientLoggedIn;
+use App\Events\Users\Auth\LoggedOut\ClientLoggedOut;
 use App\Exceptions\UserAuthenticationFailed;
 use App\Exceptions\UserNotFoundException;
 use App\Models\Client;
