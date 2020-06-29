@@ -99,13 +99,23 @@ return [
             ]
         ],
         'file-links' => [
-            'title' => 'Links',
-            'table' => [
+            'form-elements' => [
+                'select-type'    => 'Select link type',
+                'select-default' => 'Select one of'
+            ],
+
+            'create-form' => [
+                'title'  => 'Create new link',
+                'submit' => 'Go',
+            ],
+
+            'title'          => 'Links',
+            'table'          => [
                 'link-url' => 'Link URL',
                 'type'     => 'Type',
                 'status'   => 'Status',
             ],
-            'list-empty' => 'List of links is empty. You can create new link using the button below.',
+            'list-empty'     => 'List of links is empty. You can create new link using the button below.',
             'create-new-btn' => 'Create new link'
         ]
     ],
@@ -113,8 +123,7 @@ return [
     'guest' => [
         'view' => [
             'files' => [
-                'title' =>  'File contents'
-
+                'title' => 'File contents'
             ]
         ]
     ],
