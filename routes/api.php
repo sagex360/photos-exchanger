@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:api')
+    ->group(function () {
+        Route::resource('files', 'FilesController')
+            ->only(['create', 'show', 'destroy']);
+    });
+
+
+Route::prefix('/guest')
+    ->name('guest.')
+    ->group(function () {
+
+        /**
+         * Return file (image) response to display by passed link token.
+         */
+        Route::get('files/{linkToken}', 'FilesController@link')->name('files.link');
+
+    });

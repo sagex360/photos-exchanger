@@ -1,1 +1,1 @@
-<img class="rounded mx-auto d-block img-fluid" {{ $attributes }}>
+<img {{ $attributes->merge(['class' => 'rounded mx-auto d-block img-fluid']) }}>

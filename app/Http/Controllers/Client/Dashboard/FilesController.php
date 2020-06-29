@@ -15,7 +15,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 final class FilesController extends Controller
@@ -79,7 +78,7 @@ final class FilesController extends Controller
     public function show(int $id)
     {
         return view('pages.client.dashboard.files.show', [
-            'file' => $this->filesRepository->find($id)
+            'file' => $this->filesRepository->findWithTokens($id)
         ]);
     }
 
@@ -92,7 +91,7 @@ final class FilesController extends Controller
     public function edit(int $id)
     {
         return view('pages.client.dashboard.files.edit', [
-            'file' => $this->filesRepository->find($id)
+            'file' => $this->filesRepository->findWithTokens($id)
         ]);
     }
 
@@ -121,7 +120,7 @@ final class FilesController extends Controller
      */
     public function destroy(int $id, DeleteFilesCompletelyCommand $command)
     {
-        $command->execute(Collection::make([$this->filesRepository->find($id)]));
+        $command->execute(Collection::make([$this->filesRepository->findWithTokens($id)]));
 
         return redirect()->route('dashboard.files.index');
     }

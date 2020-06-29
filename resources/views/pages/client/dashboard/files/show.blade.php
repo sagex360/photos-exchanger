@@ -9,7 +9,8 @@
 @section('dashboard-content')
     <x-grid.dashboard.main>
         <x-texts.h1 class="text-center">{{ trans('texts.dashboard.files.show.title') }}
-            <x-buttons.link.main class="ml-4" href="{{ route('dashboard.files.edit', $file) }}">Edit
+            <x-buttons.link.main class="ml-4"
+                                 href="{{ route('dashboard.files.edit', $file) }}">{{ trans('texts.dashboard.files.show.edit-btn') }}
             </x-buttons.link.main>
         </x-texts.h1>
 
@@ -53,7 +54,12 @@
                                :alt="$file->description->publicName()"/>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-12">
+                <x-buttons.link.main :href="route('dashboard.links.index', $file)"
+                                     class="mt-4 btn-lg">{{ trans('texts.dashboard.files.show.manage-links') }}</x-buttons.link.main>
+            </div>
+        </div>
     </x-grid.dashboard.main>
     <x-forms.common.delete id="delete-file-now-form" :action="route('dashboard.files.destroy', $file)"/>
 @endsection

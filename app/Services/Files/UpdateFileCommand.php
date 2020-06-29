@@ -40,7 +40,7 @@ final class UpdateFileCommand
      */
     public function execute(UpdateFileDto $updateFileDto): File
     {
-        $file = $this->filesRepository->find($updateFileDto->getId());
+        $file = $this->filesRepository->findWithTokens($updateFileDto->getId());
 
         $file->description = $updateFileDto->getDescription();
         $file->will_be_deleted_at = $updateFileDto->getDateToDelete();

@@ -43,6 +43,12 @@ Route::prefix('/dashboard')
         Route::resource('files', 'FilesController')
             ->only(['create', 'show', 'edit', 'update', 'destroy', 'store', 'index']);
 
+        Route::prefix('files/{file}/')
+            ->group(function () {
+                Route::resource('links', 'LinksController')
+                    ->only('index', 'create', 'store');
+            });
+
         Route::get('/', 'HomeController@index')->name('home');
     });
 

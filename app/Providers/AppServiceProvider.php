@@ -2,10 +2,15 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\API\FilesController as ApiFilesController;
 use App\Http\Controllers\Client\Dashboard\FilesController;
+use App\Http\Controllers\Client\Dashboard\LinksController;
+use App\Http\Controllers\Guest\ViewFilesController;
 use App\Jobs\DeleteOverdueFilesJob;
 use App\Repositories\Files\EloquentFilesRepository;
 use App\Repositories\Files\FilesRepository;
+use App\Repositories\FileTokens\EloquentFileTokensRepository;
+use App\Repositories\FileTokens\FileTokensRepository;
 use App\Services\Files\DeleteFilesCompletelyCommand;
 use App\Services\Files\UpdateFileCommand;
 use Illuminate\Container\Container;
@@ -42,14 +47,31 @@ final class AppServiceProvider extends ServiceProvider
             $job->handle($filesRepo, $deleteFilesCommand);
         });
 
-        /**************************** FilesRepository bindings ********************************/
-        $app->when(FilesController::class)
-            ->needs(FilesRepository::class)
-            ->give(EloquentFilesRepository::class);
+        $this->registerFileRepositoryBindings();
+        $this->registerFileTokensRepositoryBindings();
+    }
 
-        $app->when(UpdateFileCommand::class)
+    protected function registerFileRepositoryBindings()
+    {
+        $this->app->when([
+            FilesController::class,
+            UpdateFileCommand::class,
+            LinksController::class,
+            ViewFilesController::class,
+            ApiFilesController::class
+        ])
             ->needs(FilesRepository::class)
             ->give(EloquentFilesRepository::class);
+    }
+
+    protected function registerFileTokensRepositoryBindings()
+    {
+        $this->app->when([
+            ViewFilesController::class,
+            ApiFilesController::class
+        ])
+            ->needs(FileTokensRepository::class)
+            ->give(EloquentFileTokensRepository::class);
     }
 
     /**

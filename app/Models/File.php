@@ -10,17 +10,18 @@ use App\ValueObjects\FileDescription;
 use App\ValueObjects\FileLocation\FileLocation;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 /**
  * App\Models\File
  *
- * @property int             $id
- * @property int             $user_id
- * @property FileLocation    $location
- * @property FileDescription $description
- * @property DeletionDate    $will_be_deleted_at
+ * @property int                             $id
+ * @property int                             $user_id
+ * @property FileLocation                    $location
+ * @property FileDescription                 $description
+ * @property DeletionDate                    $will_be_deleted_at
  * @method static Builder|File newModelQuery()
  * @method static Builder|File newQuery()
  * @method static Builder|File query()
@@ -29,10 +30,13 @@ use Illuminate\Support\Carbon;
  * @method static Builder|File whereUserId($value)
  * @method static Builder|File whereWillBeDeletedAt($value)
  * @mixin Eloquent
- * @property-read Client     $user
+ * @property-read Client                     $user
  * @method static Builder|File overdue()
  * @method static Builder|File whereFileName($value)
  * @method static Builder|File whereStorage($value)
+ * @property-read Collection|FileLinkToken[] $linkTokens
+ * @property-read int|null                   $link_tokens_count
+ * @method static Builder|File wherePublicName($value)
  */
 final class File extends Model
 {
@@ -47,6 +51,11 @@ final class File extends Model
     public function user()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function linkTokens()
+    {
+        return $this->hasMany(FileLinkToken::class);
     }
 
     /**

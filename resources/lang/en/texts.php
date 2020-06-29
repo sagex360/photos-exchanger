@@ -30,10 +30,10 @@ return [
         'already-have-account' => 'Already have account?',
     ],
     'dashboard' => [
-        'index'   => [
+        'index'      => [
             'header' => 'You are in dashboard!'
         ],
-        'sidebar' => [
+        'sidebar'    => [
             'menu'      => 'Menu',
             'dashboard' => 'Dashboard',
 
@@ -43,7 +43,7 @@ return [
 
             'logout' => 'Logout',
         ],
-        'files'   => [
+        'files'      => [
             'select-file'           => 'Select File',
             'enter-name'            => 'File Name',
             'enter-description'     => 'Enter description',
@@ -71,7 +71,8 @@ return [
                 'submit' => 'Create'
             ],
             'show'   => [
-                'title' => 'File information',
+                'title'    => 'File information',
+                'edit-btn' => 'Edit',
 
                 'name'        => 'Name',
                 'description' => 'Description',
@@ -80,6 +81,8 @@ return [
                 'will-be-deleted-at' => 'Will be deleted at',
                 'no-day-was-set'     => 'No day was set',
                 'delete-now'         => 'Delete now',
+
+                'manage-links' => 'Manage file links',
 
             ],
             'edit'   => [
@@ -94,11 +97,43 @@ return [
             'errors' => [
                 'update' => 'Could not update file information',
             ]
+        ],
+        'file-links' => [
+            'title' => 'Links',
+            'table' => [
+                'link-url' => 'Link URL',
+                'type'     => 'Type',
+                'status'   => 'Status',
+            ],
+            'list-empty' => 'List of links is empty. You can create new link using the button below.',
+            'create-new-btn' => 'Create new link'
+        ]
+    ],
+
+    'guest' => [
+        'view' => [
+            'files' => [
+                'title' =>  'File contents'
+
+            ]
         ]
     ],
 
     'datepicker' => [
         'date' => 'Date'
-    ]
+    ],
 
+    'entities' => [
+        'link-token' => [
+            'types'  => [
+                'disposable' => 'Disposable',
+                'unlimited'  => 'Unlimited',
+            ],
+            'status' => [
+                'not-used'     => 'Not used',
+                'used-n-times' => 'Used %d times',
+                'expired'      => 'Expired',
+            ]
+        ]
+    ],
 ];
