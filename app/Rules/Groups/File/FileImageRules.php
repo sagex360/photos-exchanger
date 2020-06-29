@@ -10,7 +10,7 @@ class FileImageRules extends RulesGroup
 {
     const MAX_SIZE = 1024 * 5;
 
-    protected function rules()
+    protected function rules(): array
     {
         return [
             'required',

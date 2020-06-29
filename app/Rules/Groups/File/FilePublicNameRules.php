@@ -10,7 +10,7 @@ class FilePublicNameRules extends RulesGroup
 {
     const MAX_SIZE = 255;
 
-    protected function rules()
+    protected function rules(): array
     {
         return [
             'required',

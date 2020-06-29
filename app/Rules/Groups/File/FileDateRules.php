@@ -10,7 +10,7 @@ class FileDateRules extends RulesGroup
 {
     const DATE_FORMAT = 'Y-m-d';
 
-    protected function rules()
+    protected function rules(): array
     {
         return [
             'nullable',

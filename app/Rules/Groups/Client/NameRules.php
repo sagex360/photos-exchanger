@@ -9,7 +9,7 @@ use App\ValueObjects\Name;
 
 final class NameRules extends RulesGroup
 {
-    protected function rules()
+    protected function rules(): array
     {
         return [
             'required',

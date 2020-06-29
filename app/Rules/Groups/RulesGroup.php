@@ -34,5 +34,5 @@ abstract class RulesGroup
         $this->toMerge = [];
     }
 
-    protected abstract function rules();
+    protected abstract function rules(): array;
 }

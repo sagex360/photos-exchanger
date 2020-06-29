@@ -10,7 +10,7 @@ class FileDescriptionRules extends RulesGroup
 {
     const MAX_SIZE = 65534;
 
-    protected function rules()
+    protected function rules(): array
     {
         return [
             'required',
