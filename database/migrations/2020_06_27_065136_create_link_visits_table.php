@@ -15,7 +15,11 @@ final class CreateLinkVisitsTable extends Migration
     {
         Schema::create('link_visits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('link_token_id')->constrained('link_tokens');
+
+            $table->foreignId('link_token_id')
+                ->constrained('link_tokens')
+                ->onUpdate('restrict')
+                ->onDelete('cascade');
 
             $table->timestamp('created_at')->nullable();
         });

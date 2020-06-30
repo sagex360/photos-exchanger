@@ -30,7 +30,7 @@ final class DeleteFilesCompletelyCommand
      */
     public function execute(Collection $files)
     {
-        $this->deleteFromStorage->execute($files);
         $this->deleteFromDatabase->execute($files);
+        $this->deleteFromStorage->execute($files);
     }
 }

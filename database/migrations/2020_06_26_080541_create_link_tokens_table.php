@@ -15,7 +15,11 @@ final class CreateLinkTokensTable extends Migration
     {
         Schema::create('link_tokens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('file_id')->constrained('files');
+
+            $table->foreignId('file_id')
+                ->constrained('files')
+                ->onUpdate('restrict')
+                ->onDelete('cascade');
 
             $table->string('token')->unique();
             $table->enum('type', ['unlimited', 'disposable']);
