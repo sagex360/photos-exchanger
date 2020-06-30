@@ -11,12 +11,7 @@ final class UnlimitedLinkToken extends LinkToken
         return 'unlimited';
     }
 
-    public function typeReadable(): string
-    {
-        return trans('texts.entities.link-token.types.unlimited');
-    }
-
-    public function expired(): bool
+    public function expired(int $visitsCount): bool
     {
         return false;
     }

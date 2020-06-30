@@ -4,23 +4,22 @@
 namespace App\ValueObjects\LinkToken;
 
 
-use App\Models\FileLinkToken;
-
 abstract class LinkToken
 {
+    const STATUS_NOT_USED = 'not-used';
+    const STATUS_EXPIRED = 'expired';
+    const STATUS_USED_N_TIMES = 'used-n-times';
+
     protected string $token;
 
-    protected FileLinkToken $parent;
-
-    protected function __construct(string $token, FileLinkToken $parent)
+    protected function __construct(string $token)
     {
         $this->token = $token;
-        $this->parent = $parent;
     }
 
-    public static function create(string $token, FileLinkToken $parent)
+    public static function create(string $token)
     {
-        return new static($token, $parent);
+        return new static($token);
     }
 
     public function equals(self $other): bool
@@ -34,33 +33,20 @@ abstract class LinkToken
         return $this->token;
     }
 
-    public function link(): string
+    public function status(int $visitsCount): string
     {
-        return route('guest.view.files.show', $this->token());
-    }
-
-    public function visits(): int
-    {
-        return $this->parent->visits_count;
-    }
-
-    public function statusReadable(): string
-    {
-        $visits = $this->visits();
-
-        if ($visits === 0) {
-            return trans('texts.entities.link-token.status.not-used');
+        if ($visitsCount === 0) {
+            return self::STATUS_NOT_USED;
         }
 
-        return sprintf(
-            trans('texts.entities.link-token.status.used-n-times'),
-            $visits
-        );
+        if ($this->expired($visitsCount)) {
+            return self::STATUS_EXPIRED;
+        }
+
+        return self::STATUS_USED_N_TIMES;
     }
 
     public abstract function type(): string;
 
-    public abstract function typeReadable(): string;
-
-    public abstract function expired(): bool;
+    public abstract function expired(int $visitsCount): bool;
 }

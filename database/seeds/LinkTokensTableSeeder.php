@@ -12,14 +12,6 @@ final class LinkTokensTableSeeder extends Seeder
         return 200;
     }
 
-    protected function tokenTypes()
-    {
-        return [
-            'disposable',
-            'unlimited'
-        ];
-    }
-
     /**
      * Run the database seeds.
      *
@@ -29,11 +21,10 @@ final class LinkTokensTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-
         for ($i = 0; $i < self::limit(); ++$i) {
             $entity = new FileLinkToken();
 
-            $entity->token = LinkTokensFactory::create(Arr::random($this->tokenTypes()));
+            $entity->token = LinkTokensFactory::create(Arr::random(LinkTokensFactory::supportedTypes()));
             $entity->file_id = $faker->numberBetween(1, FilesTableSeeder::limit());
 
             $entity->save();

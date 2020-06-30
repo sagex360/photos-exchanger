@@ -4,29 +4,32 @@
 namespace App\ValueObjects\LinkToken;
 
 
-use App\Casts\LinkTokenCast;
-use App\Models\FileLinkToken;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
 final class LinkTokensFactory
 {
+    public static function supportedTypes(): array
+    {
+        return ['disposable', 'unlimited'];
+    }
+
     protected static function generateToken(): string
     {
         return Str::orderedUuid();
     }
 
-    public static function create(FileLinkToken $model, string $type, string $value = null): LinkToken
+    public static function create(string $type, string $value = null): LinkToken
     {
         switch ($type) {
             case 'disposable':
-                return DisposableLinkToken::create($value ?? static::generateToken(), $model);
+                return DisposableLinkToken::create($value ?? static::generateToken());
 
             case 'unlimited':
-                return UnlimitedLinkToken::create($value ?? static::generateToken(), $model);
+                return UnlimitedLinkToken::create($value ?? static::generateToken());
 
             default:
-                throw new \InvalidArgumentException('Unexpected token type: ' . $type);
+                throw new InvalidArgumentException('Unexpected token type: ' . $type);
         }
     }
 }

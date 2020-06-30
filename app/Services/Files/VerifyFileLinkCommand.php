@@ -15,7 +15,7 @@ final class VerifyFileLinkCommand
      */
     public function execute(FileLinkToken $fileLinkToken)
     {
-        if ($fileLinkToken->token->expired()) {
+        if ($fileLinkToken->expired()) {
             throw new FileTokenExpiredException('Token expired');
         }
     }

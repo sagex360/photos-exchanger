@@ -31,7 +31,6 @@ class LinkTokenCast implements CastsAttributes
     public function get($model, string $key, $value, $attributes)
     {
         return LinkTokensFactory::create(
-            $model,
             $attributes[$this->tokenTypeKey],
             $attributes[$this->tokenKey],
         );

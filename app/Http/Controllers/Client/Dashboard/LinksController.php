@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Client\Dashboard;
 
+use App\Exceptions\CouldNotSaveLinkTokenException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\Links\CreateLinkRequest;
 use App\Repositories\Files\FilesRepository;
+use App\Services\LinkTokens\CreateLinkCommand;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -33,7 +37,8 @@ final class LinksController extends Controller
         $file = $this->filesRepository->findWithTokens($fileId);
 
         return view('pages.client.dashboard.links.of-file', [
-            'linkTokens' => $file->linkTokens
+            'linkTokens' => $file->linkTokens,
+            'file'       => $file,
         ]);
     }
 
@@ -55,12 +60,21 @@ final class LinksController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param int               $fileId
+     * @param CreateLinkRequest $request
+     * @param CreateLinkCommand $command
+     * @return RedirectResponse
+     * @throws CouldNotSaveLinkTokenException
      */
-    public function store(Request $request)
+    public function store(int $fileId,
+                          CreateLinkRequest $request,
+                          CreateLinkCommand $command)
     {
-        //
+        $file = $this->filesRepository->findWithTokens($fileId);
+
+        $command->execute($request->makeDto($file));
+
+        return redirect()->route('dashboard.links.index', $file);
     }
 
     /**

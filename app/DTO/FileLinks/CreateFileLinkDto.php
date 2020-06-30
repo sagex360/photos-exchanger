@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\DTO\Files;
+namespace App\DTO\FileLinks;
 
 
 use App\Models\File;
 use App\ValueObjects\LinkToken\LinkToken;
 
-final class CreateFileLinkTokenDto
+final class CreateFileLinkDto
 {
     protected File $file;
     protected LinkToken $token;

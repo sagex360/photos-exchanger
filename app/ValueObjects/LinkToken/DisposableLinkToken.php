@@ -11,24 +11,8 @@ final class DisposableLinkToken extends LinkToken
         return 'disposable';
     }
 
-    public function typeReadable(): string
+    public function expired(int $visitsCount): bool
     {
-        return trans('texts.entities.link-token.types.disposable');
-    }
-
-    public function expired(): bool
-    {
-        return $this->visits() !== 0;
-    }
-
-    public function statusReadable(): string
-    {
-        $visits = $this->visits();
-
-        if ($visits > 0) {
-            return trans('texts.entities.link-token.status.expired');
-        }
-
-        return parent::statusReadable();
+        return $visitsCount !== 0;
     }
 }

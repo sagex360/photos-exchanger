@@ -21,9 +21,9 @@
             <tbody>
             @forelse($linkTokens as $linkToken)
                 <tr>
-                    <td><p>{{ $linkToken->token->link() }}</p></td>
-                    <td><p>{{ $linkToken->token->typeReadable() }}</p></td>
-                    <td><p>{{ $linkToken->token->statusReadable() }}</p></td>
+                    <td><p>{{ $linkToken->link() }}</p></td>
+                    <td><p>{{ $linkToken->typeReadable() }}</p></td>
+                    <td><p>{{ $linkToken->statusReadable() }}</p></td>
                 </tr>
             @empty
                 <tr>
@@ -34,7 +34,7 @@
         </table>
 
         <x-buttons.link.main class="mt-4"
-                             href="{{ route('dashboard.links.create', 1) }}">
+                             href="{{ route('dashboard.links.create', $file) }}">
             {{ trans('texts.dashboard.file-links.create-new-btn') }}
         </x-buttons.link.main>
     </x-grid.dashboard.main>

@@ -22,7 +22,6 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null                 $deleted_at
  * @property-read Collection|LinkVisit[] $visits
  * @property-read int|null               $visits_count
- * @property string                      $type
  * @property-read File                   $file
  * @method static Builder|FileLinkToken newModelQuery()
  * @method static Builder|FileLinkToken newQuery()
@@ -57,5 +56,35 @@ final class FileLinkToken extends Model
     public function file()
     {
         return $this->belongsTo(File::class);
+    }
+
+    protected function visitsCount(): int
+    {
+        return $this->visits_count;
+    }
+
+    public function link(): string
+    {
+        return route('guest.view.files.show', $this->token->token());
+    }
+
+    public function statusReadable(): string
+    {
+        $visitsCount = $this->visitsCount();
+
+        return sprintf(
+            trans("texts.entities.link-token.status.{$this->token->status($visitsCount)}"),
+            $visitsCount
+        );
+    }
+
+    public function typeReadable(): string
+    {
+        return trans("texts.entities.link-token.types.{$this->token->type()}");
+    }
+
+    public function expired(): bool
+    {
+        return $this->token->expired($this->visitsCount());
     }
 }

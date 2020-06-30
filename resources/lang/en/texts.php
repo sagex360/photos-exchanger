@@ -116,7 +116,11 @@ return [
                 'status'   => 'Status',
             ],
             'list-empty'     => 'List of links is empty. You can create new link using the button below.',
-            'create-new-btn' => 'Create new link'
+            'create-new-btn' => 'Create new link',
+
+            'errors' => [
+                'create' => 'Could not create link'
+            ]
         ]
     ],
 
