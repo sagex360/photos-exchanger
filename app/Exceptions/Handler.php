@@ -54,7 +54,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof FileTokenExpiredException) {
+        if ($exception instanceof FileTokenExpiredException
+            || $exception instanceof IncompatibleParentAndChildModelsException) {
+
             return parent::render($request, new NotFoundHttpException());
         }
 

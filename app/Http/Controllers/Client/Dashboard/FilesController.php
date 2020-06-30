@@ -6,11 +6,13 @@ use App\Exceptions\CouldNotSaveFileException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Files\StoreFileRequest;
 use App\Http\Requests\Dashboard\Files\UpdateFileRequest;
+use App\Models\File;
 use App\Repositories\Files\FilesRepository;
 use App\Services\Files\CreateFileCommand;
 use App\Services\Files\DeleteFilesCompletelyCommand;
 use App\Services\Files\UpdateFileCommand;
 use Auth;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
@@ -48,9 +50,12 @@ final class FilesController extends Controller
      * Show the form for creating a new resource.
      *
      * @return Factory|View
+     * @throws AuthorizationException
      */
     public function create()
     {
+        $this->authorize('create', File::class);
+
         return view('pages.client.dashboard.files.create');
     }
 
@@ -61,9 +66,12 @@ final class FilesController extends Controller
      * @param CreateFileCommand $command
      * @return RedirectResponse
      * @throws CouldNotSaveFileException
+     * @throws AuthorizationException
      */
     public function store(StoreFileRequest $request, CreateFileCommand $command)
     {
+        $this->authorize('create', File::class);
+
         $file = $command->create($request->createDto());
 
         return redirect()->route('dashboard.files.show', $file);
@@ -74,11 +82,15 @@ final class FilesController extends Controller
      *
      * @param int $id
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function show(int $id)
     {
+        $file = $this->filesRepository->findById($id);
+        $this->authorize('view', $file);
+
         return view('pages.client.dashboard.files.show', [
-            'file' => $this->filesRepository->findById($id)
+            'file' => $file
         ]);
     }
 
@@ -87,11 +99,15 @@ final class FilesController extends Controller
      *
      * @param int $id
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function edit(int $id)
     {
+        $file = $this->filesRepository->findById($id);
+        $this->authorize('update', $file);
+
         return view('pages.client.dashboard.files.edit', [
-            'file' => $this->filesRepository->findById($id)
+            'file' => $file
         ]);
     }
 
@@ -103,10 +119,14 @@ final class FilesController extends Controller
      * @param UpdateFileCommand $command
      * @return RedirectResponse
      * @throws CouldNotSaveFileException
+     * @throws AuthorizationException
      */
     public function update(int $id, UpdateFileRequest $request, UpdateFileCommand $command)
     {
-        $file = $command->execute($request->createDto($id));
+        $file = $this->filesRepository->findById($id);
+        $this->authorize('update', $file);
+
+        $command->execute($request->createDto($file));
 
         return redirect()->route('dashboard.files.show', $file);
     }
@@ -117,10 +137,14 @@ final class FilesController extends Controller
      * @param int                          $id
      * @param DeleteFilesCompletelyCommand $command
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function destroy(int $id, DeleteFilesCompletelyCommand $command)
     {
-        $command->execute(Collection::make([$this->filesRepository->findById($id)]));
+        $file = $this->filesRepository->findById($id);
+        $this->authorize('delete', $file);
+
+        $command->execute(Collection::wrap($file));
 
         return redirect()->route('dashboard.files.index');
     }

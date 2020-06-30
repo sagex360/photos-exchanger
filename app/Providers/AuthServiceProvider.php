@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\File;
+use App\Models\FileLinkToken;
+use App\Policies\FileLinksPolicy;
+use App\Policies\FilesPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        File::class          => FilesPolicy::class,
+        FileLinkToken::class => FileLinksPolicy::class,
     ];
 
     /**

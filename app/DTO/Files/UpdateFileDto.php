@@ -4,12 +4,13 @@
 namespace App\DTO\Files;
 
 
+use App\Models\File;
 use App\ValueObjects\DeletionDate\DeletionDate;
 use App\ValueObjects\FileDescription;
 
 final class UpdateFileDto
 {
-    protected int $id;
+    protected File $file;
 
     protected FileDescription $description;
 
@@ -17,13 +18,13 @@ final class UpdateFileDto
 
     /**
      * UpdateFileDto constructor.
-     * @param int             $id
+     * @param File            $file
      * @param FileDescription $description
      * @param DeletionDate    $dateToDelete
      */
-    public function __construct(int $id, FileDescription $description, DeletionDate $dateToDelete)
+    public function __construct(File $file, FileDescription $description, DeletionDate $dateToDelete)
     {
-        $this->id = $id;
+        $this->file = $file;
         $this->description = $description;
         $this->dateToDelete = $dateToDelete;
     }
@@ -45,10 +46,10 @@ final class UpdateFileDto
     }
 
     /**
-     * @return int
+     * @return File
      */
-    public function getId(): int
+    public function getFile(): File
     {
-        return $this->id;
+        return $this->file;
     }
 }

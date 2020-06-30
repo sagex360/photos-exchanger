@@ -5,18 +5,17 @@ namespace App\Http\Controllers\Client\Dashboard;
 use App\Exceptions\CouldNotSaveLinkTokenException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Links\CreateLinkRequest;
+use App\Models\FileLinkToken;
 use App\Repositories\Files\FilesRepository;
 use App\Repositories\FileTokens\FileTokensRepository;
 use App\Services\LinkTokens\CreateLinkCommand;
 use App\Services\LinkTokens\DeleteLinkTokensCommand;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 final class LinksController extends Controller
@@ -41,10 +40,12 @@ final class LinksController extends Controller
      *
      * @param int $fileId
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function index(int $fileId)
     {
         $file = $this->filesRepository->findWithTokensById($fileId);
+        $this->authorize('viewAnyOf', [FileLinkToken::class, $file]);
 
         return view('pages.client.dashboard.links.of-file', [
             'linkTokens' => $file->linkTokens,
@@ -57,10 +58,12 @@ final class LinksController extends Controller
      *
      * @param int $fileId
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function create(int $fileId)
     {
         $file = $this->filesRepository->findById($fileId);
+        $this->authorize('createOf', [FileLinkToken::class, $file]);
 
         return view('pages.client.dashboard.links.create', [
             'file' => $file
@@ -75,49 +78,18 @@ final class LinksController extends Controller
      * @param CreateLinkCommand $command
      * @return RedirectResponse
      * @throws CouldNotSaveLinkTokenException
+     * @throws AuthorizationException
      */
     public function store(int $fileId,
                           CreateLinkRequest $request,
                           CreateLinkCommand $command)
     {
         $file = $this->filesRepository->findById($fileId);
+
+        $this->authorize('createOf', [FileLinkToken::class, $file]);
         $command->execute($request->makeDto($file));
 
         return redirect()->route('dashboard.links.index', $file);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param int     $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -132,11 +104,9 @@ final class LinksController extends Controller
     public function destroy(int $fileId, int $linkId, DeleteLinkTokensCommand $command)
     {
         $token = $this->tokensRepository->findWithTrashedById($linkId);
+        $file = $this->filesRepository->findById($fileId);
 
-        if ($token->file_id !== $fileId) {
-            throw new ModelNotFoundException("Token with id {$linkId} exists, but is not related to {$fileId} file.");
-        }
-
+        $this->authorize('deleteOf', [$token, $file]);
         $command->execute(Collection::wrap($token));
 
         return redirect()->route('dashboard.links.index', $fileId);

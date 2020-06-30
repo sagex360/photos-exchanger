@@ -66,4 +66,9 @@ final class File extends Model
     {
         return $query->where('will_be_deleted_at', '<=', Carbon::now());
     }
+
+    public function isOwnedBy(Client $user): bool
+    {
+        return $this->user_id === $user->id;
+    }
 }

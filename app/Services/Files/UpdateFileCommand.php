@@ -8,15 +8,10 @@ use App\DTO\Files\UpdateFileDto;
 use App\Events\Files\FileUpdated;
 use App\Exceptions\CouldNotSaveFileException;
 use App\Models\File;
-use App\Repositories\Files\FilesRepository;
 use Illuminate\Contracts\Events\Dispatcher;
 
 final class UpdateFileCommand
 {
-    /**
-     * @var FilesRepository
-     */
-    protected FilesRepository $filesRepository;
     /**
      * @var Dispatcher
      */
@@ -24,12 +19,10 @@ final class UpdateFileCommand
 
     /**
      * UpdateFileCommand constructor.
-     * @param FilesRepository $filesRepository
-     * @param Dispatcher      $dispatcher
+     * @param Dispatcher $dispatcher
      */
-    public function __construct(FilesRepository $filesRepository, Dispatcher $dispatcher)
+    public function __construct(Dispatcher $dispatcher)
     {
-        $this->filesRepository = $filesRepository;
         $this->dispatcher = $dispatcher;
     }
 
@@ -40,7 +33,7 @@ final class UpdateFileCommand
      */
     public function execute(UpdateFileDto $updateFileDto): File
     {
-        $file = $this->filesRepository->findById($updateFileDto->getId());
+        $file = $updateFileDto->getFile();
 
         $file->description = $updateFileDto->getDescription();
         $file->will_be_deleted_at = $updateFileDto->getDateToDelete();

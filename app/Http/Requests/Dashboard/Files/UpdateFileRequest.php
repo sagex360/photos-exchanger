@@ -7,6 +7,7 @@ namespace App\Http\Requests\Dashboard\Files;
 
 use App\DTO\Files\UpdateFileDto;
 use App\Http\Requests\AppFormRequest;
+use App\Models\File;
 use App\Rules\Groups\File\FileDateRules;
 use App\Rules\Groups\File\FileDescriptionRules;
 use App\Rules\Groups\File\FilePublicNameRules;
@@ -35,13 +36,13 @@ final class UpdateFileRequest extends AppFormRequest
     }
 
     /**
-     * @param int $id
+     * @param File $file
      * @return UpdateFileDto
      */
-    public function createDto(int $id)
+    public function createDto(File $file)
     {
         return new UpdateFileDto(
-            $id,
+            $file,
             FileDescription::create(
                 (string)$this->input('public_name'),
                 (string)$this->input('description')
