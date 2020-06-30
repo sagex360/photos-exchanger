@@ -66,7 +66,7 @@ final class FilesController extends Controller
     {
         $file = $command->create($request->createDto());
 
-        return redirect()->route('dashboard.files.edit', $file);
+        return redirect()->route('dashboard.files.show', $file);
     }
 
     /**
