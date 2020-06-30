@@ -18,17 +18,17 @@ interface FilesRepository
      * @param int $id
      * @return File
      */
-    public function findWithTokens(int $id): File;
+    public function findById(int $id): File;
+
+    /**
+     * @param int $id
+     * @return File
+     */
+    public function findWithTokensById(int $id): File;
 
     /**
      * @param int $userId
      * @return Collection|File[]
      */
     public function findByUserId(int $userId): Collection;
-
-    /**
-     * @param string $token
-     * @return File
-     */
-    public function findByLinkToken(string $token);
 }

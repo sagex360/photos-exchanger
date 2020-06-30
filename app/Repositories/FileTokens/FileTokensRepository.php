@@ -8,5 +8,15 @@ use App\Models\FileLinkToken;
 
 abstract class FileTokensRepository
 {
-    public abstract function find(string $token): FileLinkToken;
+    /**
+     * @param string $token
+     * @return FileLinkToken
+     */
+    public abstract function findByToken(string $token): FileLinkToken;
+
+    /**
+     * @param int $id
+     * @return FileLinkToken
+     */
+    public abstract function findWithTrashedById(int $id): FileLinkToken;
 }

@@ -78,7 +78,7 @@ final class FilesController extends Controller
     public function show(int $id)
     {
         return view('pages.client.dashboard.files.show', [
-            'file' => $this->filesRepository->findWithTokens($id)
+            'file' => $this->filesRepository->findById($id)
         ]);
     }
 
@@ -91,7 +91,7 @@ final class FilesController extends Controller
     public function edit(int $id)
     {
         return view('pages.client.dashboard.files.edit', [
-            'file' => $this->filesRepository->findWithTokens($id)
+            'file' => $this->filesRepository->findById($id)
         ]);
     }
 
@@ -120,7 +120,7 @@ final class FilesController extends Controller
      */
     public function destroy(int $id, DeleteFilesCompletelyCommand $command)
     {
-        $command->execute(Collection::make([$this->filesRepository->findWithTokens($id)]));
+        $command->execute(Collection::make([$this->filesRepository->findById($id)]));
 
         return redirect()->route('dashboard.files.index');
     }

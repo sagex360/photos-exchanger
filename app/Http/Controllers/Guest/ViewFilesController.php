@@ -34,7 +34,7 @@ final class ViewFilesController extends Controller
      */
     public function show(string $token, VerifyFileLinkCommand $verifyLink)
     {
-        $fileLinkToken = $this->tokensRepository->find($token);
+        $fileLinkToken = $this->tokensRepository->findByToken($token);
         $verifyLink->execute($fileLinkToken);
 
         return view('pages.guest.files.visit', [

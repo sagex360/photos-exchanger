@@ -114,9 +114,14 @@ return [
                 'link-url' => 'Link URL',
                 'type'     => 'Type',
                 'status'   => 'Status',
+                'actions'  => 'Actions',
             ],
             'list-empty'     => 'List of links is empty. You can create new link using the button below.',
             'create-new-btn' => 'Create new link',
+
+            'buttons' => [
+                'delete' => 'Delete'
+            ],
 
             'errors' => [
                 'create' => 'Could not create link'

@@ -16,11 +16,16 @@ final class EloquentFileTokensRepository extends FileTokensRepository
         $this->fileLinkTokenQueries = $fileLinkTokenQueries;
     }
 
-    public function find(string $token): FileLinkToken
+    public function findByToken(string $token): FileLinkToken
     {
         $builder = FileLinkToken::whereToken($token);
         $this->fileLinkTokenQueries->withVisitsCount($builder);
 
         return $builder->firstOrFail();
+    }
+
+    public function findWithTrashedById(int $id): FileLinkToken
+    {
+        return FileLinkToken::withTrashed()->findOrFail($id);
     }
 }

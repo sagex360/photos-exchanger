@@ -6,9 +6,14 @@ use App\Exceptions\CouldNotSaveLinkTokenException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Links\CreateLinkRequest;
 use App\Repositories\Files\FilesRepository;
+use App\Repositories\FileTokens\FileTokensRepository;
 use App\Services\LinkTokens\CreateLinkCommand;
+use App\Services\LinkTokens\DeleteLinkTokensCommand;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -20,10 +25,15 @@ final class LinksController extends Controller
      * @var FilesRepository
      */
     protected FilesRepository $filesRepository;
+    /**
+     * @var FileTokensRepository
+     */
+    protected FileTokensRepository $tokensRepository;
 
-    public function __construct(FilesRepository $filesRepository)
+    public function __construct(FilesRepository $filesRepository, FileTokensRepository $tokensRepository)
     {
         $this->filesRepository = $filesRepository;
+        $this->tokensRepository = $tokensRepository;
     }
 
     /**
@@ -34,7 +44,7 @@ final class LinksController extends Controller
      */
     public function index(int $fileId)
     {
-        $file = $this->filesRepository->findWithTokens($fileId);
+        $file = $this->filesRepository->findWithTokensById($fileId);
 
         return view('pages.client.dashboard.links.of-file', [
             'linkTokens' => $file->linkTokens,
@@ -50,7 +60,7 @@ final class LinksController extends Controller
      */
     public function create(int $fileId)
     {
-        $file = $this->filesRepository->findWithTokens($fileId);
+        $file = $this->filesRepository->findById($fileId);
 
         return view('pages.client.dashboard.links.create', [
             'file' => $file
@@ -70,8 +80,7 @@ final class LinksController extends Controller
                           CreateLinkRequest $request,
                           CreateLinkCommand $command)
     {
-        $file = $this->filesRepository->findWithTokens($fileId);
-
+        $file = $this->filesRepository->findById($fileId);
         $command->execute($request->makeDto($file));
 
         return redirect()->route('dashboard.links.index', $file);
@@ -114,11 +123,22 @@ final class LinksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return Response
+     * @param int                     $fileId
+     * @param int                     $linkId
+     * @param DeleteLinkTokensCommand $command
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(int $fileId, int $linkId, DeleteLinkTokensCommand $command)
     {
-        //
+        $token = $this->tokensRepository->findWithTrashedById($linkId);
+
+        if ($token->file_id !== $fileId) {
+            throw new ModelNotFoundException("Token with id {$linkId} exists, but is not related to {$fileId} file.");
+        }
+
+        $command->execute(Collection::wrap($token));
+
+        return redirect()->route('dashboard.links.index', $fileId);
     }
 }

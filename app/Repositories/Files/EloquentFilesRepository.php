@@ -22,11 +22,11 @@ final class EloquentFilesRepository implements FilesRepository
         return File::overdue()->get();
     }
 
-    public function findWithTokens(int $id): File
+    public function findWithTokensById(int $id): File
     {
         return File::whereId($id)->with([
             'linkTokens' => function ($query) {
-                $this->fileLinkTokenQueries->allWithVisitsCount($query);
+                $this->fileLinkTokenQueries->withVisitsCount($query);
             }
         ])->firstOrFail();
     }
@@ -36,10 +36,8 @@ final class EloquentFilesRepository implements FilesRepository
         return File::whereUserId($userId)->get();
     }
 
-    public function findByLinkToken(string $token)
+    public function findById(int $id): File
     {
-        return File::whereHas([
-            'link'
-        ]);
+        return File::findOrFail($id);
     }
 }

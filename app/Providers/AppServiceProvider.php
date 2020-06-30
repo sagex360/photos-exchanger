@@ -68,7 +68,8 @@ final class AppServiceProvider extends ServiceProvider
     {
         $this->app->when([
             ViewFilesController::class,
-            ApiFilesController::class
+            ApiFilesController::class,
+            LinksController::class,
         ])
             ->needs(FileTokensRepository::class)
             ->give(EloquentFileTokensRepository::class);

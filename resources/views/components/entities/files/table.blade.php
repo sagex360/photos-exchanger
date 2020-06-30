@@ -17,13 +17,13 @@
             <td>{{ $file->description->publicName() }}</td>
             <td><p>{{ $file->description->shortDescription() }}</p></td>
             <td>
-                <a href="{{ route('dashboard.files.show', $file) }}"
-                   class="btn btn-xs btn-primary">
+                <x-buttons.link.action.view :href="route('dashboard.files.show', $file)">
                     {{ trans('texts.dashboard.files.table.buttons.view') }}
-                </a>
-                <a href="{{ route('dashboard.files.edit', $file) }}" class="btn btn-xs btn-secondary">
+                </x-buttons.link.action.view>
+
+                <x-buttons.link.action.edit :href="route('dashboard.files.edit', $file)">
                     {{ trans('texts.dashboard.files.table.buttons.edit') }}
-                </a>
+                </x-buttons.link.action.edit>
             </td>
         </tr>
     @empty

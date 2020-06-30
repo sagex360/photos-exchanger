@@ -12,15 +12,6 @@ final class FileLinkTokenQueries
     /**
      * @var Builder|FileLinkToken $query
      */
-    public function allWithVisitsCount($query)
-    {
-        $this->withVisitsCount($query);
-        $query->withTrashed();
-    }
-
-    /**
-     * @var Builder|FileLinkToken $query
-     */
     public function withVisitsCount($query)
     {
         $query->withCount('visits');

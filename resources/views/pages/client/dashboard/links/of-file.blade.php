@@ -16,6 +16,7 @@
                 <th scope="col">{{ trans('texts.dashboard.file-links.table.link-url') }}</th>
                 <th scope="col">{{ trans('texts.dashboard.file-links.table.type') }}</th>
                 <th scope="col">{{ trans('texts.dashboard.file-links.table.status') }}</th>
+                <th scope="col">{{ trans('texts.dashboard.file-links.table.actions') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -24,6 +25,15 @@
                     <td><p>{{ $linkToken->link() }}</p></td>
                     <td><p>{{ $linkToken->typeReadable() }}</p></td>
                     <td><p>{{ $linkToken->statusReadable() }}</p></td>
+                    <td>
+                        <x-buttons.link.action.delete :href="route('dashboard.links.destroy', [
+                                                                'file' => $file,
+                                                                'link' => $linkToken
+                                                            ])"
+                                                      :sendForm="'#' . 'delete-token-' . $linkToken->id">
+                            {{ trans('texts.dashboard.file-links.buttons.delete') }}
+                        </x-buttons.link.action.delete>
+                    </td>
                 </tr>
             @empty
                 <tr>
@@ -38,4 +48,12 @@
             {{ trans('texts.dashboard.file-links.create-new-btn') }}
         </x-buttons.link.main>
     </x-grid.dashboard.main>
+
+    @foreach($linkTokens as $linkToken)
+        <x-forms.common.delete :action="route('dashboard.links.destroy', [
+                                            'file' => $file,
+                                            'link' => $linkToken
+                                        ])"
+                               :id="'delete-token-' . $linkToken->id"/>
+    @endforeach
 @endsection

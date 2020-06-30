@@ -74,7 +74,7 @@ final class FilesController extends Controller
      */
     public function destroy(int $id, DeleteFilesCompletelyCommand $command)
     {
-        $command->execute(Collection::make($this->filesRepository->findWithTokens($id)));
+        $command->execute(Collection::make($this->filesRepository->findById($id)));
     }
 
     /**
@@ -87,7 +87,7 @@ final class FilesController extends Controller
      */
     public function link(string $token, VerifyFileLinkCommand $verifyLink, RecordLinkVisitCommand $recordLinkVisit, FilesystemManager $filesystemManager)
     {
-        $fileLinkToken = $this->fileTokensRepository->find($token);
+        $fileLinkToken = $this->fileTokensRepository->findByToken($token);
 
         $verifyLink->execute($fileLinkToken);
         $recordLinkVisit->execute($fileLinkToken);
