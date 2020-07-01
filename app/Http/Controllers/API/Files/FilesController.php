@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Files;
 
 use App\Exceptions\FileTokenExpiredException;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\File\FileResource;
 use App\Repositories\Files\FilesRepository;
 use App\Repositories\FileTokens\FileTokensRepository;
 use App\Services\Files\DeleteFilesCompletelyCommand;
@@ -46,23 +47,13 @@ final class FilesController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return Response
+     * @return FileResource
      */
     public function show(int $id)
     {
-        //
-    }
+        $file = $this->filesRepository->findById($id);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param int     $id
-     * @return Response
-     */
-    public function update(Request $request, int $id)
-    {
-        //
+        return new FileResource($file);
     }
 
     /**
@@ -85,7 +76,7 @@ final class FilesController extends Controller
      * @return string
      * @throws FileTokenExpiredException
      */
-    public function link(string $token, VerifyFileLinkCommand $verifyLink, RecordLinkVisitCommand $recordLinkVisit, FilesystemManager $filesystemManager)
+    public function fileResource(string $token, VerifyFileLinkCommand $verifyLink, RecordLinkVisitCommand $recordLinkVisit, FilesystemManager $filesystemManager)
     {
         $fileLinkToken = $this->fileTokensRepository->findByToken($token);
 

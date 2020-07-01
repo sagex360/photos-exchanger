@@ -13,20 +13,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')
-    ->group(function () {
-        Route::resource('files', 'FilesController')
-            ->only(['create', 'show', 'destroy']);
-    });
-
-
-Route::prefix('/guest')
-    ->name('guest.')
+Route::namespace('Files')
     ->group(function () {
 
-        /**
-         * Return file (image) response to display by passed link token.
-         */
-        Route::get('files/{linkToken}', 'FilesController@link')->name('files.link');
+        Route::apiResource('files', 'FilesController')
+            ->only(['store', 'show', 'destroy']);
+
+        Route::prefix('/files/{file}/')
+            ->name('files.')
+            ->group(function () {
+
+                Route::prefix('/relationships/')
+                    ->name('relationships.')
+                    ->group(function () {
+                        Route::get('/user', 'FileRelationshipsController@user')->name('user');
+                        Route::get('/link_tokens', 'FileRelationshipsController@linkTokens')->name('link_tokens');
+                    });
+
+                Route::get('/link_tokens/', 'FileRelationshipsController@relatedLinkTokens')->name('link_tokens');
+
+            });
+
+
+        Route::prefix('/guest')
+            ->name('guest.')
+            ->group(function () {
+
+                /**
+                 * Return file (image resource) by link token to display.
+                 */
+                Route::get('files/{linkToken}', 'FilesController@fileResource')->name('files.resource');
+            });
 
     });
+
+Route::apiResource('users', 'UsersController')
+    ->only('show');
+
+Route::apiResource('link_tokens', 'LinkTokens\LinkTokensController')
+    ->only('show');

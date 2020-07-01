@@ -58,7 +58,7 @@ final class Client extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'api_token', 'remember_token',
     ];
 
     /**
@@ -76,6 +76,6 @@ final class Client extends Authenticatable
 
     public function files()
     {
-        return $this->hasMany(File::class);
+        return $this->hasMany(File::class, 'user_id');
     }
 }

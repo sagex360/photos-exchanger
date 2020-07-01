@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\API\FilesController as ApiFilesController;
+use App\Http\Controllers\API\Files\FileRelationshipsController;
+use App\Http\Controllers\API\Files\FilesController as ApiFilesController;
+use App\Http\Controllers\API\LinkTokens\LinkTokensController as ApiLinkTokensController;
+use App\Http\Controllers\API\UsersController as ApiUsersController;
 use App\Http\Controllers\Client\Dashboard\FilesController;
 use App\Http\Controllers\Client\Dashboard\LinksController;
 use App\Http\Controllers\Guest\ViewFilesController;
@@ -11,6 +14,8 @@ use App\Repositories\Files\EloquentFilesRepository;
 use App\Repositories\Files\FilesRepository;
 use App\Repositories\FileTokens\EloquentFileTokensRepository;
 use App\Repositories\FileTokens\FileTokensRepository;
+use App\Repositories\Users\EloquentUsersRepository;
+use App\Repositories\Users\UsersRepository;
 use App\Services\Files\DeleteFilesCompletelyCommand;
 use App\Services\Files\UpdateFileCommand;
 use Illuminate\Container\Container;
@@ -49,6 +54,7 @@ final class AppServiceProvider extends ServiceProvider
 
         $this->registerFileRepositoryBindings();
         $this->registerFileTokensRepositoryBindings();
+        $this->registerUsersRepositoryBindings();
     }
 
     protected function registerFileRepositoryBindings()
@@ -58,7 +64,8 @@ final class AppServiceProvider extends ServiceProvider
             UpdateFileCommand::class,
             LinksController::class,
             ViewFilesController::class,
-            ApiFilesController::class
+            ApiFilesController::class,
+            FileRelationshipsController::class
         ])
             ->needs(FilesRepository::class)
             ->give(EloquentFilesRepository::class);
@@ -70,9 +77,21 @@ final class AppServiceProvider extends ServiceProvider
             ViewFilesController::class,
             ApiFilesController::class,
             LinksController::class,
+            FileRelationshipsController::class,
+            ApiLinkTokensController::class,
         ])
             ->needs(FileTokensRepository::class)
             ->give(EloquentFileTokensRepository::class);
+    }
+
+    protected function registerUsersRepositoryBindings()
+    {
+        $this->app->when([
+            FileRelationshipsController::class,
+            ApiUsersController::class,
+        ])
+            ->needs(UsersRepository::class)
+            ->give(EloquentUsersRepository::class);
     }
 
     /**

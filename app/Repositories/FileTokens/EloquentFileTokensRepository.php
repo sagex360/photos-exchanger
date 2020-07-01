@@ -6,6 +6,7 @@ namespace App\Repositories\FileTokens;
 
 use App\Models\FileLinkToken;
 use App\Repositories\FileTokens\Queries\FileLinkTokenQueries;
+use Illuminate\Database\Eloquent\Collection;
 
 final class EloquentFileTokensRepository extends FileTokensRepository
 {
@@ -27,5 +28,20 @@ final class EloquentFileTokensRepository extends FileTokensRepository
     public function findWithTrashedById(int $id): FileLinkToken
     {
         return FileLinkToken::withTrashed()->findOrFail($id);
+    }
+
+    public function findByFileId(int $fileId): Collection
+    {
+        return FileLinkToken::whereFileId($fileId)->get();
+    }
+
+    public function all(): Collection
+    {
+        return FileLinkToken::all();
+    }
+
+    public function findById(int $id): FileLinkToken
+    {
+        return FileLinkToken::findOrFail($id);
     }
 }

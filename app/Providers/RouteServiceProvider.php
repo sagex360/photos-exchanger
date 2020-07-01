@@ -74,15 +74,9 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/web.php'));
     }
 
-    protected function apiNamespace()
-    {
-        return 'App\Http\Controllers\API';
-    }
+    protected string $apiNamespace = 'App\Http\Controllers\API';
 
-    protected function guestNamespace()
-    {
-        return 'App\Http\Controllers\Guest';
-    }
+    protected string $guestNamespace = 'App\Http\Controllers\Guest';
 
     /**
      * Define the "api" routes for the application.
@@ -95,7 +89,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api')
             ->middleware('api')
-            ->namespace($this->apiNamespace())
+            ->namespace($this->apiNamespace)
             ->name('api.')
             ->group(base_path('routes/api.php'));
     }
@@ -103,7 +97,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapGuestRoutes()
     {
         Route::prefix('guest')
-            ->namespace($this->guestNamespace())
+            ->namespace($this->guestNamespace)
             ->name('guest.')
             ->group(base_path('routes/guest.php'));
     }

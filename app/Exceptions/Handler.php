@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -54,9 +55,15 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof FileTokenExpiredException
-            || $exception instanceof IncompatibleParentAndChildModelsException) {
+        if ($exception instanceof FileTokenExpiredException) {
+            if ($request->expectsJson()) {
+                return parent::render($request, new HttpException(401, $exception->getMessage()));
+            }
 
+            return parent::render($request, new NotFoundHttpException());
+        }
+
+        if ($exception instanceof IncompatibleParentAndChildModelsException) {
             return parent::render($request, new NotFoundHttpException());
         }
 
