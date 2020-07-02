@@ -8,7 +8,7 @@ use App\ValueObjects\DeletionDate\DeletionDate;
 use App\ValueObjects\FileDescription;
 use Illuminate\Http\UploadedFile;
 
-class CreateFileDto
+final class CreateFileDto
 {
     protected int $userId;
 

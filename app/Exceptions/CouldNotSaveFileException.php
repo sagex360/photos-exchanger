@@ -4,7 +4,9 @@
 namespace App\Exceptions;
 
 
-final class CouldNotSaveFileException extends \Exception
+use Exception;
+
+final class CouldNotSaveFileException extends Exception
 {
 
 }

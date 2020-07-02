@@ -5,6 +5,7 @@ namespace App\ValueObjects;
 
 
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
 final class ApiToken
 {
@@ -25,11 +26,11 @@ final class ApiToken
         $len = strlen($token);
 
         if ($len < self::TOKEN_MIN_LENGTH) {
-            throw new \InvalidArgumentException('Token must be at least ' . self::TOKEN_MIN_LENGTH);
+            throw new InvalidArgumentException('Token must be at least ' . self::TOKEN_MIN_LENGTH);
         }
 
         if ($len > self::TOKEN_MAX_LENGTH) {
-            throw new \InvalidArgumentException('Token must be less than ' . self::TOKEN_MAX_LENGTH);
+            throw new InvalidArgumentException('Token must be less than ' . self::TOKEN_MAX_LENGTH);
         }
     }
 

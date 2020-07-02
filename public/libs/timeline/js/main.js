@@ -7,7 +7,7 @@
 		this.contents = this.element.getElementsByClassName("js-cd-content");
 		this.offset = 0.8;
 		this.hideBlocks();
-	};
+	}
 
 	VerticalTimeline.prototype.hideBlocks = function() {
 		//hide timeline blocks which are outside the viewport
@@ -18,8 +18,8 @@
 		for( var i = 0; i < this.blocks.length; i++) {
 			(function(i){
 				if( self.blocks[i].getBoundingClientRect().top > window.innerHeight*self.offset ) {
-					self.images[i].classList.add("cd-is-hidden"); 
-					self.contents[i].classList.add("cd-is-hidden"); 
+					self.images[i].classList.add("cd-is-hidden");
+					self.contents[i].classList.add("cd-is-hidden");
 				}
 			})(i);
 		}
@@ -67,5 +67,5 @@
 			timeline.showBlocks();
 		});
 		scrolling = false;
-	};
+	}
 })();

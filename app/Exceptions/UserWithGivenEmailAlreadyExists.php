@@ -4,7 +4,9 @@
 namespace App\Exceptions;
 
 
-final class UserWithGivenEmailAlreadyExists extends \Exception
+use Exception;
+
+final class UserWithGivenEmailAlreadyExists extends Exception
 {
 
 }

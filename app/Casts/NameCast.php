@@ -5,8 +5,9 @@ namespace App\Casts;
 use App\ValueObjects\Name;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
+use InvalidArgumentException;
 
-class NameCast implements CastsAttributes
+final class NameCast implements CastsAttributes
 {
     /**
      * Cast the given value.
@@ -34,7 +35,7 @@ class NameCast implements CastsAttributes
     public function set($model, string $key, $setName, $attributes)
     {
         if (!$setName instanceof Name) {
-            throw new \InvalidArgumentException('Parameter $setName must be instance of ' . Name::class);
+            throw new InvalidArgumentException('Parameter $setName must be instance of ' . Name::class);
         }
 
         return [

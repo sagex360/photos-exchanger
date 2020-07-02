@@ -5,8 +5,9 @@ namespace App\Casts;
 use App\ValueObjects\ApiToken;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
+use InvalidArgumentException;
 
-class ApiTokenCast implements CastsAttributes
+final class ApiTokenCast implements CastsAttributes
 {
     protected string $tokenKey;
 
@@ -48,7 +49,7 @@ class ApiTokenCast implements CastsAttributes
     public function set($model, string $key, $value, $attributes)
     {
         if (!$value instanceof ApiToken) {
-            throw new \InvalidArgumentException('Could not cast ' . get_class($value) . ' to ' . ApiToken::class);
+            throw new InvalidArgumentException('Could not cast ' . get_class($value) . ' to ' . ApiToken::class);
         }
 
         return [

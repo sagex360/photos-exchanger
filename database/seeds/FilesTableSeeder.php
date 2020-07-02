@@ -1,5 +1,6 @@
 <?php
 
+use App\Lib\Faker\Providers\PicsumImage;
 use App\Models\File;
 use App\ValueObjects\DeletionDate\NotNullDeletionDate;
 use App\ValueObjects\DeletionDate\NullDeletionDate;
@@ -31,7 +32,7 @@ class FilesTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $faker->addProvider(new \App\Lib\Faker\Providers\PicsumImage($faker));
+        $faker->addProvider(new PicsumImage($faker));
 
         $path = config('filesystems.disks.public.root') . '/' . $this->folderLocator->locate('public');
 

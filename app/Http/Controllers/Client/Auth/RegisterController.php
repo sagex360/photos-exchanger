@@ -8,6 +8,7 @@ use App\Exceptions\UserWithGivenEmailAlreadyExists;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Register\RegisterClientRequest;
 use App\Services\Auth\Register\RegisterClientCommand;
+use Illuminate\Http\RedirectResponse;
 
 final class RegisterController extends Controller
 {
@@ -19,7 +20,7 @@ final class RegisterController extends Controller
     /**
      * @param RegisterClientRequest $request
      * @param RegisterClientCommand $registerUserCommand
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function register(RegisterClientRequest $request, RegisterClientCommand $registerUserCommand)
     {

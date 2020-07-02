@@ -7,7 +7,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
 
-class FileDescriptionCast implements CastsAttributes
+final class FileDescriptionCast implements CastsAttributes
 {
     protected string $descriptionKey;
     protected string $publicNameKey;

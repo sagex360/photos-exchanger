@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Login\LoginClientRequest;
 use App\Providers\RouteServiceProvider;
 use App\Services\Auth\Login\LoginClientCommand;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 final class LoginController extends Controller
@@ -29,7 +30,7 @@ final class LoginController extends Controller
 
     /**
      * @param LoginClientRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function login(LoginClientRequest $request)
     {

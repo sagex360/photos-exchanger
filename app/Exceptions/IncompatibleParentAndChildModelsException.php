@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 
-final class IncompatibleParentAndChildModelsException extends \RuntimeException
+use RuntimeException;
+
+final class IncompatibleParentAndChildModelsException extends RuntimeException
 {
 }

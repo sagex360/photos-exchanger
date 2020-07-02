@@ -4,25 +4,26 @@ namespace Tests\Unit\Business\ValueObjects;
 
 use App\ValueObjects\FileDescription;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class FileDescriptionTest extends TestCase
 {
     public function testEmptyName()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $fileDescription = FileDescription::create('', 'some description');
     }
 
     public function testEmptyDescription()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $fileDescription = FileDescription::create('not empty', '');
     }
 
     public function testTooLongName()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $fileDescription = FileDescription::create(
             Str::random(FileDescription::MAX_PUBLIC_NAME + 1),
@@ -32,7 +33,7 @@ class FileDescriptionTest extends TestCase
 
     public function testTooLongDescription()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $fileDescription = FileDescription::create(
             'some name',

@@ -6,7 +6,7 @@ namespace App\Rules\Groups\File;
 
 use App\Rules\Groups\RulesGroup;
 
-class FileDescriptionRules extends RulesGroup
+final class FileDescriptionRules extends RulesGroup
 {
     const MAX_SIZE = 65534;
 

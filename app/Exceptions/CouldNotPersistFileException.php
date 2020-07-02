@@ -4,7 +4,9 @@
 namespace App\Exceptions;
 
 
-final class CouldNotPersistFileException extends \RuntimeException
+use RuntimeException;
+
+final class CouldNotPersistFileException extends RuntimeException
 {
 
 }

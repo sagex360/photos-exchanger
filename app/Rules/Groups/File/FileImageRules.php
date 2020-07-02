@@ -6,7 +6,7 @@ namespace App\Rules\Groups\File;
 
 use App\Rules\Groups\RulesGroup;
 
-class FileImageRules extends RulesGroup
+final class FileImageRules extends RulesGroup
 {
     const MAX_SIZE = 1024 * 5;
 

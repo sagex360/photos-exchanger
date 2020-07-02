@@ -10,7 +10,7 @@ use App\Exceptions\CouldNotSaveFileException;
 use App\Models\File;
 use Illuminate\Contracts\Events\Dispatcher;
 
-class CreateFileCommand
+final class CreateFileCommand
 {
     protected Dispatcher $dispatcher;
     protected FileSaver $filesUploader;

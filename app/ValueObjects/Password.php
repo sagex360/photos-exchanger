@@ -5,6 +5,7 @@ namespace App\ValueObjects;
 
 
 use Illuminate\Support\Facades\Hash;
+use InvalidArgumentException;
 
 final class Password
 {
@@ -19,7 +20,7 @@ final class Password
     {
         if (!$isHashed) {
             if (mb_strlen($string) < self::MIN_LENGTH) {
-                throw new \InvalidArgumentException('Password must has at least ' . self::MIN_LENGTH . ' characters');
+                throw new InvalidArgumentException('Password must has at least ' . self::MIN_LENGTH . ' characters');
             }
 
             $string = Hash::make($string);

@@ -6,7 +6,7 @@ namespace App\Rules\Groups\File;
 
 use App\Rules\Groups\RulesGroup;
 
-class FilePublicNameRules extends RulesGroup
+final class FilePublicNameRules extends RulesGroup
 {
     const MAX_SIZE = 255;
 

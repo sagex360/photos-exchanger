@@ -14,7 +14,7 @@ final class LoginClientRequest extends AppFormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @param \App\Rules\Groups\Client\LoginRules $loginRules
+     * @param LoginRules    $loginRules
      * @param PasswordRules $passwordRules
      * @return array
      */

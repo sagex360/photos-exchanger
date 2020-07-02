@@ -5,9 +5,10 @@ namespace App\Casts;
 use App\ValueObjects\Password;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
+use InvalidArgumentException;
 use Mockery\Generator\StringManipulation\Pass\Pass;
 
-class PasswordCast implements CastsAttributes
+final class PasswordCast implements CastsAttributes
 {
     /**
      * Cast the given value.
@@ -35,7 +36,7 @@ class PasswordCast implements CastsAttributes
     public function set($model, string $key, $setPassword, $attributes)
     {
         if (!$setPassword instanceof Password) {
-            throw new \InvalidArgumentException('Parameter $setPassword must be instance of ' . Pass::class);
+            throw new InvalidArgumentException('Parameter $setPassword must be instance of ' . Pass::class);
         }
 
         return [

@@ -8,7 +8,7 @@ use App\ValueObjects\LinkToken\LinkTokensFactory;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 
-class LinkTokenCast implements CastsAttributes
+final class LinkTokenCast implements CastsAttributes
 {
     protected string $tokenKey;
     protected string $tokenTypeKey;

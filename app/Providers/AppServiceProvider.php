@@ -18,6 +18,7 @@ use App\Repositories\Users\EloquentUsersRepository;
 use App\Repositories\Users\UsersRepository;
 use App\Services\Files\DeleteFilesCompletelyCommand;
 use App\Services\Files\UpdateFileCommand;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,7 +32,7 @@ final class AppServiceProvider extends ServiceProvider
     public function register()
     {
         if ($this->app->environment() !== 'production') {
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+            $this->app->register(IdeHelperServiceProvider::class);
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }
 

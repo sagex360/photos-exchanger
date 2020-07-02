@@ -6,6 +6,7 @@ namespace App\Services\Auth;
 
 use App\Models\Client;
 use Illuminate\Contracts\Auth\Authenticatable;
+use InvalidArgumentException;
 
 final class GuardResolver
 {
@@ -19,9 +20,9 @@ final class GuardResolver
                 return 'web';
             }
 
-            throw new \InvalidArgumentException("Category '$category' not found.");
+            throw new InvalidArgumentException("Category '$category' not found.");
         }
 
-        throw new \InvalidArgumentException('Could not resolve guard for ' . get_class($user));
+        throw new InvalidArgumentException('Could not resolve guard for ' . get_class($user));
     }
 }

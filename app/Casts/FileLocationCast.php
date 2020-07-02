@@ -7,7 +7,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
 
-class FileLocationCast implements CastsAttributes
+final class FileLocationCast implements CastsAttributes
 {
     protected string $storageKey;
     protected string $fileNameKey;

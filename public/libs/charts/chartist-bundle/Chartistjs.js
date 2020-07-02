@@ -16,7 +16,7 @@
                     right: 40
                 },
                 axisY: {
-                    
+
                 }
             });
 
@@ -41,7 +41,7 @@
                     right: 10
                 },
                 axisY: {
-                  
+
                 },
 
                 low: 0
@@ -66,7 +66,7 @@
                 axisY: {
                     onlyInteger: true,
                     offset: 20,
-                    
+
                 },
 
             });
@@ -87,7 +87,7 @@
                 return data;
             }, {
                 labels: [],
-                series: times(4).map(function() { return new Array() })
+                series: times(4).map(function() { return [] })
             });
 
             var options = {
@@ -132,7 +132,7 @@
                 {
                     low: 0,
                     showArea: true,
-                    
+
                 });
         }
 
@@ -157,7 +157,7 @@
                     showLabel: false,
                     showGrid: false
                 },
-               
+
             });
         }
 
@@ -172,7 +172,7 @@
             }, {
                 stackBars: true,
                 axisY: {
-                    
+
                 }
             }).on('draw', function(data) {
                 if (data.type === 'bar') {
@@ -223,7 +223,7 @@
                     }
                 },
                 axisY: {
-                    
+
                 }
             };
 
@@ -246,7 +246,7 @@
                     }
                 },
                 axisY: {
-                    
+
                 }
             });
 

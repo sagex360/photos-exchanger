@@ -5,6 +5,7 @@ namespace Tests\Unit\Business\ValueObjects;
 use App\ValueObjects\DeletionDate\DeletionDateFactory;
 use App\ValueObjects\DeletionDate\NotNullDeletionDate;
 use App\ValueObjects\DeletionDate\NullDeletionDate;
+use Carbon\Exceptions\InvalidFormatException;
 use Illuminate\Support\Carbon;
 use PHPUnit\Framework\TestCase;
 
@@ -55,7 +56,7 @@ class DeletionDateTest extends TestCase
 
     public function testInvalidFormatOfDeletionDate()
     {
-        $this->expectException(\Carbon\Exceptions\InvalidFormatException::class);
+        $this->expectException(InvalidFormatException::class);
 
         DeletionDateFactory::fromFormat('Y-m-d', '2020/02/12');
     }

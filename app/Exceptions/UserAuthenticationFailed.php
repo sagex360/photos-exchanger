@@ -4,7 +4,9 @@
 namespace App\Exceptions;
 
 
-final class UserAuthenticationFailed extends \Exception
+use Exception;
+
+final class UserAuthenticationFailed extends Exception
 {
 
 }

@@ -8,14 +8,14 @@ use App\Rules\Groups\Client\LoginRules;
 use App\Rules\Groups\Client\NameRules;
 use App\Rules\Groups\Client\PasswordRules;
 
-class RegisterClientRequest extends AppFormRequest
+final class RegisterClientRequest extends AppFormRequest
 {
     /**
      * Get the validation rules that apply to the request.
      *
-     * @param NameRules $nameRules
-     * @param \App\Rules\Groups\Client\LoginRules $loginRules
-     * @param \App\Rules\Groups\Client\PasswordRules $passwordRules
+     * @param NameRules     $nameRules
+     * @param LoginRules    $loginRules
+     * @param PasswordRules $passwordRules
      * @return array
      */
     public function rules(NameRules $nameRules, LoginRules $loginRules, PasswordRules $passwordRules)

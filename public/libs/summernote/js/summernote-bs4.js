@@ -1,14 +1,14 @@
 /*!
- * 
+ *
  * Super simple wysiwyg editor v0.8.12
  * https://summernote.org
- * 
- * 
+ *
+ *
  * Copyright 2013- Alan Hong. and other contributors
  * summernote may be freely distributed under the MIT license.
- * 
+ *
  * Date: 2019-07-30T07:32Z
- * 
+ *
  */
 (function webpackUniversalModuleDefinition(root, factory) {
     if(typeof exports === 'object' && typeof module === 'object')
@@ -4546,7 +4546,7 @@ class Table_Table {
 
         case TableResultAction.resultAction.RemoveCell:
           // Do not need remove cell because row will be deleted.
-          continue;
+
       }
     }
 
@@ -4603,7 +4603,7 @@ class Table_Table {
 
         case TableResultAction.resultAction.RemoveCell:
           dom.remove(actions[actionIndex].baseCell, true);
-          continue;
+
       }
     }
   }
@@ -4733,7 +4733,7 @@ class Editor_Editor {
       this.context.memo('help.formatH' + idx, this.lang.help['formatH' + idx]);
     }
 
-    ;
+
     this.insertParagraph = this.wrapCommand(() => {
       this.typing.insertParagraph(this.editable);
     });

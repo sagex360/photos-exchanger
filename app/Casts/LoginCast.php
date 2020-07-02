@@ -5,8 +5,9 @@ namespace App\Casts;
 use App\ValueObjects\Login;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
+use InvalidArgumentException;
 
-class LoginCast implements CastsAttributes
+final class LoginCast implements CastsAttributes
 {
     /**
      * Cast the given value.
@@ -34,7 +35,7 @@ class LoginCast implements CastsAttributes
     public function set($model, string $key, $setLogin, $attributes)
     {
         if (!$setLogin instanceof Login) {
-            throw new \InvalidArgumentException('Parameter $setLogin must be instance of ' . Login::class);
+            throw new InvalidArgumentException('Parameter $setLogin must be instance of ' . Login::class);
         }
 
         return [

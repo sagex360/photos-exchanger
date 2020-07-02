@@ -3,19 +3,20 @@
 namespace Tests\Unit\Business\ValueObjects;
 
 use App\ValueObjects\Login;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class LoginTest extends TestCase
 {
     public function testEmptyLogin()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $login = Login::create('');
     }
 
     public function testInvalidLogin()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $login = Login::create('not_valid_email@');
     }

@@ -5,6 +5,7 @@ namespace App\ValueObjects;
 
 
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
 final class FileDescription
 {
@@ -24,21 +25,21 @@ final class FileDescription
         $nameLength = mb_strlen($publicName);
 
         if ($nameLength < self::MIN_PUBLIC_NAME) {
-            throw new \InvalidArgumentException('Name must be at least ' . self::MIN_PUBLIC_NAME . ' characters');
+            throw new InvalidArgumentException('Name must be at least ' . self::MIN_PUBLIC_NAME . ' characters');
         }
 
         if ($nameLength > self::MAX_PUBLIC_NAME) {
-            throw new \InvalidArgumentException('Name could not be more than ' . self::MAX_PUBLIC_NAME . ' characters');
+            throw new InvalidArgumentException('Name could not be more than ' . self::MAX_PUBLIC_NAME . ' characters');
         }
 
         $descriptionLength = mb_strlen($description);
 
         if ($descriptionLength < self::MIN_DESCRIPTION) {
-            throw new \InvalidArgumentException('Description must be at least ' . self::MIN_DESCRIPTION . ' characters');
+            throw new InvalidArgumentException('Description must be at least ' . self::MIN_DESCRIPTION . ' characters');
         }
 
         if ($descriptionLength > self::MAX_DESCRIPTION) {
-            throw new \InvalidArgumentException('Description could not be more than ' . self::MAX_DESCRIPTION . ' characters');
+            throw new InvalidArgumentException('Description could not be more than ' . self::MAX_DESCRIPTION . ' characters');
         }
 
         $this->publicName = $publicName;

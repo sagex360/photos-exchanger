@@ -4,13 +4,14 @@ namespace Tests\Unit\Business\ValueObjects;
 
 use App\ValueObjects\ApiToken;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 final class ApiTokenTest extends TestCase
 {
     public function testTooShortTokenLength()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $token = ApiToken::create(Str::random(ApiToken::TOKEN_MIN_LENGTH - 1));
     }
@@ -25,7 +26,7 @@ final class ApiTokenTest extends TestCase
 
     public function testTooLongTokenLength()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $token = ApiToken::create(Str::random(ApiToken::TOKEN_MAX_LENGTH + 1));
     }

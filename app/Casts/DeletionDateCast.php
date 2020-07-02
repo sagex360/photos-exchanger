@@ -6,8 +6,9 @@ use App\ValueObjects\DeletionDate\DeletionDate;
 use App\ValueObjects\DeletionDate\DeletionDateFactory;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
+use InvalidArgumentException;
 
-class DeletionDateCast implements CastsAttributes
+final class DeletionDateCast implements CastsAttributes
 {
     protected string $dateFormat;
 
@@ -42,7 +43,7 @@ class DeletionDateCast implements CastsAttributes
     public function set($model, string $key, $setDate, $attributes)
     {
         if (!$setDate instanceof DeletionDate) {
-            throw new \InvalidArgumentException('Parameter $setDate must be instance of ' . DeletionDate::class);
+            throw new InvalidArgumentException('Parameter $setDate must be instance of ' . DeletionDate::class);
         }
 
         return [

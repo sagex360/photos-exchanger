@@ -4,7 +4,9 @@
 namespace App\Exceptions;
 
 
-final class UserNotFoundException extends \Exception
+use Exception;
+
+final class UserNotFoundException extends Exception
 {
 //    private $fieldName;
 //
