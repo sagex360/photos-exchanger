@@ -33,7 +33,7 @@ Route::namespace('Files')
                             });
 
                         Route::apiResource('link_tokens', 'FileLinkTokensController')
-                            ->only('index');
+                            ->only('index', 'store');
                     });
             });
 
@@ -49,8 +49,13 @@ Route::namespace('Files')
 
     });
 
-Route::apiResource('users', 'UsersController')
-    ->only('show');
+Route::middleware('auth:api')
+    ->group(function () {
+        Route::apiResource('users', 'UsersController')
+            ->only('show');
 
-Route::apiResource('link_tokens', 'LinkTokens\LinkTokensController')
-    ->only('show');
+        Route::get('/link_tokens/types', 'LinkTokens\LinkTokensController@types')->name('link_tokens.types');
+
+        Route::apiResource('link_tokens', 'LinkTokens\LinkTokensController')
+            ->only('show');
+    });

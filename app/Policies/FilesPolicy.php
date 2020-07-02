@@ -17,7 +17,7 @@ class FilesPolicy
      * @param File   $file
      * @return bool
      */
-    public function view(Client $user, File $file)
+    public function view(Client $user, File $file): bool
     {
         return $file->isOwnedBy($user);
     }
@@ -28,7 +28,7 @@ class FilesPolicy
      * @param Client $user
      * @return bool
      */
-    public function create(Client $user)
+    public function create(Client $user): bool
     {
         return true;
     }
@@ -40,7 +40,7 @@ class FilesPolicy
      * @param File   $file
      * @return bool
      */
-    public function update(Client $user, File $file)
+    public function update(Client $user, File $file): bool
     {
         return $file->isOwnedBy($user);
     }
@@ -52,7 +52,7 @@ class FilesPolicy
      * @param File   $file
      * @return bool
      */
-    public function delete(Client $user, File $file)
+    public function delete(Client $user, File $file): bool
     {
         return $file->isOwnedBy($user);
     }

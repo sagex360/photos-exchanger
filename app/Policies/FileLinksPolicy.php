@@ -19,9 +19,19 @@ class FileLinksPolicy
      * @param File   $parentFile
      * @return bool
      */
-    public function viewAnyOf(Client $user, File $parentFile)
+    public function viewAnyOf(Client $user, File $parentFile): bool
     {
         return $user->can('view', $parentFile);
+    }
+
+    /**
+     * @param Client        $user
+     * @param FileLinkToken $linkToken
+     * @return bool
+     */
+    public function view(Client $user, FileLinkToken $linkToken)
+    {
+        return $user->can('viewAnyOf', [FileLinkToken::class, $linkToken->file]);
     }
 
     /**
@@ -31,7 +41,7 @@ class FileLinksPolicy
      * @param File   $parentFile
      * @return bool
      */
-    public function createOf(Client $user, File $parentFile)
+    public function createOf(Client $user, File $parentFile): bool
     {
         return $user->can('view', $parentFile);
     }
@@ -44,14 +54,14 @@ class FileLinksPolicy
      * @param File          $tokenParent
      * @return bool
      */
-    public function deleteOf(Client $user, FileLinkToken $fileLinkToken, File $tokenParent)
+    public function deleteOf(Client $user, FileLinkToken $fileLinkToken, File $tokenParent): bool
     {
         $this->verifyTokenParent($fileLinkToken, $tokenParent);
 
         return $user->can('view', $tokenParent);
     }
 
-    protected function verifyTokenParent(FileLinkToken $fileLinkToken, File $tokenParent)
+    protected function verifyTokenParent(FileLinkToken $fileLinkToken, File $tokenParent): void
     {
         if ($fileLinkToken->file_id !== $tokenParent->id) {
             throw new IncompatibleParentAndChildModelsException(
