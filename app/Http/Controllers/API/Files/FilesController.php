@@ -13,11 +13,10 @@ use App\Repositories\Files\FilesRepository;
 use App\Repositories\FileTokens\FileTokensRepository;
 use App\Services\Files\CreateFileCommand;
 use App\Services\Files\DeleteFilesCompletelyCommand;
-use App\Services\Files\RecordLinkVisitCommand;
-use App\Services\Files\VerifyFileLinkCommand;
+use App\Services\Files\ReceiveFileFromStorageCommand;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Filesystem\FilesystemManager;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 final class FilesController extends Controller
 {
@@ -88,21 +87,15 @@ final class FilesController extends Controller
     }
 
     /**
-     * @param string                 $token
-     * @param VerifyFileLinkCommand  $verifyLink
-     * @param RecordLinkVisitCommand $recordLinkVisit
-     * @param FilesystemManager      $filesystemManager
-     * @return string
+     * @param string                        $token
+     * @param ReceiveFileFromStorageCommand $fileStorage
+     * @return StreamedResponse
      * @throws FileTokenExpiredException
      */
-    public function fileResource(string $token, VerifyFileLinkCommand $verifyLink, RecordLinkVisitCommand $recordLinkVisit, FilesystemManager $filesystemManager)
+    public function fileResource(string $token, ReceiveFileFromStorageCommand $fileStorage)
     {
         $fileLinkToken = $this->fileTokensRepository->findByToken($token);
 
-        $verifyLink->execute($fileLinkToken);
-        $recordLinkVisit->execute($fileLinkToken);
-
-        return $filesystemManager->disk($fileLinkToken->file->location->storage())
-            ->response($fileLinkToken->file->location->fullPath());
+        return $fileStorage->get($fileLinkToken);
     }
 }
