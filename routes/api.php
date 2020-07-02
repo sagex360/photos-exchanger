@@ -32,8 +32,8 @@ Route::namespace('Files')
                                 Route::get('/link_tokens', 'FileRelationshipsController@linkTokens')->name('link_tokens');
                             });
 
-                        Route::get('/link_tokens/', 'FileRelationshipsController@relatedLinkTokens')->name('link_tokens');
-
+                        Route::apiResource('link_tokens', 'FileLinkTokensController')
+                            ->only('index');
                     });
             });
 

@@ -49,12 +49,4 @@ final class FileRelationshipsController extends Controller
             $this->filesRepository->findById($fileId),
         );
     }
-
-    public function relatedLinkTokens(int $fileId)
-    {
-        return new FileLinkTokensRelatedResource(
-            $this->tokensRepository->findByFileId($fileId),
-            $this->filesRepository->findById($fileId)
-        );
-    }
 }

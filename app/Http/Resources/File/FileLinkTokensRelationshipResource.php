@@ -37,7 +37,7 @@ final class FileLinkTokensRelationshipResource extends ResourceCollection
         return [
             'links' => [
                 'self'    => route('api.files.relationships.link_tokens', [$this->file]),
-                'related' => route('api.files.link_tokens', [$this->file])
+                'related' => route('api.files.link_tokens.index', [$this->file])
             ],
             'data'  => LinkTokenIdentifierResource::collection($this->collection),
         ];

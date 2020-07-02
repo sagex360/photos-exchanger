@@ -27,7 +27,7 @@ final class FileLinkTokensRelatedResource extends ResourceCollection
         return [
             'data'  => LinkTokenResource::collection($this->collection),
             'links' => [
-                'self' => route('api.files.link_tokens', [$this->file])
+                'self' => route('api.files.link_tokens.index', [$this->file])
             ],
         ];
     }

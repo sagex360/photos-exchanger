@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\API\Files\FileLinkTokensController;
 use App\Http\Controllers\API\Files\FileRelationshipsController;
 use App\Http\Controllers\API\Files\FilesController as ApiFilesController;
 use App\Http\Controllers\API\LinkTokens\LinkTokensController as ApiLinkTokensController;
@@ -66,7 +67,8 @@ final class AppServiceProvider extends ServiceProvider
             LinksController::class,
             ViewFilesController::class,
             ApiFilesController::class,
-            FileRelationshipsController::class
+            FileRelationshipsController::class,
+            FileLinkTokensController::class,
         ])
             ->needs(FilesRepository::class)
             ->give(EloquentFilesRepository::class);
@@ -80,6 +82,7 @@ final class AppServiceProvider extends ServiceProvider
             LinksController::class,
             FileRelationshipsController::class,
             ApiLinkTokensController::class,
+            FileLinkTokensController::class,
         ])
             ->needs(FileTokensRepository::class)
             ->give(EloquentFileTokensRepository::class);
