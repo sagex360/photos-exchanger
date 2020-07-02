@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /** @mixin Client */
-class FileUserRelationshipResource extends JsonResource
+final class FileUserRelationshipResource extends JsonResource
 {
     /**
      * @var File

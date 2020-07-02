@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Resources\User;
 
-use App\Models\Client;
+namespace App\Http\Resources\File;
+
+
+use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin Client */
-final class UserIdentifierResource extends JsonResource
+/** @mixin File */
+final class FileIdentifierResource extends JsonResource
 {
     /**
      * @param Request $request
@@ -16,8 +18,9 @@ final class UserIdentifierResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type' => 'users',
+            'type' => 'files',
             'id'   => $this->id,
         ];
     }
 }
+

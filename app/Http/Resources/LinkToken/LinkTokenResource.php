@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /** @mixin FileLinkToken */
-class LinkTokenResource extends JsonResource
+final class LinkTokenResource extends JsonResource
 {
     /**
      * @param Request $request

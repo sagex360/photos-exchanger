@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class FileLinkTokensRelatedResource extends ResourceCollection
+final class FileLinkTokensRelatedResource extends ResourceCollection
 {
     protected File $file;
 

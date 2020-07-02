@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\API\Files;
 
+use App\Exceptions\CouldNotSaveFileException;
 use App\Exceptions\FileTokenExpiredException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\Files\StoreFileRequest;
+use App\Http\Resources\File\FileIdentifierResource;
 use App\Http\Resources\File\FileResource;
+use App\Models\File;
 use App\Repositories\Files\FilesRepository;
 use App\Repositories\FileTokens\FileTokensRepository;
+use App\Services\Files\CreateFileCommand;
 use App\Services\Files\DeleteFilesCompletelyCommand;
 use App\Services\Files\RecordLinkVisitCommand;
 use App\Services\Files\VerifyFileLinkCommand;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Filesystem\FilesystemManager;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 final class FilesController extends Controller
 {
@@ -35,12 +39,19 @@ final class FilesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param StoreFileRequest  $request
+     * @param CreateFileCommand $command
+     * @return FileIdentifierResource
+     * @throws CouldNotSaveFileException
+     * @throws AuthorizationException
      */
-    public function store(Request $request)
+    public function store(StoreFileRequest $request, CreateFileCommand $command)
     {
-        //
+        $this->authorize('create', File::class);
+
+        $file = $command->create($request->createDto());
+
+        return new FileIdentifierResource($file);
     }
 
     /**
@@ -48,10 +59,12 @@ final class FilesController extends Controller
      *
      * @param int $id
      * @return FileResource
+     * @throws AuthorizationException
      */
     public function show(int $id)
     {
         $file = $this->filesRepository->findById($id);
+        $this->authorize('view', $file);
 
         return new FileResource($file);
     }
@@ -61,11 +74,17 @@ final class FilesController extends Controller
      *
      * @param int                          $id
      * @param DeleteFilesCompletelyCommand $command
-     * @return void
+     * @return FileResource
+     * @throws AuthorizationException
      */
     public function destroy(int $id, DeleteFilesCompletelyCommand $command)
     {
-        $command->execute(Collection::make($this->filesRepository->findById($id)));
+        $file = $this->filesRepository->findById($id);
+        $this->authorize('delete', $file);
+
+        $command->execute(Collection::wrap($file));
+
+        return new FileResource($file);
     }
 
     /**

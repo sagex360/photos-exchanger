@@ -8,6 +8,7 @@ use App\DTO\Auth\Register\RegisterClientDto;
 use App\Events\Users\Auth\Registered\ClientRegistered;
 use App\Exceptions\UserWithGivenEmailAlreadyExists;
 use App\Models\Client;
+use App\ValueObjects\ApiToken;
 use Illuminate\Contracts\Events\Dispatcher;
 
 final class RegisterClientCommand
@@ -39,6 +40,7 @@ final class RegisterClientCommand
         $client->name = $dto->getName();
         $client->email = $dto->getLogin();
         $client->password = $dto->getPassword();
+        $client->api_token = ApiToken::generate();
 
         if ($client->save()) {
             $this->dispatcher->dispatch(new ClientRegistered($client->id));

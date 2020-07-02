@@ -16,24 +16,26 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('Files')
     ->group(function () {
 
-        Route::apiResource('files', 'FilesController')
-            ->only(['store', 'show', 'destroy']);
-
-        Route::prefix('/files/{file}/')
-            ->name('files.')
+        Route::middleware('auth:api')
             ->group(function () {
+                Route::apiResource('files', 'FilesController')
+                    ->only(['store', 'show', 'destroy']);
 
-                Route::prefix('/relationships/')
-                    ->name('relationships.')
+                Route::prefix('/files/{file}/')
+                    ->name('files.')
                     ->group(function () {
-                        Route::get('/user', 'FileRelationshipsController@user')->name('user');
-                        Route::get('/link_tokens', 'FileRelationshipsController@linkTokens')->name('link_tokens');
+
+                        Route::prefix('/relationships/')
+                            ->name('relationships.')
+                            ->group(function () {
+                                Route::get('/user', 'FileRelationshipsController@user')->name('user');
+                                Route::get('/link_tokens', 'FileRelationshipsController@linkTokens')->name('link_tokens');
+                            });
+
+                        Route::get('/link_tokens/', 'FileRelationshipsController@relatedLinkTokens')->name('link_tokens');
+
                     });
-
-                Route::get('/link_tokens/', 'FileRelationshipsController@relatedLinkTokens')->name('link_tokens');
-
             });
-
 
         Route::prefix('/guest')
             ->name('guest.')

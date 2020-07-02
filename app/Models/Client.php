@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Casts\ApiTokenCast;
 use App\Casts\LoginCast;
 use App\Casts\NameCast;
 use App\Casts\PasswordCast;
+use App\ValueObjects\ApiToken;
 use App\ValueObjects\Login;
 use App\ValueObjects\Name;
 use App\ValueObjects\Password;
@@ -26,6 +28,7 @@ use Illuminate\Support\Carbon;
  * @property Login                                                      $email
  * @property Carbon|null                                                $email_verified_at
  * @property Password                                                   $password
+ * @property ApiToken                                                   $api_token
  * @property string|null                                                $remember_token
  * @property Carbon|null                                                $created_at
  * @property Carbon|null                                                $updated_at
@@ -67,9 +70,10 @@ final class Client extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'name'     => NameCast::class,
-        'email'    => LoginCast::class,
-        'password' => PasswordCast::class,
+        'name'      => NameCast::class,
+        'email'     => LoginCast::class,
+        'password'  => PasswordCast::class,
+        'api_token' => ApiTokenCast::class,
 
         'email_verified_at' => 'datetime',
     ];

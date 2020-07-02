@@ -16,4 +16,13 @@ abstract class AppFormRequest extends FormRequest
     {
         return true;
     }
+
+    public function validationData()
+    {
+        if ($this->isJson()) {
+            return $this->json()->all();
+        }
+
+        return parent::validationData();
+    }
 }
