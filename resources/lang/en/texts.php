@@ -30,20 +30,21 @@ return [
         'already-have-account' => 'Already have account?',
     ],
     'dashboard' => [
-        'index'      => [
+        'index'        => [
             'header' => 'You are in dashboard!'
         ],
-        'sidebar'    => [
+        'sidebar'      => [
             'menu'      => 'Menu',
             'dashboard' => 'Dashboard',
 
             'files'        => 'Files',
             'all-files'    => 'All files',
             'add-new-file' => 'Add new',
+            'file-reports' => 'File Reports',
 
             'logout' => 'Logout',
         ],
-        'files'      => [
+        'files'        => [
             'select-file'           => 'Select File',
             'enter-name'            => 'File Name',
             'enter-description'     => 'Enter description',
@@ -98,7 +99,7 @@ return [
                 'update' => 'Could not update file information',
             ]
         ],
-        'file-links' => [
+        'file-links'   => [
             'form-elements' => [
                 'select-type'    => 'Select link type',
                 'select-default' => 'Select one of'
@@ -126,7 +127,23 @@ return [
             'errors' => [
                 'create' => 'Could not create link'
             ]
-        ]
+        ],
+        'file-reports' => [
+            'index' => [
+                'title'               => 'File Statistics',
+                'files-count'         => 'Files now',
+                'deleted-files-count' => 'Deleted files',
+            ],
+            'table' => [
+                'name'                  => 'Name',
+                'disposable-links-used' => 'Disposable links used',
+                'unlimited-links-views' => 'Unlimited links views',
+                'views-count'           => 'Total views count',
+                'summary'               => 'Summary',
+
+                'empty' => 'There are no files'
+            ]
+        ],
     ],
 
     'guest' => [

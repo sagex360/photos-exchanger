@@ -48,6 +48,7 @@ use Illuminate\Support\Carbon;
  * @mixin Eloquent
  * @property-read Collection|File[]                                     $files
  * @property-read int|null                                              $files_count
+ * @method static Builder|Client whereApiToken($value)
  */
 final class Client extends Authenticatable
 {

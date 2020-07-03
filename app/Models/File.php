@@ -9,9 +9,11 @@ use App\ValueObjects\DeletionDate\DeletionDate;
 use App\ValueObjects\FileDescription;
 use App\ValueObjects\FileLocation\FileLocation;
 use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Carbon;
 
 /**
@@ -22,24 +24,36 @@ use Illuminate\Support\Carbon;
  * @property FileLocation                    $location
  * @property FileDescription                 $description
  * @property DeletionDate                    $will_be_deleted_at
- * @method static Builder|File newModelQuery()
- * @method static Builder|File newQuery()
- * @method static Builder|File query()
- * @method static Builder|File whereDescription($value)
- * @method static Builder|File whereId($value)
- * @method static Builder|File whereUserId($value)
- * @method static Builder|File whereWillBeDeletedAt($value)
+ * @method static EloquentBuilder|File newModelQuery()
+ * @method static EloquentBuilder|File newQuery()
+ * @method static EloquentBuilder|File query()
+ * @method static EloquentBuilder|File whereDescription($value)
+ * @method static EloquentBuilder|File whereId($value)
+ * @method static EloquentBuilder|File whereUserId($value)
+ * @method static EloquentBuilder|File whereWillBeDeletedAt($value)
  * @mixin Eloquent
  * @property-read Client                     $user
- * @method static Builder|File overdue()
- * @method static Builder|File whereFileName($value)
- * @method static Builder|File whereStorage($value)
+ * @method static EloquentBuilder|File overdue()
+ * @method static EloquentBuilder|File whereFileName($value)
+ * @method static EloquentBuilder|File whereStorage($value)
  * @property-read Collection|FileLinkToken[] $linkTokens
  * @property-read int|null                   $link_tokens_count
- * @method static Builder|File wherePublicName($value)
+ * @property-read Collection|FileLinkToken[] $views
+ * @property-read int|null                   $views_count
+ * @method static EloquentBuilder|File wherePublicName($value)
+ * @property Carbon|null                     $deleted_at
+ * @method static QueryBuilder|File onlyTrashed()
+ * @method static EloquentBuilder|File whereDeletedAt($value)
+ * @method static QueryBuilder|File withTrashed()
+ * @method static QueryBuilder|File withoutTrashed()
+ * @property-read int|null                   $disposable_links_count
+ * @property-read int|null                   $disposable_links_used_count
+ * @property-read int|null                   $unlimited_link_views_count
  */
 final class File extends Model
 {
+    use SoftDeletes;
+
     public $timestamps = false;
 
     protected $casts = [
@@ -58,11 +72,21 @@ final class File extends Model
         return $this->hasMany(FileLinkToken::class);
     }
 
+    public function views()
+    {
+        return $this->hasManyThrough(
+            LinkVisit::class,
+            FileLinkToken::class,
+            'file_id',
+            'link_token_id',
+        );
+    }
+
     /**
-     * @param Builder $query
-     * @return Builder
+     * @param EloquentBuilder $query
+     * @return EloquentBuilder
      */
-    public function scopeOverdue(Builder $query)
+    public function scopeOverdue(EloquentBuilder $query)
     {
         return $query->where('will_be_deleted_at', '<=', Carbon::now());
     }

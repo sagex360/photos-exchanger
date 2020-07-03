@@ -39,6 +39,12 @@
                                         {{ trans('texts.dashboard.sidebar.add-new-file') }}
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @ifroute('dashboard.files.reports') active @endifroute"
+                                       href="{{ route('dashboard.files.reports.index') }}">
+                                        {{ trans('texts.dashboard.sidebar.file-reports') }}
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>

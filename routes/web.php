@@ -40,6 +40,8 @@ Route::prefix('/dashboard')
     ->middleware('auth:web')
     ->group(function () {
 
+        Route::get('/files/reports', 'ReportsController@index')->name('files.reports.index');
+
         Route::resource('files', 'FilesController')
             ->only(['create', 'show', 'edit', 'update', 'destroy', 'store', 'index']);
 

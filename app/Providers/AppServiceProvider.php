@@ -9,6 +9,7 @@ use App\Http\Controllers\API\LinkTokens\LinkTokensController as ApiLinkTokensCon
 use App\Http\Controllers\API\UsersController as ApiUsersController;
 use App\Http\Controllers\Client\Dashboard\FilesController;
 use App\Http\Controllers\Client\Dashboard\LinksController;
+use App\Http\Controllers\Client\Dashboard\ReportsController;
 use App\Http\Controllers\Guest\ViewFilesController;
 use App\Jobs\DeleteOverdueFilesJob;
 use App\Repositories\Files\EloquentFilesRepository;
@@ -65,6 +66,7 @@ final class AppServiceProvider extends ServiceProvider
             FilesController::class,
             UpdateFileCommand::class,
             LinksController::class,
+            ReportsController::class,
             ViewFilesController::class,
             ApiFilesController::class,
             FileRelationshipsController::class,
