@@ -10,7 +10,7 @@ use App\ValueObjects\FileLocation\FilesFolderLocator;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 
-class FilesTableSeeder extends Seeder
+final class FilesTableSeeder extends Seeder
 {
     protected FilesFolderLocator $folderLocator;
 
