@@ -3,8 +3,13 @@
 @php
     /**
      * @var \App\Models\FileLinkToken[] $linkTokens
-     */
+     * @var \App\Models\File $file
+    */
 @endphp
+
+@section('title')
+    {{ $file->description->publicName() }} - {{ trans('texts.dashboard.file-links.of-file.page-title') }}
+@endsection
 
 @section('dashboard-content')
     <x-grid.dashboard.main>

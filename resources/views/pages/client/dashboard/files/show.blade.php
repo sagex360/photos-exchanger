@@ -6,6 +6,10 @@
      */
 @endphp
 
+@section('title')
+    {{ trans('texts.dashboard.files.show.page-title') }} - {{ $file->description->publicName() }}
+@endsection
+
 @section('dashboard-content')
     <x-grid.dashboard.main>
         <x-texts.h1 class="text-center">{{ trans('texts.dashboard.files.show.title') }}

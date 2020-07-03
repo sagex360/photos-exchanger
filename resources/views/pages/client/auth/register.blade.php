@@ -1,5 +1,9 @@
 @extends('layouts.auth')
 
+@section('title')
+    {{ trans('texts.auth.sign-up-page-title') }}
+@endsection
+
 @section('auth-content')
     <x-forms.auth.sign-up-client/>
 

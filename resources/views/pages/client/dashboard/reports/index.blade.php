@@ -6,6 +6,10 @@
      */
 @endphp
 
+@section('title')
+    {{ trans('texts.dashboard.file-reports.index.page-title') }}
+@endsection
+
 @section('dashboard-content')
     <x-grid.dashboard.main>
         <x-texts.h1 class="text-center">{{ trans('texts.dashboard.file-reports.index.title') }}</x-texts.h1>

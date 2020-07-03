@@ -12,6 +12,9 @@ return [
     */
 
     'auth'      => [
+        'sign-in-page-title' => 'Sign in',
+        'sign-up-page-title' => 'Sign up',
+
         'sign-in' => 'Sign in',
         'sign-up' => 'Sign up',
 
@@ -31,7 +34,8 @@ return [
     ],
     'dashboard' => [
         'index'        => [
-            'header' => 'You are in dashboard!'
+            'page-title' => 'Dashboard',
+            'header'     => 'You are in dashboard!',
         ],
         'sidebar'      => [
             'menu'      => 'Menu',
@@ -64,14 +68,19 @@ return [
             ],
 
             'index'  => [
-                'title'   => 'List of files',
-                'add-new' => 'Add new',
+                'page-title' => 'Your files',
+                'title'      => 'List of files',
+                'add-new'    => 'Add new',
             ],
             'create' => [
+                'page-title' => 'Upload file',
+
                 'title'  => 'Create new file',
                 'submit' => 'Create'
             ],
             'show'   => [
+                'page-title' => 'File info',
+
                 'title'    => 'File information',
                 'edit-btn' => 'Edit',
 
@@ -87,6 +96,8 @@ return [
 
             ],
             'edit'   => [
+                'page-title' => 'Edit file',
+
                 'current-content' => 'File contents',
                 'title'           => 'Edit file information',
                 'submit'          => 'Save',
@@ -100,6 +111,13 @@ return [
             ]
         ],
         'file-links'   => [
+            'of-file'       => [
+                'page-title' => 'Links',
+            ],
+            'create' => [
+                'page-title' => 'Add new',
+            ],
+
             'form-elements' => [
                 'select-type'    => 'Select link type',
                 'select-default' => 'Select one of'
@@ -130,6 +148,8 @@ return [
         ],
         'file-reports' => [
             'index' => [
+                'page-title' => 'Statistics',
+
                 'title'               => 'File Statistics',
                 'files-count'         => 'Files now',
                 'deleted-files-count' => 'Deleted files',

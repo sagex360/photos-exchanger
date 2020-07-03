@@ -1,5 +1,9 @@
 @extends('layouts.dashboard')
 
+@section('title')
+    {{ trans('texts.dashboard.index.page-title') }}
+@endsection
+
 @section('dashboard-content')
     <div class="container-fluid dashboard-content">
         <div class="row">

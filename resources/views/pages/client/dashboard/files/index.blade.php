@@ -6,6 +6,10 @@
      */
 @endphp
 
+@section('title')
+    {{ trans('texts.dashboard.files.index.page-title') }}
+@endsection
+
 @section('dashboard-content')
     <x-grid.dashboard.main>
         <x-texts.h1>{{ trans('texts.dashboard.files.index.title') }} ({{ $filesCount }})</x-texts.h1>
