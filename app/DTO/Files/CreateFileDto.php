@@ -11,25 +11,23 @@ use Illuminate\Http\UploadedFile;
 final class CreateFileDto
 {
     protected int $userId;
-
     protected UploadedFile $image;
-
     protected DeletionDate $dateToDelete;
-
     protected FileDescription $description;
 
     /**
      * CreateFileDto constructor.
-     * @param int             $userId
-     * @param UploadedFile    $image
-     * @param FileDescription $description
-     * @param DeletionDate    $dateToDelete
+     * @param  int  $userId
+     * @param  UploadedFile  $image
+     * @param  FileDescription  $description
+     * @param  DeletionDate  $dateToDelete
      */
-    public function __construct(int $userId,
-                                UploadedFile $image,
-                                FileDescription $description,
-                                DeletionDate $dateToDelete)
-    {
+    public function __construct(
+        int $userId,
+        UploadedFile $image,
+        FileDescription $description,
+        DeletionDate $dateToDelete
+    ) {
         $this->userId = $userId;
         $this->image = $image;
         $this->description = $description;

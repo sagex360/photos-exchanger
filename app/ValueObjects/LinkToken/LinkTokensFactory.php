@@ -29,7 +29,7 @@ final class LinkTokensFactory
                 return UnlimitedLinkToken::create($value ?? static::generateToken());
 
             default:
-                throw new InvalidArgumentException('Unexpected token type: ' . $type);
+                throw new InvalidArgumentException('Unexpected token type: '.$type);
         }
     }
 }

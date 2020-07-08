@@ -22,8 +22,8 @@ final class FileLinkTokensController extends Controller
 
     /**
      * FileLinkTokensController constructor.
-     * @param FilesRepository      $filesRepository
-     * @param FileTokensRepository $tokensRepository
+     * @param  FilesRepository  $filesRepository
+     * @param  FileTokensRepository  $tokensRepository
      */
     public function __construct(FilesRepository $filesRepository, FileTokensRepository $tokensRepository)
     {
@@ -32,7 +32,7 @@ final class FileLinkTokensController extends Controller
     }
 
     /**
-     * @param int $fileId
+     * @param  int  $fileId
      * @return FileLinkTokensRelatedResource
      * @throws AuthorizationException
      */
@@ -48,9 +48,9 @@ final class FileLinkTokensController extends Controller
     }
 
     /**
-     * @param int               $fileId
-     * @param CreateLinkRequest $request
-     * @param CreateLinkCommand $command
+     * @param  int  $fileId
+     * @param  CreateLinkRequest  $request
+     * @param  CreateLinkCommand  $command
      * @return LinkTokenResource
      * @throws CouldNotSaveLinkTokenException
      * @throws AuthorizationException

@@ -17,7 +17,7 @@ final class RegisterClientCommand
 
     /**
      * RegisterClientCommand constructor.
-     * @param Dispatcher $dispatcher
+     * @param  Dispatcher  $dispatcher
      */
     public function __construct(Dispatcher $dispatcher)
     {
@@ -25,7 +25,7 @@ final class RegisterClientCommand
     }
 
     /**
-     * @param RegisterClientDto $dto
+     * @param  RegisterClientDto  $dto
      * @throws UserWithGivenEmailAlreadyExists
      */
     public function register(RegisterClientDto $dto): void

@@ -12,7 +12,7 @@ use Illuminate\Database\Query\Builder;
 final class DeleteLinkTokensCommand
 {
     /**
-     * @param FileLinkToken[]|Collection $linkTokens
+     * @param  FileLinkToken[]|Collection  $linkTokens
      * @throws Exception
      */
     public function execute(Collection $linkTokens): void

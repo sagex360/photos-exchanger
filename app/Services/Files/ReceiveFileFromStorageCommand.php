@@ -15,17 +15,18 @@ final class ReceiveFileFromStorageCommand
     protected VerifyFileLinkCommand $verifyLink;
     protected RecordLinkVisitCommand $recordLinkVisit;
 
-    public function __construct(VerifyFileLinkCommand $verifyLink,
-                                RecordLinkVisitCommand $recordLinkVisit,
-                                FilesystemManager $filesystemManager)
-    {
+    public function __construct(
+        VerifyFileLinkCommand $verifyLink,
+        RecordLinkVisitCommand $recordLinkVisit,
+        FilesystemManager $filesystemManager
+    ) {
         $this->filesystemManager = $filesystemManager;
         $this->verifyLink = $verifyLink;
         $this->recordLinkVisit = $recordLinkVisit;
     }
 
     /**
-     * @param FileLinkToken $linkToken
+     * @param  FileLinkToken  $linkToken
      * @return StreamedResponse
      * @throws FileTokenExpiredException
      */

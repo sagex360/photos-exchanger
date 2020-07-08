@@ -14,8 +14,8 @@ final class LoginClientRequest extends AppFormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @param LoginRules    $loginRules
-     * @param PasswordRules $passwordRules
+     * @param  LoginRules  $loginRules
+     * @param  PasswordRules  $passwordRules
      * @return array
      */
     public function rules(LoginRules $loginRules, PasswordRules $passwordRules): array

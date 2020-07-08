@@ -21,8 +21,8 @@ final class LogUserIn
     /**
      * Create the event listener.
      *
-     * @param AuthManager $authManager
-     * @param GuardResolver $guardResolver
+     * @param  AuthManager  $authManager
+     * @param  GuardResolver  $guardResolver
      */
     public function __construct(AuthManager $authManager, GuardResolver $guardResolver)
     {
@@ -33,7 +33,7 @@ final class LogUserIn
     /**
      * Handle the event.
      *
-     * @param UsersRelatedEvent $event
+     * @param  UsersRelatedEvent  $event
      * @return void
      */
     public function handle(UsersRelatedEvent $event)

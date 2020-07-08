@@ -23,17 +23,18 @@ final class LoginClientCommand
 
     protected ?string $guard;
 
-    public function __construct(AuthManager $authManager,
-                                GuardResolver $guardResolver,
-                                Dispatcher $dispatcher)
-    {
+    public function __construct(
+        AuthManager $authManager,
+        GuardResolver $guardResolver,
+        Dispatcher $dispatcher
+    ) {
         $this->authManager = $authManager;
         $this->guardResolver = $guardResolver;
         $this->dispatcher = $dispatcher;
     }
 
     /**
-     * @param LoginClientDto $dto
+     * @param  LoginClientDto  $dto
      * @return Client
      * @throws UserNotFoundException
      * @throws UserAuthenticationFailed

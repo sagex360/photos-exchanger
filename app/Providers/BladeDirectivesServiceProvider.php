@@ -17,30 +17,41 @@ class BladeDirectivesServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::if('ifroute', static function ($routeName) {
-            return Str::startsWith(Route::currentRouteName(), $routeName);
-        });
+        Blade::if(
+            'ifroute',
+            static function ($routeName) {
+                return Str::startsWith(Route::currentRouteName(), $routeName);
+            }
+        );
 
         $this->registerSectionOnce();
     }
 
     protected function registerSectionOnce(): void
     {
-        Blade::directive('sectionOnce', static function ($name) {
-            return Blade::compileString(<<<EOT
+        Blade::directive(
+            'sectionOnce',
+            static function ($name) {
+                return Blade::compileString(
+                    <<<EOT
 @hasSection($name)
 @else
 @section($name)
 EOT
-            );
-        });
+                );
+            }
+        );
 
-        Blade::directive('showSectionOnce', static function () {
-            return Blade::compileString(<<< EOT
+        Blade::directive(
+            'showSectionOnce',
+            static function () {
+                return Blade::compileString(
+                    <<< EOT
 @show
 @endif
 EOT
-            );
-        });
+                );
+            }
+        );
     }
 }

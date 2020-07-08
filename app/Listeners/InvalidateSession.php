@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\Users\Auth\LoggedOut\ClientLoggedOut;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Session\Store as Session;
 
 final class InvalidateSession
@@ -17,7 +15,7 @@ final class InvalidateSession
     /**
      * Create the event listener.
      *
-     * @param Session $session
+     * @param  Session  $session
      */
     public function __construct(Session $session)
     {

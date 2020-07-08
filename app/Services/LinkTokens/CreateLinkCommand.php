@@ -11,7 +11,7 @@ use App\Models\FileLinkToken;
 final class CreateLinkCommand
 {
     /**
-     * @param CreateFileLinkDto $dto
+     * @param  CreateFileLinkDto  $dto
      * @return FileLinkToken
      * @throws CouldNotSaveLinkTokenException
      */

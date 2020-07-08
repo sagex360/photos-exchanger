@@ -18,7 +18,7 @@ final class DeleteFilesFromStorageCommand
     }
 
     /**
-     * @param Collection|File[] $files
+     * @param  Collection|File[]  $files
      */
     public function execute(Collection $files): void
     {

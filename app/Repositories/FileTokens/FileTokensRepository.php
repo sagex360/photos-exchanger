@@ -10,19 +10,19 @@ use Illuminate\Database\Eloquent\Collection;
 abstract class FileTokensRepository
 {
     /**
-     * @param string $token
+     * @param  string  $token
      * @return FileLinkToken
      */
     abstract public function findByToken(string $token): FileLinkToken;
 
     /**
-     * @param int $id
+     * @param  int  $id
      * @return FileLinkToken
      */
     abstract public function findWithTrashedById(int $id): FileLinkToken;
 
     /**
-     * @param int $fileId
+     * @param  int  $fileId
      * @return Collection|FileLinkToken[]
      */
     abstract public function findByFileId(int $fileId): Collection;
@@ -33,7 +33,7 @@ abstract class FileTokensRepository
     abstract public function all(): Collection;
 
     /**
-     * @param int $id
+     * @param  int  $id
      * @return FileLinkToken
      */
     abstract public function findById(int $id): FileLinkToken;

@@ -30,8 +30,8 @@ final class FileLocation
     }
 
     /**
-     * @param FilesystemAdapter $disk
-     * @param UploadedFile      $file
+     * @param  FilesystemAdapter  $disk
+     * @param  UploadedFile  $file
      * @return $this
      */
     public function saveTo(FilesystemAdapter $disk, UploadedFile $file): self
@@ -43,7 +43,7 @@ final class FileLocation
         );
 
         if (!$saveResult) {
-            throw new CouldNotPersistFileException('Could not save file to ' . $this->fullPath());
+            throw new CouldNotPersistFileException('Could not save file to '.$this->fullPath());
         }
 
         return $this;
@@ -73,7 +73,7 @@ final class FileLocation
 
     public function fullPath(): string
     {
-        return Str::finish($this->folderLocator->locate($this->storage()), '/') . $this->fileName();
+        return Str::finish($this->folderLocator->locate($this->storage()), '/').$this->fileName();
     }
 
     public function url(): string

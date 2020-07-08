@@ -13,10 +13,10 @@ final class PasswordCast implements CastsAttributes
     /**
      * Cast the given value.
      *
-     * @param Model $model
-     * @param string $key
-     * @param mixed $value
-     * @param array $attributes
+     * @param  Model  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
      * @return Password
      */
     public function get($model, string $key, $value, $attributes): Password
@@ -27,16 +27,16 @@ final class PasswordCast implements CastsAttributes
     /**
      * Prepare the given value for storage.
      *
-     * @param Model $model
-     * @param string $key
-     * @param array $setPassword
-     * @param array $attributes
+     * @param  Model  $model
+     * @param  string  $key
+     * @param  array  $setPassword
+     * @param  array  $attributes
      * @return array
      */
     public function set($model, string $key, $setPassword, $attributes): array
     {
         if (!$setPassword instanceof Password) {
-            throw new InvalidArgumentException('Parameter $setPassword must be instance of ' . Pass::class);
+            throw new InvalidArgumentException('Parameter $setPassword must be instance of '.Pass::class);
         }
 
         return [

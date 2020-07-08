@@ -11,16 +11,14 @@ use App\ValueObjects\FileDescription;
 final class UpdateFileDto
 {
     protected File $file;
-
     protected FileDescription $description;
-
     protected DeletionDate $dateToDelete;
 
     /**
      * UpdateFileDto constructor.
-     * @param File            $file
-     * @param FileDescription $description
-     * @param DeletionDate    $dateToDelete
+     * @param  File  $file
+     * @param  FileDescription  $description
+     * @param  DeletionDate  $dateToDelete
      */
     public function __construct(File $file, FileDescription $description, DeletionDate $dateToDelete)
     {

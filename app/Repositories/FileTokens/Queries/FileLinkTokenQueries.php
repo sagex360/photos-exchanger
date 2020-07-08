@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 final class FileLinkTokenQueries
 {
     /**
-     * @param Builder|FileLinkToken $query
+     * @param  Builder|FileLinkToken  $query
      * @return FileLinkToken|Builder
      */
     public function withVisitsCount($query)
@@ -21,8 +21,8 @@ final class FileLinkTokenQueries
     }
 
     /**
-     * @param Builder|FileLinkToken $query
-     * @param string                $type
+     * @param  Builder|FileLinkToken  $query
+     * @param  string  $type
      * @return FileLinkToken|Builder
      */
     public function whereType($query, string $type)

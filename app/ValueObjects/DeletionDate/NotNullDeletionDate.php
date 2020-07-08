@@ -12,7 +12,7 @@ final class NotNullDeletionDate implements DeletionDate
 
     /**
      * NotNullDeletionDate constructor.
-     * @param Carbon $date
+     * @param  Carbon  $date
      */
     public function __construct(Carbon $date)
     {

@@ -21,10 +21,10 @@ final class FileLocationCast implements CastsAttributes
     /**
      * Cast the given value.
      *
-     * @param Model  $model
-     * @param string $key
-     * @param mixed  $value
-     * @param array  $attributes
+     * @param  Model  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
      * @return FileLocation
      */
     public function get($model, string $key, $value, $attributes): FileLocation
@@ -38,16 +38,16 @@ final class FileLocationCast implements CastsAttributes
     /**
      * Prepare the given value for storage.
      *
-     * @param Model        $model
-     * @param string       $key
-     * @param FileLocation $setLocation
-     * @param array        $attributes
+     * @param  Model  $model
+     * @param  string  $key
+     * @param  FileLocation  $setLocation
+     * @param  array  $attributes
      * @return array
      */
     public function set($model, string $key, $setLocation, $attributes): array
     {
         if (!$setLocation instanceof FileLocation) {
-            throw new InvalidArgumentException('Parameter $setLocation must be instance of ' . FileLocation::class);
+            throw new InvalidArgumentException('Parameter $setLocation must be instance of '.FileLocation::class);
         }
 
         return [

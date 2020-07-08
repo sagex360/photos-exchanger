@@ -3,9 +3,9 @@
 namespace App\Policies;
 
 use App\Exceptions\IncompatibleParentAndChildModelsException;
+use App\Models\Client;
 use App\Models\File;
 use App\Models\FileLinkToken;
-use App\Models\Client;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class FileLinksPolicy
@@ -15,8 +15,8 @@ class FileLinksPolicy
     /**
      * Determine whether the user can view the file link token.
      *
-     * @param Client $user
-     * @param File   $parentFile
+     * @param  Client  $user
+     * @param  File  $parentFile
      * @return bool
      */
     public function viewAnyOf(Client $user, File $parentFile): bool
@@ -25,8 +25,8 @@ class FileLinksPolicy
     }
 
     /**
-     * @param Client        $user
-     * @param FileLinkToken $linkToken
+     * @param  Client  $user
+     * @param  FileLinkToken  $linkToken
      * @return bool
      */
     public function view(Client $user, FileLinkToken $linkToken)
@@ -37,8 +37,8 @@ class FileLinksPolicy
     /**
      * Determine whether the user can create file link tokens.
      *
-     * @param Client $user
-     * @param File   $parentFile
+     * @param  Client  $user
+     * @param  File  $parentFile
      * @return bool
      */
     public function createOf(Client $user, File $parentFile): bool
@@ -49,9 +49,9 @@ class FileLinksPolicy
     /**
      * Determine whether the user can delete the file link token.
      *
-     * @param Client        $user
-     * @param FileLinkToken $fileLinkToken
-     * @param File          $tokenParent
+     * @param  Client  $user
+     * @param  FileLinkToken  $fileLinkToken
+     * @param  File  $tokenParent
      * @return bool
      */
     public function deleteOf(Client $user, FileLinkToken $fileLinkToken, File $tokenParent): bool

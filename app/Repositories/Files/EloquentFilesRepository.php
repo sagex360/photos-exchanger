@@ -26,11 +26,13 @@ final class EloquentFilesRepository implements FilesRepository
 
     public function findWithTokensById(int $id): File
     {
-        return File::whereId($id)->with([
-            'linkTokens' => function ($query) {
-                $this->linkTokenQueries->withVisitsCount($query);
-            }
-        ])->firstOrFail();
+        return File::whereId($id)->with(
+            [
+                'linkTokens' => function ($query) {
+                    $this->linkTokenQueries->withVisitsCount($query);
+                }
+            ]
+        )->firstOrFail();
     }
 
     public function findByUserId(int $userId): Collection
@@ -46,28 +48,32 @@ final class EloquentFilesRepository implements FilesRepository
     public function findForReportByUserId(int $userId): Collection
     {
         return File::whereUserId($userId)
-            ->withCount([
-                'views',
-                'linkTokens as disposable_links_count'      => function ($query) {
-                    $this->linkTokenQueries
-                        ->whereType($query, 'disposable');
-                },
-                'linkTokens as disposable_links_used_count' => function ($query) {
-
-                    $this->linkTokenQueries
-                        ->whereType($query, 'disposable')
-                        ->has('visits');
-                },
-                'views as unlimited_link_views_count'       => function ($query) {
-                    /**
-                     * @var Builder|LinkVisit $query
-                     */
-                    $query->whereHas('linkToken', function ($query) {
+            ->withCount(
+                [
+                    'views',
+                    'linkTokens as disposable_links_count'      => function ($query) {
                         $this->linkTokenQueries
-                            ->whereType($query, 'unlimited');
-                    });
-                }
-            ])->get();
+                            ->whereType($query, 'disposable');
+                    },
+                    'linkTokens as disposable_links_used_count' => function ($query) {
+                        $this->linkTokenQueries
+                            ->whereType($query, 'disposable')
+                            ->has('visits');
+                    },
+                    'views as unlimited_link_views_count'       => function ($query) {
+                        /**
+                         * @var Builder|LinkVisit $query
+                         */
+                        $query->whereHas(
+                            'linkToken',
+                            function ($query) {
+                                $this->linkTokenQueries
+                                    ->whereType($query, 'unlimited');
+                            }
+                        );
+                    }
+                ]
+            )->get();
     }
 
     public function countDeletedByUser(int $userId): int

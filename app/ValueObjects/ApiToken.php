@@ -16,7 +16,7 @@ final class ApiToken
 
     /**
      * ApiToken constructor.
-     * @param string $token
+     * @param  string  $token
      */
     protected function __construct(string $token)
     {
@@ -26,11 +26,11 @@ final class ApiToken
         $len = strlen($token);
 
         if ($len < self::TOKEN_MIN_LENGTH) {
-            throw new InvalidArgumentException('Token must be at least ' . self::TOKEN_MIN_LENGTH);
+            throw new InvalidArgumentException('Token must be at least '.self::TOKEN_MIN_LENGTH);
         }
 
         if ($len > self::TOKEN_MAX_LENGTH) {
-            throw new InvalidArgumentException('Token must be less than ' . self::TOKEN_MAX_LENGTH);
+            throw new InvalidArgumentException('Token must be less than '.self::TOKEN_MAX_LENGTH);
         }
     }
 

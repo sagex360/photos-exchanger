@@ -14,7 +14,7 @@ final class PasswordRules extends RulesGroup
         return [
             'required',
             'string',
-            'min:' . Password::MIN_LENGTH,
+            'min:'.Password::MIN_LENGTH,
         ];
     }
 }

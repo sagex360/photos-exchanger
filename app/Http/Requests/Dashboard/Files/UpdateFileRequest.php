@@ -19,15 +19,16 @@ final class UpdateFileRequest extends AppFormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @param FilePublicNameRules  $nameRules
-     * @param FileDescriptionRules $descriptionRules
-     * @param FileDateRules        $dateRules
+     * @param  FilePublicNameRules  $nameRules
+     * @param  FileDescriptionRules  $descriptionRules
+     * @param  FileDateRules  $dateRules
      * @return array
      */
-    public function rules(FilePublicNameRules $nameRules,
-                          FileDescriptionRules $descriptionRules,
-                          FileDateRules $dateRules): array
-    {
+    public function rules(
+        FilePublicNameRules $nameRules,
+        FileDescriptionRules $descriptionRules,
+        FileDateRules $dateRules
+    ): array {
         return [
             'public_name'    => $nameRules->get(),
             'description'    => $descriptionRules->get(),
@@ -36,7 +37,7 @@ final class UpdateFileRequest extends AppFormRequest
     }
 
     /**
-     * @param File $file
+     * @param  File  $file
      * @return UpdateFileDto
      */
     public function createDto(File $file): UpdateFileDto

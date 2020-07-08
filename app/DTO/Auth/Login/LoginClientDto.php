@@ -14,9 +14,9 @@ final class LoginClientDto
 
     /**
      * LoginClientDto constructor.
-     * @param string $login
-     * @param string $password
-     * @param bool   $remember
+     * @param  string  $login
+     * @param  string  $password
+     * @param  bool  $remember
      */
     public function __construct(string $login, string $password, bool $remember)
     {

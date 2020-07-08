@@ -12,10 +12,10 @@ final class NameCast implements CastsAttributes
     /**
      * Cast the given value.
      *
-     * @param Model $model
-     * @param string $key
-     * @param mixed $value
-     * @param array $attributes
+     * @param  Model  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
      * @return Name
      */
     public function get($model, string $key, $value, $attributes): Name
@@ -26,16 +26,16 @@ final class NameCast implements CastsAttributes
     /**
      * Prepare the given value for storage.
      *
-     * @param Model $model
-     * @param string $key
-     * @param Name $setName
-     * @param array $attributes
+     * @param  Model  $model
+     * @param  string  $key
+     * @param  Name  $setName
+     * @param  array  $attributes
      * @return array
      */
     public function set($model, string $key, $setName, $attributes): array
     {
         if (!$setName instanceof Name) {
-            throw new InvalidArgumentException('Parameter $setName must be instance of ' . Name::class);
+            throw new InvalidArgumentException('Parameter $setName must be instance of '.Name::class);
         }
 
         return [

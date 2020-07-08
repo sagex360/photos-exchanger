@@ -20,6 +20,7 @@ final class NullDeletionDate implements DeletionDate
 
         return $instance;
     }
+
     public function expired(): bool
     {
         return false;

@@ -17,7 +17,7 @@ final class FileResource extends JsonResource
     public static $wrap = false;
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request): array

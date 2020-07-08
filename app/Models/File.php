@@ -22,11 +22,11 @@ use Illuminate\Support\Carbon;
 /**
  * App\Models\File
  *
- * @property int                             $id
- * @property int                             $user_id
- * @property FileLocation                    $location
- * @property FileDescription                 $description
- * @property DeletionDate                    $will_be_deleted_at
+ * @property int $id
+ * @property int $user_id
+ * @property FileLocation $location
+ * @property FileDescription $description
+ * @property DeletionDate $will_be_deleted_at
  * @method static EloquentBuilder|File newModelQuery()
  * @method static EloquentBuilder|File newQuery()
  * @method static EloquentBuilder|File query()
@@ -35,23 +35,23 @@ use Illuminate\Support\Carbon;
  * @method static EloquentBuilder|File whereUserId($value)
  * @method static EloquentBuilder|File whereWillBeDeletedAt($value)
  * @mixin Eloquent
- * @property-read Client                     $user
+ * @property-read Client $user
  * @method static EloquentBuilder|File overdue()
  * @method static EloquentBuilder|File whereFileName($value)
  * @method static EloquentBuilder|File whereStorage($value)
  * @property-read Collection|FileLinkToken[] $linkTokens
- * @property-read int|null                   $link_tokens_count
+ * @property-read int|null $link_tokens_count
  * @property-read Collection|FileLinkToken[] $views
- * @property-read int|null                   $views_count
+ * @property-read int|null $views_count
  * @method static EloquentBuilder|File wherePublicName($value)
- * @property Carbon|null                     $deleted_at
+ * @property Carbon|null $deleted_at
  * @method static QueryBuilder|File onlyTrashed()
  * @method static EloquentBuilder|File whereDeletedAt($value)
  * @method static QueryBuilder|File withTrashed()
  * @method static QueryBuilder|File withoutTrashed()
- * @property-read int|null                   $disposable_links_count
- * @property-read int|null                   $disposable_links_used_count
- * @property-read int|null                   $unlimited_link_views_count
+ * @property-read int|null $disposable_links_count
+ * @property-read int|null $disposable_links_used_count
+ * @property-read int|null $unlimited_link_views_count
  */
 final class File extends Model
 {
@@ -86,7 +86,7 @@ final class File extends Model
     }
 
     /**
-     * @param EloquentBuilder $query
+     * @param  EloquentBuilder  $query
      * @return EloquentBuilder
      */
     public function scopeOverdue(EloquentBuilder $query): EloquentBuilder

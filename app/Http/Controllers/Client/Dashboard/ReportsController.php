@@ -37,15 +37,18 @@ final class ReportsController extends Controller
          */
         $summaryManager = app()->make(FileReportsSummaryManager::class, ['files' => $files]);
 
-        return view('pages.client.dashboard.reports.index', [
-            'currentFilesCount' => $notDeletedCount,
-            'deletedFilesCount' => $deletedCount,
-            'files'             => $files,
+        return view(
+            'pages.client.dashboard.reports.index',
+            [
+                'currentFilesCount' => $notDeletedCount,
+                'deletedFilesCount' => $deletedCount,
+                'files'             => $files,
 
-            'summaryUsedDisposableLinksCount' => $summaryManager->usedDisposableLinks(),
-            'summaryDisposableLinksCount'     => $summaryManager->disposableLinks(),
-            'summaryUnlimitedLinksViews'      => $summaryManager->unlimitedLinksViews(),
-            'totalViewsFullCount'             => $summaryManager->totalViews()
-        ]);
+                'summaryUsedDisposableLinksCount' => $summaryManager->usedDisposableLinks(),
+                'summaryDisposableLinksCount'     => $summaryManager->disposableLinks(),
+                'summaryUnlimitedLinksViews'      => $summaryManager->unlimitedLinksViews(),
+                'totalViewsFullCount'             => $summaryManager->totalViews()
+            ]
+        );
     }
 }

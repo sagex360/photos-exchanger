@@ -16,7 +16,7 @@ final class FileImageRules extends RulesGroup
             'required',
             'file',
             'image',
-            'max:' . self::MAX_SIZE
+            'max:'.self::MAX_SIZE
         ];
     }
 }

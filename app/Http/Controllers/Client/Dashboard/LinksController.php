@@ -30,7 +30,7 @@ final class LinksController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param int $fileId
+     * @param  int  $fileId
      * @return View
      * @throws AuthorizationException
      */
@@ -39,16 +39,19 @@ final class LinksController extends Controller
         $file = $this->filesRepository->findWithTokensById($fileId);
         $this->authorize('viewAnyOf', [FileLinkToken::class, $file]);
 
-        return view('pages.client.dashboard.links.of-file', [
-            'linkTokens' => $file->linkTokens,
-            'file'       => $file,
-        ]);
+        return view(
+            'pages.client.dashboard.links.of-file',
+            [
+                'linkTokens' => $file->linkTokens,
+                'file'       => $file,
+            ]
+        );
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @param int $fileId
+     * @param  int  $fileId
      * @return View
      * @throws AuthorizationException
      */
@@ -57,25 +60,29 @@ final class LinksController extends Controller
         $file = $this->filesRepository->findById($fileId);
         $this->authorize('createOf', [FileLinkToken::class, $file]);
 
-        return view('pages.client.dashboard.links.create', [
-            'file' => $file
-        ]);
+        return view(
+            'pages.client.dashboard.links.create',
+            [
+                'file' => $file
+            ]
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param int               $fileId
-     * @param CreateLinkRequest $request
-     * @param CreateLinkCommand $command
+     * @param  int  $fileId
+     * @param  CreateLinkRequest  $request
+     * @param  CreateLinkCommand  $command
      * @return RedirectResponse
      * @throws CouldNotSaveLinkTokenException
      * @throws AuthorizationException
      */
-    public function store(int $fileId,
-                          CreateLinkRequest $request,
-                          CreateLinkCommand $command): RedirectResponse
-    {
+    public function store(
+        int $fileId,
+        CreateLinkRequest $request,
+        CreateLinkCommand $command
+    ): RedirectResponse {
         $file = $this->filesRepository->findById($fileId);
 
         $this->authorize('createOf', [FileLinkToken::class, $file]);
@@ -87,16 +94,17 @@ final class LinksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int                     $fileId
-     * @param int                     $linkId
-     * @param DeleteLinkTokensCommand $command
+     * @param  int  $fileId
+     * @param  int  $linkId
+     * @param  DeleteLinkTokensCommand  $command
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy(int $fileId,
-                            int $linkId,
-                            DeleteLinkTokensCommand $command): RedirectResponse
-    {
+    public function destroy(
+        int $fileId,
+        int $linkId,
+        DeleteLinkTokensCommand $command
+    ): RedirectResponse {
         $token = $this->tokensRepository->findWithTrashedById($linkId);
         $file = $this->filesRepository->findById($fileId);
 

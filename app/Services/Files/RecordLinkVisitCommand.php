@@ -10,7 +10,7 @@ use App\Models\LinkVisit;
 final class RecordLinkVisitCommand
 {
     /**
-     * @param FileLinkToken $linkToken
+     * @param  FileLinkToken  $linkToken
      */
     public function execute(FileLinkToken $linkToken): void
     {

@@ -21,8 +21,8 @@ final class ViewFilesController extends Controller
     }
 
     /**
-     * @param string                $token
-     * @param VerifyFileLinkCommand $verifyLink
+     * @param  string  $token
+     * @param  VerifyFileLinkCommand  $verifyLink
      * @return View
      * @throws FileTokenExpiredException
      */
@@ -31,8 +31,11 @@ final class ViewFilesController extends Controller
         $fileLinkToken = $this->tokensRepository->findByToken($token);
         $verifyLink->execute($fileLinkToken);
 
-        return view('pages.guest.files.visit', [
-            'fileLinkToken' => $fileLinkToken
-        ]);
+        return view(
+            'pages.guest.files.visit',
+            [
+                'fileLinkToken' => $fileLinkToken
+            ]
+        );
     }
 }

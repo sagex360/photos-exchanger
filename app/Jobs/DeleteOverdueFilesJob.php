@@ -12,13 +12,16 @@ use Illuminate\Queue\SerializesModels;
 
 final class DeleteOverdueFilesJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Execute the job.
      *
-     * @param FilesRepository              $filesRepository
-     * @param DeleteFilesCompletelyCommand $deleteFilesCommand
+     * @param  FilesRepository  $filesRepository
+     * @param  DeleteFilesCompletelyCommand  $deleteFilesCommand
      * @return void
      */
     public function handle(FilesRepository $filesRepository, DeleteFilesCompletelyCommand $deleteFilesCommand)

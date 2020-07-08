@@ -14,7 +14,7 @@ use InvalidArgumentException;
 final class FilesFolderLocator
 {
     /**
-     * @param string $disk
+     * @param  string  $disk
      * @return InvalidArgumentException
      */
     protected function invalidDiskType(string $disk): InvalidArgumentException
@@ -34,7 +34,7 @@ final class FilesFolderLocator
     public function link(string $disk, string $fullPath): string
     {
         if ($disk === 'public') {
-            return config('filesystems.disks.public.url') . "/$fullPath";
+            return config('filesystems.disks.public.url')."/$fullPath";
         }
 
         throw $this->invalidDiskType($disk);

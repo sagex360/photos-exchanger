@@ -13,16 +13,19 @@ final class CreateLinkVisitsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('link_visits', static function (Blueprint $table) {
-            $table->id();
+        Schema::create(
+            'link_visits',
+            static function (Blueprint $table) {
+                $table->id();
 
-            $table->foreignId('link_token_id')
-                ->constrained('link_tokens')
-                ->onUpdate('restrict')
-                ->onDelete('cascade');
+                $table->foreignId('link_token_id')
+                    ->constrained('link_tokens')
+                    ->onUpdate('restrict')
+                    ->onDelete('cascade');
 
-            $table->timestamp('created_at')->nullable();
-        });
+                $table->timestamp('created_at')->nullable();
+            }
+        );
     }
 
     /**

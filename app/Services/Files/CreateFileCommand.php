@@ -22,7 +22,7 @@ final class CreateFileCommand
     }
 
     /**
-     * @param CreateFileDto $dto
+     * @param  CreateFileDto  $dto
      * @return File
      * @throws CouldNotSaveFileException
      */

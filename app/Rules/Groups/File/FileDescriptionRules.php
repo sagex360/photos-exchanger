@@ -14,8 +14,8 @@ final class FileDescriptionRules extends RulesGroup
         return [
             'required',
             'string',
-            'min:' . FileDescription::MIN_DESCRIPTION,
-            'max:' . FileDescription::MAX_DESCRIPTION,
+            'min:'.FileDescription::MIN_DESCRIPTION,
+            'max:'.FileDescription::MAX_DESCRIPTION,
         ];
     }
 }

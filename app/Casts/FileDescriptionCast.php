@@ -12,9 +12,10 @@ final class FileDescriptionCast implements CastsAttributes
     protected string $descriptionKey;
     protected string $publicNameKey;
 
-    public function __construct(string $descriptionKey = 'description',
-                                string $publicNameKey = 'public_name')
-    {
+    public function __construct(
+        string $descriptionKey = 'description',
+        string $publicNameKey = 'public_name'
+    ) {
         $this->descriptionKey = $descriptionKey;
         $this->publicNameKey = $publicNameKey;
     }
@@ -22,10 +23,10 @@ final class FileDescriptionCast implements CastsAttributes
     /**
      * Cast the given value.
      *
-     * @param Model  $model
-     * @param string $key
-     * @param mixed  $value
-     * @param array  $attributes
+     * @param  Model  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
      * @return FileDescription
      */
     public function get($model, string $key, $value, $attributes): FileDescription
@@ -39,16 +40,16 @@ final class FileDescriptionCast implements CastsAttributes
     /**
      * Prepare the given value for storage.
      *
-     * @param Model           $model
-     * @param string          $key
-     * @param FileDescription $fileDescription
-     * @param array           $attributes
+     * @param  Model  $model
+     * @param  string  $key
+     * @param  FileDescription  $fileDescription
+     * @param  array  $attributes
      * @return array
      */
     public function set($model, string $key, $fileDescription, $attributes): array
     {
         if (!$fileDescription instanceof FileDescription) {
-            throw new InvalidArgumentException('Parameter $setDescription must be instance of ' . FileDescription::class);
+            throw new InvalidArgumentException('Parameter $setDescription must be instance of '.FileDescription::class);
         }
 
         return [

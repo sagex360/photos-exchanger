@@ -34,7 +34,7 @@ final class FilesTableSeeder extends Seeder
         $faker = Faker\Factory::create();
         $faker->addProvider(new PicsumImage($faker));
 
-        $path = config('filesystems.disks.public.root') . '/' . $this->folderLocator->locate('public');
+        $path = config('filesystems.disks.public.root').'/'.$this->folderLocator->locate('public');
 
         for ($i = 0; $i < self::limit(); ++$i) {
             $file = new File();

@@ -10,7 +10,7 @@ use App\Models\FileLinkToken;
 final class VerifyFileLinkCommand
 {
     /**
-     * @param FileLinkToken $fileLinkToken
+     * @param  FileLinkToken  $fileLinkToken
      * @throws FileTokenExpiredException
      */
     public function execute(FileLinkToken $fileLinkToken): void

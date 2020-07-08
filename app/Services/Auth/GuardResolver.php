@@ -23,6 +23,6 @@ final class GuardResolver
             throw new InvalidArgumentException("Category '$category' not found.");
         }
 
-        throw new InvalidArgumentException('Could not resolve guard for ' . get_class($user));
+        throw new InvalidArgumentException('Could not resolve guard for '.get_class($user));
     }
 }

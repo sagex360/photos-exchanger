@@ -14,8 +14,8 @@ final class FilePublicNameRules extends RulesGroup
         return [
             'required',
             'string',
-            'min:' . FileDescription::MIN_PUBLIC_NAME,
-            'max:' . FileDescription::MAX_PUBLIC_NAME,
+            'min:'.FileDescription::MIN_PUBLIC_NAME,
+            'max:'.FileDescription::MAX_PUBLIC_NAME,
         ];
     }
 }

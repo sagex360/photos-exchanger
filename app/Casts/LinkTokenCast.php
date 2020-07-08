@@ -22,10 +22,10 @@ final class LinkTokenCast implements CastsAttributes
     /**
      * Cast the given value.
      *
-     * @param FileLinkToken $model
-     * @param string        $key
-     * @param mixed         $value
-     * @param array         $attributes
+     * @param  FileLinkToken  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
      * @return LinkToken
      */
     public function get($model, string $key, $value, $attributes): LinkToken
@@ -39,10 +39,10 @@ final class LinkTokenCast implements CastsAttributes
     /**
      * Prepare the given value for storage.
      *
-     * @param Model     $model
-     * @param string    $key
-     * @param LinkToken $value
-     * @param array     $attributes
+     * @param  Model  $model
+     * @param  string  $key
+     * @param  LinkToken  $value
+     * @param  array  $attributes
      * @return array
      */
     public function set($model, string $key, $value, $attributes): array

@@ -14,7 +14,7 @@ final class NameRules extends RulesGroup
         return [
             'required',
             'string',
-            'min:' . Name::MIN_LENGTH,
+            'min:'.Name::MIN_LENGTH,
         ];
     }
 }

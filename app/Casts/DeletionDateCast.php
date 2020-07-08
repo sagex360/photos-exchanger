@@ -20,10 +20,10 @@ final class DeletionDateCast implements CastsAttributes
     /**
      * Cast the given value.
      *
-     * @param Model  $model
-     * @param string $key
-     * @param mixed  $value
-     * @param array  $attributes
+     * @param  Model  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
      * @return DeletionDate
      */
     public function get($model, string $key, $value, $attributes): DeletionDate
@@ -34,16 +34,16 @@ final class DeletionDateCast implements CastsAttributes
     /**
      * Prepare the given value for storage.
      *
-     * @param Model        $model
-     * @param string       $key
-     * @param DeletionDate $setDate
-     * @param array        $attributes
+     * @param  Model  $model
+     * @param  string  $key
+     * @param  DeletionDate  $setDate
+     * @param  array  $attributes
      * @return array
      */
     public function set($model, string $key, $setDate, $attributes): array
     {
         if (!$setDate instanceof DeletionDate) {
-            throw new InvalidArgumentException('Parameter $setDate must be instance of ' . DeletionDate::class);
+            throw new InvalidArgumentException('Parameter $setDate must be instance of '.DeletionDate::class);
         }
 
         return [

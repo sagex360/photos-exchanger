@@ -16,7 +16,7 @@ final class UpdateFileCommand
 
     /**
      * UpdateFileCommand constructor.
-     * @param Dispatcher $dispatcher
+     * @param  Dispatcher  $dispatcher
      */
     public function __construct(Dispatcher $dispatcher)
     {
@@ -24,7 +24,7 @@ final class UpdateFileCommand
     }
 
     /**
-     * @param UpdateFileDto $updateFileDto
+     * @param  UpdateFileDto  $updateFileDto
      * @return File
      * @throws CouldNotSaveFileException
      */

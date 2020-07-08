@@ -11,9 +11,9 @@ use Illuminate\Support\Carbon;
 /**
  * App\Models\LinkVisit
  *
- * @property int                $id
- * @property int                $link_token_id
- * @property Carbon|null        $created_at
+ * @property int $id
+ * @property int $link_token_id
+ * @property Carbon|null $created_at
  * @method static Builder|LinkVisit newModelQuery()
  * @method static Builder|LinkVisit newQuery()
  * @method static Builder|LinkVisit query()

@@ -13,7 +13,7 @@ final class Login
     private function __construct(string $login)
     {
         if (!filter_var($login, FILTER_VALIDATE_EMAIL)) {
-            throw new InvalidArgumentException('Email "' . $login . '" is not valid');
+            throw new InvalidArgumentException('Email "'.$login.'" is not valid');
         }
 
         $this->email = $login;

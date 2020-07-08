@@ -10,7 +10,7 @@ final class FileUpdated
 
     /**
      * FileUpdated constructor.
-     * @param int $fileId
+     * @param  int  $fileId
      */
     public function __construct(int $fileId)
     {

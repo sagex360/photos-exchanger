@@ -21,7 +21,7 @@ final class FileUserRelationshipResource extends JsonResource
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request): array

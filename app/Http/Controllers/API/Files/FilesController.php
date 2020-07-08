@@ -32,8 +32,8 @@ final class FilesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreFileRequest  $request
-     * @param CreateFileCommand $command
+     * @param  StoreFileRequest  $request
+     * @param  CreateFileCommand  $command
      * @return FileIdentifierResource
      * @throws CouldNotSaveFileException
      * @throws AuthorizationException
@@ -50,7 +50,7 @@ final class FilesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return FileResource
      * @throws AuthorizationException
      */
@@ -65,8 +65,8 @@ final class FilesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int                          $id
-     * @param DeleteFilesCompletelyCommand $command
+     * @param  int  $id
+     * @param  DeleteFilesCompletelyCommand  $command
      * @return FileResource
      * @throws AuthorizationException
      */
@@ -81,8 +81,8 @@ final class FilesController extends Controller
     }
 
     /**
-     * @param string                        $token
-     * @param ReceiveFileFromStorageCommand $fileStorage
+     * @param  string  $token
+     * @param  ReceiveFileFromStorageCommand  $fileStorage
      * @return StreamedResponse
      * @throws FileTokenExpiredException
      */

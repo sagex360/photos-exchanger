@@ -12,14 +12,16 @@ final class DeleteFilesCompletelyCommand
     protected DeleteFilesFromStorageCommand $deleteFromStorage;
     protected DeleteFilesFromDatabaseCommand $deleteFromDatabase;
 
-    public function __construct(DeleteFilesFromStorageCommand $deleteFromStorage, DeleteFilesFromDatabaseCommand $deleteFromDatabase)
-   {
-       $this->deleteFromStorage = $deleteFromStorage;
-       $this->deleteFromDatabase = $deleteFromDatabase;
-   }
+    public function __construct(
+        DeleteFilesFromStorageCommand $deleteFromStorage,
+        DeleteFilesFromDatabaseCommand $deleteFromDatabase
+    ) {
+        $this->deleteFromStorage = $deleteFromStorage;
+        $this->deleteFromDatabase = $deleteFromDatabase;
+    }
 
     /**
-     * @param Collection|File[] $files
+     * @param  Collection|File[]  $files
      */
     public function execute(Collection $files): void
     {

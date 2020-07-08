@@ -16,9 +16,9 @@ final class RegisterClientDto
 
     /**
      * RegisterClientDto constructor.
-     * @param string $name
-     * @param string $login
-     * @param string $password
+     * @param  string  $name
+     * @param  string  $login
+     * @param  string  $password
      */
     public function __construct(string $name, string $login, string $password)
     {

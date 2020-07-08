@@ -13,18 +13,21 @@ final class CreateFilesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('files', static function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
+        Schema::create(
+            'files',
+            static function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->constrained();
 
-            $table->string('storage');
-            $table->string('file_name');
+                $table->string('storage');
+                $table->string('file_name');
 
-            $table->string('public_name');
-            $table->text('description');
+                $table->string('public_name');
+                $table->text('description');
 
-            $table->timestamp('will_be_deleted_at')->nullable();
-        });
+                $table->timestamp('will_be_deleted_at')->nullable();
+            }
+        );
     }
 
     /**

@@ -15,10 +15,11 @@ final class FileRelationshipsController extends Controller
     protected FilesRepository $filesRepository;
     protected FileTokensRepository $tokensRepository;
 
-    public function __construct(UsersRepository $usersRepository,
-                                FilesRepository $filesRepository,
-                                FileTokensRepository $tokensRepository)
-    {
+    public function __construct(
+        UsersRepository $usersRepository,
+        FilesRepository $filesRepository,
+        FileTokensRepository $tokensRepository
+    ) {
         $this->usersRepository = $usersRepository;
         $this->filesRepository = $filesRepository;
         $this->tokensRepository = $tokensRepository;

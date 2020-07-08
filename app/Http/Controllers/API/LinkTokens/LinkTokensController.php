@@ -26,7 +26,7 @@ final class LinkTokensController extends Controller
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      * @return LinkTokenResource
      * @throws AuthorizationException
      */

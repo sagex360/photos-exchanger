@@ -15,7 +15,7 @@ final class Name
     private function __construct(string $name)
     {
         if (mb_strlen($name) < self::MIN_LENGTH) {
-            throw new InvalidArgumentException('Name must has at least ' . self::MIN_LENGTH . ' characters');
+            throw new InvalidArgumentException('Name must has at least '.self::MIN_LENGTH.' characters');
         }
 
         $this->name = $name;

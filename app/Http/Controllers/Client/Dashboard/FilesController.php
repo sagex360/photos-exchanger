@@ -35,10 +35,13 @@ final class FilesController extends Controller
     {
         $files = $this->filesRepository->findByUserId(Auth::id());
 
-        return view('pages.client.dashboard.files.index', [
-            'filesCount' => $files->count(),
-            'files'      => $files,
-        ]);
+        return view(
+            'pages.client.dashboard.files.index',
+            [
+                'filesCount' => $files->count(),
+                'files'      => $files,
+            ]
+        );
     }
 
     /**
@@ -57,8 +60,8 @@ final class FilesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreFileRequest  $request
-     * @param CreateFileCommand $command
+     * @param  StoreFileRequest  $request
+     * @param  CreateFileCommand  $command
      * @return RedirectResponse
      * @throws CouldNotSaveFileException
      * @throws AuthorizationException
@@ -75,7 +78,7 @@ final class FilesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return View
      * @throws AuthorizationException
      */
@@ -84,15 +87,18 @@ final class FilesController extends Controller
         $file = $this->filesRepository->findById($id);
         $this->authorize('view', $file);
 
-        return view('pages.client.dashboard.files.show', [
-            'file' => $file
-        ]);
+        return view(
+            'pages.client.dashboard.files.show',
+            [
+                'file' => $file
+            ]
+        );
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return View
      * @throws AuthorizationException
      */
@@ -101,17 +107,20 @@ final class FilesController extends Controller
         $file = $this->filesRepository->findById($id);
         $this->authorize('update', $file);
 
-        return view('pages.client.dashboard.files.edit', [
-            'file' => $file
-        ]);
+        return view(
+            'pages.client.dashboard.files.edit',
+            [
+                'file' => $file
+            ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param int               $id
-     * @param UpdateFileRequest $request
-     * @param UpdateFileCommand $command
+     * @param  int  $id
+     * @param  UpdateFileRequest  $request
+     * @param  UpdateFileCommand  $command
      * @return RedirectResponse
      * @throws CouldNotSaveFileException
      * @throws AuthorizationException
@@ -129,8 +138,8 @@ final class FilesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int                          $id
-     * @param DeleteFilesCompletelyCommand $command
+     * @param  int  $id
+     * @param  DeleteFilesCompletelyCommand  $command
      * @return RedirectResponse
      * @throws AuthorizationException
      */

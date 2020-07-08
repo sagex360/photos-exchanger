@@ -15,8 +15,8 @@ final class FileLinkTokensRelationshipResource extends ResourceCollection
 
     /**
      * FileLinkTokensRelationshipResource constructor.
-     * @param Collection|FileLinkToken[] $resource
-     * @param File                       $parent
+     * @param  Collection|FileLinkToken[]  $resource
+     * @param  File  $parent
      */
     public function __construct(Collection $resource, File $parent)
     {
@@ -26,7 +26,7 @@ final class FileLinkTokensRelationshipResource extends ResourceCollection
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request): array

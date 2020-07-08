@@ -22,13 +22,14 @@ final class RegisterController extends Controller
     }
 
     /**
-     * @param RegisterClientRequest $request
-     * @param RegisterClientCommand $registerUserCommand
+     * @param  RegisterClientRequest  $request
+     * @param  RegisterClientCommand  $registerUserCommand
      * @return RedirectResponse
      */
-    public function register(RegisterClientRequest $request,
-                             RegisterClientCommand $registerUserCommand): RedirectResponse
-    {
+    public function register(
+        RegisterClientRequest $request,
+        RegisterClientCommand $registerUserCommand
+    ): RedirectResponse {
         try {
             $registerUserCommand->register($request->createDto());
         } catch (UserWithGivenEmailAlreadyExists $e) {

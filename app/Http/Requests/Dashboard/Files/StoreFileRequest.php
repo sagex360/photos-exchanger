@@ -19,17 +19,18 @@ final class StoreFileRequest extends AppFormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @param FileImageRules       $imageRules
-     * @param FilePublicNameRules  $nameRules
-     * @param FileDescriptionRules $descriptionRules
-     * @param FileDateRules        $dateRules
+     * @param  FileImageRules  $imageRules
+     * @param  FilePublicNameRules  $nameRules
+     * @param  FileDescriptionRules  $descriptionRules
+     * @param  FileDateRules  $dateRules
      * @return array
      */
-    public function rules(FileImageRules $imageRules,
-                          FilePublicNameRules $nameRules,
-                          FileDescriptionRules $descriptionRules,
-                          FileDateRules $dateRules): array
-    {
+    public function rules(
+        FileImageRules $imageRules,
+        FilePublicNameRules $nameRules,
+        FileDescriptionRules $descriptionRules,
+        FileDateRules $dateRules
+    ): array {
         return [
             'public_name'    => $nameRules->get(),
             'description'    => $descriptionRules->get(),

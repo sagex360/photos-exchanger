@@ -32,14 +32,13 @@ final class LoginController extends Controller
     }
 
     /**
-     * @param LoginClientRequest $request
+     * @param  LoginClientRequest  $request
      * @return RedirectResponse
      */
     public function login(LoginClientRequest $request): RedirectResponse
     {
         try {
             $this->command->login($request->createDto());
-
         } catch (UserNotFoundException|UserAuthenticationFailed $e) {
             return redirect()->back()
                 ->withErrors(['login' => trans('auth.failed')])

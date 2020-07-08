@@ -8,15 +8,21 @@ class AddDeletedAtToFilesTable extends Migration
 {
     public function up(): void
     {
-        Schema::table('files', static function (Blueprint $table) {
-            $table->softDeletes();
-        });
+        Schema::table(
+            'files',
+            static function (Blueprint $table) {
+                $table->softDeletes();
+            }
+        );
     }
 
     public function down(): void
     {
-        Schema::table('files', static function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        Schema::table(
+            'files',
+            static function (Blueprint $table) {
+                $table->dropSoftDeletes();
+            }
+        );
     }
 }

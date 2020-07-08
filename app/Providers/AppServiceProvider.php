@@ -48,12 +48,15 @@ final class AppServiceProvider extends ServiceProvider
          */
         $app = $this->app;
 
-        $app->bindMethod(DeleteOverdueFilesJob::class . '@handle', static function (DeleteOverdueFilesJob $job, Container $app) {
-            $filesRepo = $app->make(EloquentFilesRepository::class);
-            $deleteFilesCommand = $app->make(DeleteFilesCompletelyCommand::class);
+        $app->bindMethod(
+            DeleteOverdueFilesJob::class.'@handle',
+            static function (DeleteOverdueFilesJob $job, Container $app) {
+                $filesRepo = $app->make(EloquentFilesRepository::class);
+                $deleteFilesCommand = $app->make(DeleteFilesCompletelyCommand::class);
 
-            $job->handle($filesRepo, $deleteFilesCommand);
-        });
+                $job->handle($filesRepo, $deleteFilesCommand);
+            }
+        );
 
         $this->registerFileRepositoryBindings();
         $this->registerFileTokensRepositoryBindings();
@@ -62,40 +65,46 @@ final class AppServiceProvider extends ServiceProvider
 
     protected function registerFileRepositoryBindings(): void
     {
-        $this->app->when([
-            FilesController::class,
-            UpdateFileCommand::class,
-            LinksController::class,
-            ReportsController::class,
-            ViewFilesController::class,
-            ApiFilesController::class,
-            FileRelationshipsController::class,
-            FileLinkTokensController::class,
-        ])
+        $this->app->when(
+            [
+                FilesController::class,
+                UpdateFileCommand::class,
+                LinksController::class,
+                ReportsController::class,
+                ViewFilesController::class,
+                ApiFilesController::class,
+                FileRelationshipsController::class,
+                FileLinkTokensController::class,
+            ]
+        )
             ->needs(FilesRepository::class)
             ->give(EloquentFilesRepository::class);
     }
 
     protected function registerFileTokensRepositoryBindings(): void
     {
-        $this->app->when([
-            ViewFilesController::class,
-            ApiFilesController::class,
-            LinksController::class,
-            FileRelationshipsController::class,
-            ApiLinkTokensController::class,
-            FileLinkTokensController::class,
-        ])
+        $this->app->when(
+            [
+                ViewFilesController::class,
+                ApiFilesController::class,
+                LinksController::class,
+                FileRelationshipsController::class,
+                ApiLinkTokensController::class,
+                FileLinkTokensController::class,
+            ]
+        )
             ->needs(FileTokensRepository::class)
             ->give(EloquentFileTokensRepository::class);
     }
 
     protected function registerUsersRepositoryBindings(): void
     {
-        $this->app->when([
-            FileRelationshipsController::class,
-            ApiUsersController::class,
-        ])
+        $this->app->when(
+            [
+                FileRelationshipsController::class,
+                ApiUsersController::class,
+            ]
+        )
             ->needs(UsersRepository::class)
             ->give(EloquentUsersRepository::class);
     }

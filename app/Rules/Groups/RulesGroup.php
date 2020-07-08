@@ -9,7 +9,7 @@ abstract class RulesGroup
     private array $toMerge = [];
 
     /**
-     * @param array $otherRules
+     * @param  array  $otherRules
      * @return RulesGroup
      */
     public function merge(array $otherRules): self

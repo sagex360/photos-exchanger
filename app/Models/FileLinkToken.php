@@ -16,15 +16,15 @@ use Illuminate\Support\Carbon;
 /**
  * App\Models\LinkToken
  *
- * @property int                         $id
- * @property int                         $file_id
- * @property LinkToken                   $token
- * @property Carbon|null                 $created_at
- * @property Carbon|null                 $updated_at
- * @property Carbon|null                 $deleted_at
+ * @property int $id
+ * @property int $file_id
+ * @property LinkToken $token
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
  * @property-read Collection|LinkVisit[] $visits
- * @property-read int|null               $visits_count
- * @property-read File                   $file
+ * @property-read int|null $visits_count
+ * @property-read File $file
  * @method static Builder|FileLinkToken newModelQuery()
  * @method static Builder|FileLinkToken newQuery()
  * @method static Builder|FileLinkToken query()

@@ -14,8 +14,8 @@ final class CreateFileLinkDto
 
     /**
      * CreateFileLinkTokenDto constructor.
-     * @param File      $file
-     * @param LinkToken $token
+     * @param  File  $file
+     * @param  LinkToken  $token
      */
     public function __construct(File $file, LinkToken $token)
     {

@@ -14,7 +14,7 @@ final class FileDateRules extends RulesGroup
     {
         return [
             'nullable',
-            'date_format:' . self::DATE_FORMAT,
+            'date_format:'.self::DATE_FORMAT,
             'after:now'
         ];
     }
