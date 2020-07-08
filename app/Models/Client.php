@@ -14,6 +14,7 @@ use Eloquent;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -79,7 +80,7 @@ final class Client extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function files()
+    public function files(): HasMany
     {
         return $this->hasMany(File::class, 'user_id');
     }

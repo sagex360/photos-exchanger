@@ -11,9 +11,6 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 final class FileLinkTokensRelationshipResource extends ResourceCollection
 {
-    /**
-     * @var File
-     */
     protected File $file;
 
     /**
@@ -32,7 +29,7 @@ final class FileLinkTokensRelationshipResource extends ResourceCollection
      * @param Request $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'links' => [

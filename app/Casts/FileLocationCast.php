@@ -27,7 +27,7 @@ final class FileLocationCast implements CastsAttributes
      * @param array  $attributes
      * @return FileLocation
      */
-    public function get($model, string $key, $value, $attributes)
+    public function get($model, string $key, $value, $attributes): FileLocation
     {
         return FileLocation::in(
             $attributes[$this->storageKey],
@@ -44,7 +44,7 @@ final class FileLocationCast implements CastsAttributes
      * @param array        $attributes
      * @return array
      */
-    public function set($model, string $key, $setLocation, $attributes)
+    public function set($model, string $key, $setLocation, $attributes): array
     {
         if (!$setLocation instanceof FileLocation) {
             throw new InvalidArgumentException('Parameter $setLocation must be instance of ' . FileLocation::class);

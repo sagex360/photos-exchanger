@@ -12,7 +12,7 @@ final class RecordLinkVisitCommand
     /**
      * @param FileLinkToken $linkToken
      */
-    public function execute(FileLinkToken $linkToken)
+    public function execute(FileLinkToken $linkToken): void
     {
         $newVisit = new LinkVisit();
         $newVisit->link_token_id = $linkToken->id;

@@ -7,7 +7,7 @@ use Illuminate\Support\Arr;
 
 final class LinkTokensTableSeeder extends Seeder
 {
-    public static function limit()
+    public static function limit(): int
     {
         return 200;
     }
@@ -17,7 +17,7 @@ final class LinkTokensTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $faker = Faker\Factory::create();
 

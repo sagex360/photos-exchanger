@@ -6,8 +6,7 @@ namespace App\Rules\Groups;
 
 abstract class RulesGroup
 {
-    /** @var array */
-    private $toMerge = [];
+    private array $toMerge = [];
 
     /**
      * @param array $otherRules
@@ -20,7 +19,7 @@ abstract class RulesGroup
         return $this;
     }
 
-    public function get()
+    public function get(): array
     {
         $rules = array_merge($this->rules(), $this->toMerge);
 
@@ -29,10 +28,10 @@ abstract class RulesGroup
         return $rules;
     }
 
-    protected function flush()
+    protected function flush(): void
     {
         $this->toMerge = [];
     }
 
-    protected abstract function rules(): array;
+    abstract protected function rules(): array;
 }

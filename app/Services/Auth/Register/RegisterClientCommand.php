@@ -13,8 +13,7 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 final class RegisterClientCommand
 {
-    /** @var Dispatcher */
-    protected $dispatcher;
+    protected Dispatcher $dispatcher;
 
     /**
      * RegisterClientCommand constructor.
@@ -33,7 +32,7 @@ final class RegisterClientCommand
     {
         $email = $dto->getLogin();
         if (Client::whereEmail($email)->exists()) {
-            throw new UserWithGivenEmailAlreadyExists();
+            throw new UserWithGivenEmailAlreadyExists("Email {$email} has already been taken.");
         }
 
         $client = new Client();

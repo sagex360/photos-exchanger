@@ -12,12 +12,15 @@ abstract class AppFormRequest extends FormRequest
      *
      * @return true
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-    public function validationData()
+    /**
+     * @return array
+     */
+    public function validationData(): array
     {
         if ($this->isJson()) {
             return $this->json()->all();

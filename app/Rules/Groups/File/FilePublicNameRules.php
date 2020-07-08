@@ -5,17 +5,17 @@ namespace App\Rules\Groups\File;
 
 
 use App\Rules\Groups\RulesGroup;
+use App\ValueObjects\FileDescription;
 
 final class FilePublicNameRules extends RulesGroup
 {
-    const MAX_SIZE = 255;
-
     protected function rules(): array
     {
         return [
             'required',
             'string',
-            'max:' . self::MAX_SIZE,
+            'min:' . FileDescription::MIN_PUBLIC_NAME,
+            'max:' . FileDescription::MAX_PUBLIC_NAME,
         ];
     }
 }

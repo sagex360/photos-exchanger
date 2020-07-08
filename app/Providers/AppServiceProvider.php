@@ -31,7 +31,7 @@ final class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         if ($this->app->environment() !== 'production') {
             $this->app->register(IdeHelperServiceProvider::class);
@@ -41,14 +41,14 @@ final class AppServiceProvider extends ServiceProvider
         $this->registerBindings();
     }
 
-    protected function registerBindings()
+    protected function registerBindings(): void
     {
         /**
          * @var Container $app
          */
         $app = $this->app;
 
-        $app->bindMethod(DeleteOverdueFilesJob::class . '@handle', function (DeleteOverdueFilesJob $job, Container $app) {
+        $app->bindMethod(DeleteOverdueFilesJob::class . '@handle', static function (DeleteOverdueFilesJob $job, Container $app) {
             $filesRepo = $app->make(EloquentFilesRepository::class);
             $deleteFilesCommand = $app->make(DeleteFilesCompletelyCommand::class);
 
@@ -60,7 +60,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->registerUsersRepositoryBindings();
     }
 
-    protected function registerFileRepositoryBindings()
+    protected function registerFileRepositoryBindings(): void
     {
         $this->app->when([
             FilesController::class,
@@ -76,7 +76,7 @@ final class AppServiceProvider extends ServiceProvider
             ->give(EloquentFilesRepository::class);
     }
 
-    protected function registerFileTokensRepositoryBindings()
+    protected function registerFileTokensRepositoryBindings(): void
     {
         $this->app->when([
             ViewFilesController::class,
@@ -90,7 +90,7 @@ final class AppServiceProvider extends ServiceProvider
             ->give(EloquentFileTokensRepository::class);
     }
 
-    protected function registerUsersRepositoryBindings()
+    protected function registerUsersRepositoryBindings(): void
     {
         $this->app->when([
             FileRelationshipsController::class,
@@ -105,7 +105,7 @@ final class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }

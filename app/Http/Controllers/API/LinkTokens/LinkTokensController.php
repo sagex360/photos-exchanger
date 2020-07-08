@@ -10,9 +10,6 @@ use Illuminate\Auth\Access\AuthorizationException;
 
 final class LinkTokensController extends Controller
 {
-    /**
-     * @var FileTokensRepository
-     */
     protected FileTokensRepository $tokensRepository;
 
     public function __construct(FileTokensRepository $tokensRepository)
@@ -33,7 +30,7 @@ final class LinkTokensController extends Controller
      * @return LinkTokenResource
      * @throws AuthorizationException
      */
-    public function show(int $id)
+    public function show(int $id): LinkTokenResource
     {
         $token = $this->tokensRepository->findById($id);
         $this->authorize('view', $token);

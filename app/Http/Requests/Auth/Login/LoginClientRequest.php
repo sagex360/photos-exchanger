@@ -18,7 +18,7 @@ final class LoginClientRequest extends AppFormRequest
      * @param PasswordRules $passwordRules
      * @return array
      */
-    public function rules(LoginRules $loginRules, PasswordRules $passwordRules)
+    public function rules(LoginRules $loginRules, PasswordRules $passwordRules): array
     {
         return [
             'login'    => $loginRules->get(),
@@ -26,7 +26,7 @@ final class LoginClientRequest extends AppFormRequest
         ];
     }
 
-    public function createDto()
+    public function createDto(): LoginClientDto
     {
         return new LoginClientDto(
             $this->input('login'),

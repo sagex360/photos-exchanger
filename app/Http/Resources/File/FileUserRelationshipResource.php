@@ -11,9 +11,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /** @mixin Client */
 final class FileUserRelationshipResource extends JsonResource
 {
-    /**
-     * @var File
-     */
     protected File $file;
 
     public function __construct(Client $resource, File $parent)
@@ -27,7 +24,7 @@ final class FileUserRelationshipResource extends JsonResource
      * @param Request $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'links' => [

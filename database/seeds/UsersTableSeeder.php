@@ -3,14 +3,14 @@
 use App\Models\Client;
 use App\ValueObjects\Login;
 use App\ValueObjects\Name;
-use App\ValueObjects\Password as Password;
+use App\ValueObjects\Password;
 use Illuminate\Database\Seeder;
 
 final class UsersTableSeeder extends Seeder
 {
-    const PASSWORD = 'password';
+    public const PASSWORD = 'password';
 
-    public static function limit()
+    public static function limit(): int
     {
         return 10;
     }
@@ -20,7 +20,7 @@ final class UsersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $faker = Faker\Factory::create();
 
@@ -30,7 +30,7 @@ final class UsersTableSeeder extends Seeder
             $client->name = Name::create($faker->unique()->name);
             $client->email = Login::create($faker->unique()->email);
             $client->password = Password::create(self::PASSWORD);
-            
+
             $client->save();
         }
     }

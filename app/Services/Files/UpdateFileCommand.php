@@ -12,9 +12,6 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 final class UpdateFileCommand
 {
-    /**
-     * @var Dispatcher
-     */
     protected Dispatcher $dispatcher;
 
     /**

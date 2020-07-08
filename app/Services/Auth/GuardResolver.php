@@ -10,10 +10,10 @@ use InvalidArgumentException;
 
 final class GuardResolver
 {
-    const CATEGORY_DEFAULT = self::CATEGORY_HTTP;
-    const CATEGORY_HTTP = 'http';
+    public const CATEGORY_DEFAULT = self::CATEGORY_HTTP;
+    public const CATEGORY_HTTP = 'http';
 
-    public function resolveGuard(Authenticatable $user, string $category = self::CATEGORY_DEFAULT)
+    public function resolveGuard(Authenticatable $user, string $category = self::CATEGORY_DEFAULT): string
     {
         if ($user instanceof Client) {
             if ($category === self::CATEGORY_HTTP) {

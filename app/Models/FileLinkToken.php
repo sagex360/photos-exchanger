@@ -8,6 +8,8 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
@@ -48,12 +50,12 @@ final class FileLinkToken extends Model
         'token' => LinkTokenCast::class,
     ];
 
-    public function visits()
+    public function visits(): HasMany
     {
         return $this->hasMany(LinkVisit::class, 'link_token_id');
     }
 
-    public function file()
+    public function file(): BelongsTo
     {
         return $this->belongsTo(File::class);
     }

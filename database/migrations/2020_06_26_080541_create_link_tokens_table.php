@@ -11,9 +11,9 @@ final class CreateLinkTokensTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('link_tokens', function (Blueprint $table) {
+        Schema::create('link_tokens', static function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('file_id')
@@ -34,7 +34,7 @@ final class CreateLinkTokensTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('link_tokens');
     }

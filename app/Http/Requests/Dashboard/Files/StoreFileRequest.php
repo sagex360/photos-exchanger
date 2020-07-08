@@ -28,7 +28,7 @@ final class StoreFileRequest extends AppFormRequest
     public function rules(FileImageRules $imageRules,
                           FilePublicNameRules $nameRules,
                           FileDescriptionRules $descriptionRules,
-                          FileDateRules $dateRules)
+                          FileDateRules $dateRules): array
     {
         return [
             'public_name'    => $nameRules->get(),
@@ -41,7 +41,7 @@ final class StoreFileRequest extends AppFormRequest
     /**
      * @return CreateFileDto
      */
-    public function createDto()
+    public function createDto(): CreateFileDto
     {
         return new CreateFileDto(
             Auth::id(),

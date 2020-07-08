@@ -7,17 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Files\FilesRepository;
 use App\Repositories\FileTokens\FileTokensRepository;
 use App\Services\Files\VerifyFileLinkCommand;
+use Illuminate\View\View;
 
 final class ViewFilesController extends Controller
 {
-    /**
-     * @var FileTokensRepository
-     */
     protected FileTokensRepository $tokensRepository;
-
-    /**
-     * @var FilesRepository
-     */
     protected FilesRepository $filesRepository;
 
     public function __construct(FileTokensRepository $fileTokensRepository, FilesRepository $filesRepository)
@@ -29,10 +23,10 @@ final class ViewFilesController extends Controller
     /**
      * @param string                $token
      * @param VerifyFileLinkCommand $verifyLink
-     * @return string
+     * @return View
      * @throws FileTokenExpiredException
      */
-    public function show(string $token, VerifyFileLinkCommand $verifyLink)
+    public function show(string $token, VerifyFileLinkCommand $verifyLink): View
     {
         $fileLinkToken = $this->tokensRepository->findByToken($token);
         $verifyLink->execute($fileLinkToken);

@@ -6,16 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 class AddIndexForWillBeDeletedAtColumnInFilesTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::table('files', function (Blueprint $table) {
+        Schema::table('files', static function (Blueprint $table) {
             $table->index('will_be_deleted_at', 'idx_files_will_be_deleted_at');
         });
     }
 
-    public function down()
+    public function down(): void
     {
-        Schema::table('files', function (Blueprint $table) {
+        Schema::table('files', static function (Blueprint $table) {
             $table->dropIndex('idx_files_will_be_deleted_at');
         });
     }

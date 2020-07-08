@@ -26,7 +26,7 @@ final class DeletionDateCast implements CastsAttributes
      * @param array  $attributes
      * @return DeletionDate
      */
-    public function get($model, string $key, $value, $attributes)
+    public function get($model, string $key, $value, $attributes): DeletionDate
     {
         return DeletionDateFactory::fromFormat($this->dateFormat, $value);
     }
@@ -40,7 +40,7 @@ final class DeletionDateCast implements CastsAttributes
      * @param array        $attributes
      * @return array
      */
-    public function set($model, string $key, $setDate, $attributes)
+    public function set($model, string $key, $setDate, $attributes): array
     {
         if (!$setDate instanceof DeletionDate) {
             throw new InvalidArgumentException('Parameter $setDate must be instance of ' . DeletionDate::class);

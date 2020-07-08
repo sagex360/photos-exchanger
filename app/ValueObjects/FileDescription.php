@@ -9,13 +9,13 @@ use InvalidArgumentException;
 
 final class FileDescription
 {
-    const MIN_PUBLIC_NAME = 1;
-    const MIN_DESCRIPTION = 1;
+    public const MIN_PUBLIC_NAME = 1;
+    public const MIN_DESCRIPTION = 1;
 
-    const MAX_PUBLIC_NAME = 255;
-    const MAX_DESCRIPTION = 65535;
+    public const MAX_PUBLIC_NAME = 255;
+    public const MAX_DESCRIPTION = 65535;
 
-    const SHORT_DESCRIPTION_LIMIT = 50;
+    public const SHORT_DESCRIPTION_LIMIT = 50;
 
     protected string $publicName;
     protected string $description;

@@ -15,7 +15,7 @@ final class DeleteLinkTokensCommand
      * @param FileLinkToken[]|Collection $linkTokens
      * @throws Exception
      */
-    public function execute(Collection $linkTokens)
+    public function execute(Collection $linkTokens): void
     {
         /**
          * @var Builder|FileLinkToken $query

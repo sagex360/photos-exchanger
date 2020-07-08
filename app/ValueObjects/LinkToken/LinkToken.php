@@ -6,9 +6,9 @@ namespace App\ValueObjects\LinkToken;
 
 abstract class LinkToken
 {
-    const STATUS_NOT_USED = 'not-used';
-    const STATUS_EXPIRED = 'expired';
-    const STATUS_USED_N_TIMES = 'used-n-times';
+    public const STATUS_NOT_USED = 'not-used';
+    public const STATUS_EXPIRED = 'expired';
+    public const STATUS_USED_N_TIMES = 'used-n-times';
 
     protected string $token;
 
@@ -17,7 +17,7 @@ abstract class LinkToken
         $this->token = $token;
     }
 
-    public static function create(string $token)
+    public static function create(string $token): LinkToken
     {
         return new static($token);
     }
@@ -46,7 +46,7 @@ abstract class LinkToken
         return self::STATUS_USED_N_TIMES;
     }
 
-    public abstract function type(): string;
+    abstract public function type(): string;
 
-    public abstract function expired(int $visitsCount): bool;
+    abstract public function expired(int $visitsCount): bool;
 }

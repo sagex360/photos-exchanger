@@ -8,20 +8,15 @@ use App\ValueObjects\Login;
 
 final class LoginClientDto
 {
-    /**  @var Login */
-    protected $login;
-
-    /** @var string */
-    protected $password;
-
-    /** @var bool */
-    protected $remember;
+    protected Login $login;
+    protected string $password;
+    protected bool $remember;
 
     /**
      * LoginClientDto constructor.
      * @param string $login
      * @param string $password
-     * @param bool $remember
+     * @param bool   $remember
      */
     public function __construct(string $login, string $password, bool $remember)
     {
@@ -46,7 +41,7 @@ final class LoginClientDto
         return $this->remember;
     }
 
-    public function credentials()
+    public function credentials(): array
     {
         return [
             'email'    => $this->login->value(),

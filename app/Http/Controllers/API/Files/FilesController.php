@@ -20,13 +20,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 final class FilesController extends Controller
 {
-    /**
-     * @var FilesRepository
-     */
     protected FilesRepository $filesRepository;
-    /**
-     * @var FileTokensRepository
-     */
     protected FileTokensRepository $fileTokensRepository;
 
     public function __construct(FilesRepository $filesRepository, FileTokensRepository $fileTokensRepository)
@@ -44,7 +38,7 @@ final class FilesController extends Controller
      * @throws CouldNotSaveFileException
      * @throws AuthorizationException
      */
-    public function store(StoreFileRequest $request, CreateFileCommand $command)
+    public function store(StoreFileRequest $request, CreateFileCommand $command): FileIdentifierResource
     {
         $this->authorize('create', File::class);
 
@@ -60,7 +54,7 @@ final class FilesController extends Controller
      * @return FileResource
      * @throws AuthorizationException
      */
-    public function show(int $id)
+    public function show(int $id): FileResource
     {
         $file = $this->filesRepository->findById($id);
         $this->authorize('view', $file);
@@ -76,7 +70,7 @@ final class FilesController extends Controller
      * @return FileResource
      * @throws AuthorizationException
      */
-    public function destroy(int $id, DeleteFilesCompletelyCommand $command)
+    public function destroy(int $id, DeleteFilesCompletelyCommand $command): FileResource
     {
         $file = $this->filesRepository->findById($id);
         $this->authorize('delete', $file);
@@ -92,7 +86,7 @@ final class FilesController extends Controller
      * @return StreamedResponse
      * @throws FileTokenExpiredException
      */
-    public function fileResource(string $token, ReceiveFileFromStorageCommand $fileStorage)
+    public function fileResource(string $token, ReceiveFileFromStorageCommand $fileStorage): StreamedResponse
     {
         $fileLinkToken = $this->fileTokensRepository->findByToken($token);
 

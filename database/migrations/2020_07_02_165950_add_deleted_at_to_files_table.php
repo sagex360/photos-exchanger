@@ -6,16 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 class AddDeletedAtToFilesTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::table('files', function (Blueprint $table) {
+        Schema::table('files', static function (Blueprint $table) {
             $table->softDeletes();
         });
     }
 
-    public function down()
+    public function down(): void
     {
-        Schema::table('files', function (Blueprint $table) {
+        Schema::table('files', static function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }

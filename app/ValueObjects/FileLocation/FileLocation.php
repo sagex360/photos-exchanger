@@ -71,12 +71,12 @@ final class FileLocation
         return $this->folderLocator->locate($this->storage());
     }
 
-    public function fullPath()
+    public function fullPath(): string
     {
         return Str::finish($this->folderLocator->locate($this->storage()), '/') . $this->fileName();
     }
 
-    public function url()
+    public function url(): string
     {
         return $this->folderLocator->link($this->storage(), $this->fullPath());
     }

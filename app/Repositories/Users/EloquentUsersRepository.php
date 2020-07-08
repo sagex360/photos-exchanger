@@ -12,7 +12,7 @@ final class EloquentUsersRepository implements UsersRepository
 {
     public function findByFileId(int $fileId): Client
     {
-        return Client::whereHas('files', function ($query) use ($fileId) {
+        return Client::whereHas('files', static function ($query) use ($fileId) {
             /**
              * @var Builder|File $query
              */

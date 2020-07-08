@@ -10,10 +10,7 @@ final class Name
 {
     public const MIN_LENGTH = 2;
 
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
     private function __construct(string $name)
     {
@@ -29,7 +26,7 @@ final class Name
         return new static($name);
     }
 
-    public function value()
+    public function value(): string
     {
         return $this->name;
     }

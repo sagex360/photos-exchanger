@@ -11,17 +11,8 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 final class ReceiveFileFromStorageCommand
 {
-    /**
-     * @var FilesystemManager
-     */
     protected FilesystemManager $filesystemManager;
-    /**
-     * @var VerifyFileLinkCommand
-     */
     protected VerifyFileLinkCommand $verifyLink;
-    /**
-     * @var RecordLinkVisitCommand
-     */
     protected RecordLinkVisitCommand $recordLinkVisit;
 
     public function __construct(VerifyFileLinkCommand $verifyLink,
@@ -38,7 +29,7 @@ final class ReceiveFileFromStorageCommand
      * @return StreamedResponse
      * @throws FileTokenExpiredException
      */
-    public function get(FileLinkToken $linkToken)
+    public function get(FileLinkToken $linkToken): StreamedResponse
     {
         $this->verifyLink->execute($linkToken);
 

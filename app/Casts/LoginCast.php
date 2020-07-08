@@ -18,7 +18,7 @@ final class LoginCast implements CastsAttributes
      * @param array $attributes
      * @return Login
      */
-    public function get($model, string $key, $value, $attributes)
+    public function get($model, string $key, $value, $attributes): Login
     {
         return Login::create($value);
     }
@@ -32,7 +32,7 @@ final class LoginCast implements CastsAttributes
      * @param array $attributes
      * @return array
      */
-    public function set($model, string $key, $setLogin, $attributes)
+    public function set($model, string $key, $setLogin, $attributes): array
     {
         if (!$setLogin instanceof Login) {
             throw new InvalidArgumentException('Parameter $setLogin must be instance of ' . Login::class);

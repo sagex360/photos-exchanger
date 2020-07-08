@@ -15,28 +15,28 @@ final class FilesFolderLocator
 {
     /**
      * @param string $disk
-     * @throws InvalidArgumentException
+     * @return InvalidArgumentException
      */
-    protected function invalidDiskType(string $disk)
+    protected function invalidDiskType(string $disk): InvalidArgumentException
     {
-        throw new InvalidArgumentException("Unknown disk type: '$disk'");
+        return new InvalidArgumentException("Unknown disk type: '$disk'");
     }
 
-    public function locate(string $disk)
+    public function locate(string $disk): string
     {
         if ($disk === 'public') {
             return 'uploads/files';
         }
 
-        $this->invalidDiskType($disk);
+        throw $this->invalidDiskType($disk);
     }
 
-    public function link(string $disk, string $fullPath)
+    public function link(string $disk, string $fullPath): string
     {
         if ($disk === 'public') {
             return config('filesystems.disks.public.url') . "/$fullPath";
         }
 
-        $this->invalidDiskType($disk);
+        throw $this->invalidDiskType($disk);
     }
 }

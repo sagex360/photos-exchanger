@@ -13,17 +13,12 @@ use App\Services\Files\DeleteFilesCompletelyCommand;
 use App\Services\Files\UpdateFileCommand;
 use Auth;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 final class FilesController extends Controller
 {
-    /**
-     * @var FilesRepository
-     */
     protected FilesRepository $filesRepository;
 
     public function __construct(FilesRepository $filesRepository)
@@ -34,9 +29,9 @@ final class FilesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Application|Factory|View
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $files = $this->filesRepository->findByUserId(Auth::id());
 
@@ -49,10 +44,10 @@ final class FilesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Factory|View
+     * @return View
      * @throws AuthorizationException
      */
-    public function create()
+    public function create(): View
     {
         $this->authorize('create', File::class);
 
@@ -68,7 +63,7 @@ final class FilesController extends Controller
      * @throws CouldNotSaveFileException
      * @throws AuthorizationException
      */
-    public function store(StoreFileRequest $request, CreateFileCommand $command)
+    public function store(StoreFileRequest $request, CreateFileCommand $command): RedirectResponse
     {
         $this->authorize('create', File::class);
 
@@ -81,10 +76,10 @@ final class FilesController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return Application|Factory|View
+     * @return View
      * @throws AuthorizationException
      */
-    public function show(int $id)
+    public function show(int $id): View
     {
         $file = $this->filesRepository->findById($id);
         $this->authorize('view', $file);
@@ -98,10 +93,10 @@ final class FilesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return Application|Factory|View
+     * @return View
      * @throws AuthorizationException
      */
-    public function edit(int $id)
+    public function edit(int $id): View
     {
         $file = $this->filesRepository->findById($id);
         $this->authorize('update', $file);
@@ -121,7 +116,7 @@ final class FilesController extends Controller
      * @throws CouldNotSaveFileException
      * @throws AuthorizationException
      */
-    public function update(int $id, UpdateFileRequest $request, UpdateFileCommand $command)
+    public function update(int $id, UpdateFileRequest $request, UpdateFileCommand $command): RedirectResponse
     {
         $file = $this->filesRepository->findById($id);
         $this->authorize('update', $file);
@@ -139,7 +134,7 @@ final class FilesController extends Controller
      * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function destroy(int $id, DeleteFilesCompletelyCommand $command)
+    public function destroy(int $id, DeleteFilesCompletelyCommand $command): RedirectResponse
     {
         $file = $this->filesRepository->findById($id);
         $this->authorize('delete', $file);

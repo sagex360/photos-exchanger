@@ -6,40 +6,35 @@ use App\ValueObjects\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
-class PasswordTest extends \Tests\TestCase
+class PasswordTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
-    public function testEmptyPassword()
+    public function testEmptyPassword(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $password = Password::create('');
     }
 
-    public function testTooShortPassword()
+    public function testTooShortPassword(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $password = Password::create(Str::random(Password::MIN_LENGTH - 1));
     }
 
-    public function testSuccessfulCreation()
+    public function testSuccessfulCreation(): void
     {
         $password = Password::create('12345678');
 
-        $this->assertSame($password->hash(), "$password");
+        self::assertSame($password->hash(), (string)$password);
     }
 
-    public function testCreationFromHash()
+    public function testCreationFromHash(): void
     {
         $hashedPassword = Hash::make('my_password');
 
         $password = Password::fromHash($hashedPassword);
 
-        $this->assertEquals($password->hash(), $hashedPassword);
+        self::assertEquals($password->hash(), $hashedPassword);
     }
 }

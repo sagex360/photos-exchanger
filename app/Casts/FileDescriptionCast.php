@@ -28,7 +28,7 @@ final class FileDescriptionCast implements CastsAttributes
      * @param array  $attributes
      * @return FileDescription
      */
-    public function get($model, string $key, $value, $attributes)
+    public function get($model, string $key, $value, $attributes): FileDescription
     {
         return FileDescription::create(
             $attributes[$this->publicNameKey],
@@ -45,7 +45,7 @@ final class FileDescriptionCast implements CastsAttributes
      * @param array           $attributes
      * @return array
      */
-    public function set($model, string $key, $fileDescription, $attributes)
+    public function set($model, string $key, $fileDescription, $attributes): array
     {
         if (!$fileDescription instanceof FileDescription) {
             throw new InvalidArgumentException('Parameter $setDescription must be instance of ' . FileDescription::class);

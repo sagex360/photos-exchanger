@@ -10,14 +10,9 @@ use App\ValueObjects\Password;
 
 final class RegisterClientDto
 {
-    /** @var Name */
-    protected $name;
-
-    /** @var Login */
-    protected $login;
-
-    /** @var Password */
-    protected $password;
+    protected Name $name;
+    protected Login $login;
+    protected Password $password;
 
     /**
      * RegisterClientDto constructor.

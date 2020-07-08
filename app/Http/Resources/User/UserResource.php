@@ -13,7 +13,7 @@ final class UserResource extends JsonResource
      * @param Request $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         $attributes = $this->getAttributes();
 

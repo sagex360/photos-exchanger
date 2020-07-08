@@ -11,9 +11,9 @@ final class CreateFilesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('files', static function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
 
@@ -32,7 +32,7 @@ final class CreateFilesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('files');
     }

@@ -10,14 +10,14 @@ use App\ValueObjects\LinkToken\LinkTokensFactory;
 
 final class CreateLinkRequest extends AppFormRequest
 {
-    public function rules(LinkTypeRules $linkTypeRules)
+    public function rules(LinkTypeRules $linkTypeRules): array
     {
         return [
             'link_type' => $linkTypeRules->get()
         ];
     }
 
-    public function makeDto(File $file)
+    public function makeDto(File $file): CreateFileLinkDto
     {
         return new CreateFileLinkDto(
             $file,

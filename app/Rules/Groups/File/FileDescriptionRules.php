@@ -5,17 +5,17 @@ namespace App\Rules\Groups\File;
 
 
 use App\Rules\Groups\RulesGroup;
+use App\ValueObjects\FileDescription;
 
 final class FileDescriptionRules extends RulesGroup
 {
-    const MAX_SIZE = 65534;
-
     protected function rules(): array
     {
         return [
             'required',
             'string',
-            'max:' . self::MAX_SIZE,
+            'min:' . FileDescription::MIN_DESCRIPTION,
+            'max:' . FileDescription::MAX_DESCRIPTION,
         ];
     }
 }

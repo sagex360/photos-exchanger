@@ -18,7 +18,7 @@ final class NameCast implements CastsAttributes
      * @param array $attributes
      * @return Name
      */
-    public function get($model, string $key, $value, $attributes)
+    public function get($model, string $key, $value, $attributes): Name
     {
         return Name::create($value);
     }
@@ -32,7 +32,7 @@ final class NameCast implements CastsAttributes
      * @param array $attributes
      * @return array
      */
-    public function set($model, string $key, $setName, $attributes)
+    public function set($model, string $key, $setName, $attributes): array
     {
         if (!$setName instanceof Name) {
             throw new InvalidArgumentException('Parameter $setName must be instance of ' . Name::class);

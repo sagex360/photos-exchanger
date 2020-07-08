@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class Authenticate extends Middleware
 {
-    protected $guards = [];
+    protected array $guards = [];
 
     public function handle($request, Closure $next, ...$guards)
     {
@@ -24,7 +24,7 @@ class Authenticate extends Middleware
      * @param Request $request
      * @return string|null
      */
-    protected function redirectTo($request)
+    protected function redirectTo($request): ?string
     {
         if (!$request->expectsJson()) {
             return route(RouteServiceProvider::loginRoute(...$this->guards));

@@ -25,28 +25,28 @@ final class FileReportsSummaryManager
 
     public function usedDisposableLinks(): int
     {
-        return $this->files->reduce(function (int $count, File $file): int {
+        return $this->files->reduce(static function (int $count, File $file): int {
             return $count + $file->disposable_links_used_count;
         }, 0);
     }
 
     public function disposableLinks(): int
     {
-        return $this->files->reduce(function (int $count, File $file): int {
+        return $this->files->reduce(static function (int $count, File $file): int {
             return $count + $file->disposable_links_count;
         }, 0);
     }
 
     public function unlimitedLinksViews(): int
     {
-        return $this->files->reduce(function (int $views, File $file): int {
+        return $this->files->reduce(static function (int $views, File $file): int {
             return $views + $file->unlimited_link_views_count;
         }, 0);
     }
 
     public function totalViews(): int
     {
-        return $this->files->reduce(function (int $views, File $file): int {
+        return $this->files->reduce(static function (int $views, File $file): int {
             return $views + $file->views_count;
         }, 0);
     }

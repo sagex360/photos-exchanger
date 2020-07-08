@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 class AddApiTokenToUsersTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', static function (Blueprint $table) {
             $table->string('api_token', 80)
                 ->after('password')
                 ->unique()
@@ -17,9 +17,9 @@ class AddApiTokenToUsersTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', static function (Blueprint $table) {
             $table->dropColumn('api_token');
         });
     }

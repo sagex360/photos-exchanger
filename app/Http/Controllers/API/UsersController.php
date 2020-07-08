@@ -8,9 +8,6 @@ use App\Repositories\Users\UsersRepository;
 
 final class UsersController extends Controller
 {
-    /**
-     * @var UsersRepository
-     */
     protected UsersRepository $usersRepository;
 
     public function __construct(UsersRepository $usersRepository)
@@ -24,7 +21,7 @@ final class UsersController extends Controller
      * @param int $id
      * @return UserResource
      */
-    public function show(int $id)
+    public function show(int $id): UserResource
     {
         return new UserResource($this->usersRepository->findById($id));
     }

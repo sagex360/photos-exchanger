@@ -8,16 +8,11 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Files\FilesRepository;
 use App\Services\Files\Reports\FileReportsSummaryManager;
 use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 final class ReportsController extends Controller
 {
-    /**
-     * @var FilesRepository
-     */
     protected FilesRepository $filesRepository;
 
     public function __construct(FilesRepository $filesRepository)
@@ -26,10 +21,10 @@ final class ReportsController extends Controller
     }
 
     /**
-     * @return Application|Factory|View
+     * @return View
      * @throws BindingResolutionException
      */
-    public function index()
+    public function index(): View
     {
         $userId = Auth::id();
 

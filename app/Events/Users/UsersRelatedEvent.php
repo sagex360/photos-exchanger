@@ -6,16 +6,16 @@ namespace App\Events\Users;
 
 abstract class UsersRelatedEvent
 {
-    protected $userId;
+    protected int $userId;
 
     /**
      * UserRegistered constructor.
      * @param $userId
      */
-    public function __construct($userId)
+    public function __construct(int $userId)
     {
         $this->userId = $userId;
     }
 
-    public abstract function getUser();
+    abstract public function getUser();
 }

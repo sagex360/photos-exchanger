@@ -9,22 +9,22 @@ use PHPUnit\Framework\TestCase;
 
 class NameTest extends TestCase
 {
-    public function testEmptyName()
+    public function testEmptyName(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $name = Name::create('');
     }
 
-    public function testTooShortName()
+    public function testTooShortName(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $name = Name::create(Str::random(Name::MIN_LENGTH - 1));
     }
 
-    public function testSuccessfulCreation()
+    public function testSuccessfulCreation(): void
     {
         $name = Name::create('John Doe');
 
-        $this->assertSame('John Doe', $name->value());
+        self::assertSame('John Doe', $name->value());
     }
 }

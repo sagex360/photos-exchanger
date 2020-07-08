@@ -9,14 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 final class DeleteFilesCompletelyCommand
 {
-    /**
-     * @var DeleteFilesFromStorageCommand
-     */
     protected DeleteFilesFromStorageCommand $deleteFromStorage;
-
-    /**
-     * @var DeleteFilesFromDatabaseCommand
-     */
     protected DeleteFilesFromDatabaseCommand $deleteFromDatabase;
 
     public function __construct(DeleteFilesFromStorageCommand $deleteFromStorage, DeleteFilesFromDatabaseCommand $deleteFromDatabase)
@@ -28,7 +21,7 @@ final class DeleteFilesCompletelyCommand
     /**
      * @param Collection|File[] $files
      */
-    public function execute(Collection $files)
+    public function execute(Collection $files): void
     {
         $this->deleteFromDatabase->execute($files);
         $this->deleteFromStorage->execute($files);

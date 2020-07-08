@@ -23,12 +23,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
-    public static function homeRoute(?string $guard)
+    public static function homeRoute(?string $guard): string
     {
         return 'dashboard.home';
     }
 
-    public static function loginRoute(?string $guard)
+    public static function loginRoute(?string $guard): string
     {
         return 'auth.login';
     }
@@ -38,7 +38,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
 
@@ -67,7 +67,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapWebRoutes()
+    protected function mapWebRoutes(): void
     {
         Route::middleware('web')
             ->namespace($this->namespace)
@@ -85,7 +85,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapApiRoutes()
+    protected function mapApiRoutes(): void
     {
         Route::prefix('api')
             ->middleware('api')
@@ -94,7 +94,7 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/api.php'));
     }
 
-    protected function mapGuestRoutes()
+    protected function mapGuestRoutes(): void
     {
         Route::prefix('guest')
             ->namespace($this->guestNamespace)

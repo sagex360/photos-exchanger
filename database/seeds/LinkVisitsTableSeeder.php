@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 
 final class LinkVisitsTableSeeder extends Seeder
 {
-    protected $faker;
+    protected \Faker\Generator $faker;
 
     public function __construct()
     {
@@ -50,7 +50,7 @@ final class LinkVisitsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         for ($i = 0; $i < self::limit(); ++$i) {
             $linkVisit = new LinkVisit();

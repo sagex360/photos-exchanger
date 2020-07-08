@@ -29,7 +29,7 @@ final class ApiTokenCast implements CastsAttributes
      * @param array  $attributes
      * @return ApiToken
      */
-    public function get($model, string $key, $value, $attributes)
+    public function get($model, string $key, $value, $attributes): ApiToken
     {
         return ApiToken::create(
             $attributes[$this->tokenKey]
@@ -46,7 +46,7 @@ final class ApiTokenCast implements CastsAttributes
      * @param array    $attributes
      * @return array
      */
-    public function set($model, string $key, $value, $attributes)
+    public function set($model, string $key, $value, $attributes): array
     {
         if (!$value instanceof ApiToken) {
             throw new InvalidArgumentException('Could not cast ' . get_class($value) . ' to ' . ApiToken::class);

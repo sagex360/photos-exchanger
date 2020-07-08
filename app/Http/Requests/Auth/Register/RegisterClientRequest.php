@@ -18,7 +18,7 @@ final class RegisterClientRequest extends AppFormRequest
      * @param PasswordRules $passwordRules
      * @return array
      */
-    public function rules(NameRules $nameRules, LoginRules $loginRules, PasswordRules $passwordRules)
+    public function rules(NameRules $nameRules, LoginRules $loginRules, PasswordRules $passwordRules): array
     {
         return [
             'name'  => $nameRules->get(),

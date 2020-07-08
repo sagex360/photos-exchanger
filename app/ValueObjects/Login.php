@@ -8,10 +8,7 @@ use InvalidArgumentException;
 
 final class Login
 {
-    /**
-     * @var string
-     */
-    protected $email;
+    protected string $email;
 
     private function __construct(string $login)
     {
@@ -22,7 +19,7 @@ final class Login
         $this->email = $login;
     }
 
-    public static function create(string $login)
+    public static function create(string $login): Login
     {
         return new static($login);
     }

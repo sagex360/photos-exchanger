@@ -12,18 +12,21 @@ use App\Providers\RouteServiceProvider;
 use App\Services\Auth\Login\LoginClientCommand;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 final class LoginController extends Controller
 {
-    /** @var LoginClientCommand */
-    protected $command;
+    protected LoginClientCommand $command;
 
     public function __construct(LoginClientCommand $command)
     {
         $this->command = $command;
     }
 
-    public function showLoginForm()
+    /**
+     * @return View
+     */
+    public function showLoginForm(): View
     {
         return view('pages.client.auth.login');
     }
@@ -32,7 +35,7 @@ final class LoginController extends Controller
      * @param LoginClientRequest $request
      * @return RedirectResponse
      */
-    public function login(LoginClientRequest $request)
+    public function login(LoginClientRequest $request): RedirectResponse
     {
         try {
             $this->command->login($request->createDto());
@@ -48,7 +51,10 @@ final class LoginController extends Controller
         );
     }
 
-    public function logout()
+    /**
+     * @return RedirectResponse
+     */
+    public function logout(): RedirectResponse
     {
         $this->command->logout(Auth::user());
 

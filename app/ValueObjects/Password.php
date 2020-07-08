@@ -11,10 +11,7 @@ final class Password
 {
     public const MIN_LENGTH = 8;
 
-    /**
-     * @var string
-     */
-    protected $hash;
+    protected string $hash;
 
     protected function __construct(string $string, bool $isHashed)
     {
@@ -39,7 +36,7 @@ final class Password
         return new static($hashedPassword, true);
     }
 
-    public function hash()
+    public function hash(): string
     {
         return $this->hash;
     }

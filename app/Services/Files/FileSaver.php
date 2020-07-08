@@ -20,7 +20,7 @@ final class FileSaver
         $this->filesystemManager = $filesystemManager;
     }
 
-    public function upload(UploadedFile $file)
+    public function upload(UploadedFile $file): FileLocation
     {
         return FileLocation::in($this->disk, $file->hashName())
             ->saveTo($this->filesystemManager->disk($this->disk), $file);

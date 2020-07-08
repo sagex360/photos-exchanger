@@ -17,19 +17,15 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 final class LoginClientCommand
 {
-    /** @var Dispatcher */
-    protected $dispatcher;
+    protected Dispatcher $dispatcher;
+    protected AuthManager $authManager;
+    protected GuardResolver $guardResolver;
 
-    /** @var AuthManager */
-    protected $authManager;
+    protected ?string $guard;
 
-    /** @var GuardResolver */
-    protected $guardResolver;
-
-    /** @var string */
-    protected $guard;
-
-    public function __construct(AuthManager $authManager, GuardResolver $guardResolver, Dispatcher $dispatcher)
+    public function __construct(AuthManager $authManager,
+                                GuardResolver $guardResolver,
+                                Dispatcher $dispatcher)
     {
         $this->authManager = $authManager;
         $this->guardResolver = $guardResolver;
@@ -47,13 +43,13 @@ final class LoginClientCommand
         $user = Client::whereEmail($dto->getLogin())->first();
 
         if ($user === null) {
-            throw new UserNotFoundException();
+            throw new UserNotFoundException("User with login {$dto->getLogin()} not found.");
         }
 
         if (!$this->authManager->guard($this->resolveGuard($user))
             ->attempt($dto->credentials(), $dto->remember())
         ) {
-            throw new UserAuthenticationFailed();
+            throw new UserAuthenticationFailed("Authentication Failed. Wrong login or password.");
         }
 
         $this->dispatcher->dispatch(new ClientLoggedIn($user->getAuthIdentifier()));
@@ -68,12 +64,12 @@ final class LoginClientCommand
         $this->dispatcher->dispatch(new ClientLoggedOut(optional($user)->getAuthIdentifier()));
     }
 
-    public function getGuard()
+    public function getGuard(): string
     {
         return $this->guard;
     }
 
-    protected function resolveGuard(?Authenticatable $user)
+    protected function resolveGuard(?Authenticatable $user): ?string
     {
         $this->guard = ($user === null) ? null : $this->guardResolver->resolveGuard($user);
 

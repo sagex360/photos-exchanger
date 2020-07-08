@@ -17,13 +17,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 
 final class FileLinkTokensController extends Controller
 {
-    /**
-     * @var FilesRepository
-     */
     protected FilesRepository $filesRepository;
-    /**
-     * @var FileTokensRepository
-     */
     protected FileTokensRepository $tokensRepository;
 
     /**
@@ -42,7 +36,7 @@ final class FileLinkTokensController extends Controller
      * @return FileLinkTokensRelatedResource
      * @throws AuthorizationException
      */
-    public function index(int $fileId)
+    public function index(int $fileId): FileLinkTokensRelatedResource
     {
         $file = $this->filesRepository->findById($fileId);
         $this->authorize('viewAnyOf', [FileLinkToken::class, $file]);
@@ -61,7 +55,7 @@ final class FileLinkTokensController extends Controller
      * @throws CouldNotSaveLinkTokenException
      * @throws AuthorizationException
      */
-    public function store(int $fileId, CreateLinkRequest $request, CreateLinkCommand $command)
+    public function store(int $fileId, CreateLinkRequest $request, CreateLinkCommand $command): LinkTokenResource
     {
         $file = $this->filesRepository->findById($fileId);
         $this->authorize('createOf', [FileLinkToken::class, $file]);

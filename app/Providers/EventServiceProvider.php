@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Events\Users\Auth\ClientLoggedOut;
+use App\Events\Users\Auth\LoggedOut\ClientLoggedOut;
 use App\Events\Users\Auth\Registered\ClientRegistered;
 use App\Listeners\LogUserIn;
 use App\Listeners\InvalidateSession;
@@ -32,7 +32,7 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         parent::boot();
 

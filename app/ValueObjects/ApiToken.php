@@ -9,8 +9,8 @@ use InvalidArgumentException;
 
 final class ApiToken
 {
-    const TOKEN_MAX_LENGTH = 80;
-    const TOKEN_MIN_LENGTH = 30;
+    public const TOKEN_MAX_LENGTH = 80;
+    public const TOKEN_MIN_LENGTH = 30;
 
     protected string $token;
 

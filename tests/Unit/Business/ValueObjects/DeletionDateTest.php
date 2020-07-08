@@ -11,61 +11,61 @@ use PHPUnit\Framework\TestCase;
 
 class DeletionDateTest extends TestCase
 {
-    public function testCreateExpiredDeletionDate()
+    public function testCreateExpiredDeletionDate(): void
     {
         $deletionDate = new NotNullDeletionDate(Carbon::yesterday());
-        $this->assertTrue($deletionDate->expired());
+        self::assertTrue($deletionDate->expired());
     }
 
-    public function testCreateDeletionDateNow()
+    public function testCreateDeletionDateNow(): void
     {
         $deletionDate = new NotNullDeletionDate(Carbon::now());
-        $this->assertTrue($deletionDate->expired());
+        self::assertTrue($deletionDate->expired());
     }
 
-    public function testSuccessfulDeletionDate()
+    public function testSuccessfulDeletionDate(): void
     {
         $deletionDate = new NotNullDeletionDate(Carbon::tomorrow());
-        $this->assertFalse($deletionDate->expired());
+        self::assertFalse($deletionDate->expired());
     }
 
-    public function testDateTimeFormatting()
+    public function testDateTimeFormatting(): void
     {
         $sourceDate = Carbon::tomorrow();
         $deletionDate = new NotNullDeletionDate($sourceDate);
 
-        $this->assertEquals(
+        self::assertEquals(
             $sourceDate->format('Y-m-d'),
             $deletionDate->format('Y-m-d')
         );
     }
 
-    public function testNullDeletionDateFromFormat()
+    public function testNullDeletionDateFromFormat(): void
     {
         $deletionDate = DeletionDateFactory::fromFormat('Y-m-d', null);
 
-        $this->assertInstanceOf(NullDeletionDate::class, $deletionDate);
+        self::assertInstanceOf(NullDeletionDate::class, $deletionDate);
     }
 
-    public function testCreateDeletionDateFromEmptyString()
+    public function testCreateDeletionDateFromEmptyString(): void
     {
         $deletionDate = DeletionDateFactory::fromFormat('Y-m-d', '');
 
-        $this->assertInstanceOf(NullDeletionDate::class, $deletionDate);
+        self::assertInstanceOf(NullDeletionDate::class, $deletionDate);
     }
 
-    public function testInvalidFormatOfDeletionDate()
+    public function testInvalidFormatOfDeletionDate(): void
     {
         $this->expectException(InvalidFormatException::class);
 
         DeletionDateFactory::fromFormat('Y-m-d', '2020/02/12');
     }
 
-    public function testNullDeletionDate()
+    public function testNullDeletionDate(): void
     {
         $nullDeletionDate = NullDeletionDate::instance();
 
-        $this->assertSame(null, $nullDeletionDate->format('...'));
-        $this->assertSame(false, $nullDeletionDate->expired());
+        self::assertNull($nullDeletionDate->format('...'));
+        self::assertFalse($nullDeletionDate->expired());
     }
 }

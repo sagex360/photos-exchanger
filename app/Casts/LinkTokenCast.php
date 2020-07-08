@@ -28,7 +28,7 @@ final class LinkTokenCast implements CastsAttributes
      * @param array         $attributes
      * @return LinkToken
      */
-    public function get($model, string $key, $value, $attributes)
+    public function get($model, string $key, $value, $attributes): LinkToken
     {
         return LinkTokensFactory::create(
             $attributes[$this->tokenTypeKey],
@@ -43,9 +43,9 @@ final class LinkTokenCast implements CastsAttributes
      * @param string    $key
      * @param LinkToken $value
      * @param array     $attributes
-     * @return string|array
+     * @return array
      */
-    public function set($model, string $key, $value, $attributes)
+    public function set($model, string $key, $value, $attributes): array
     {
         return [
             $this->tokenKey     => $value->token(),

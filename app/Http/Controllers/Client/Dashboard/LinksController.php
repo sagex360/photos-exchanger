@@ -12,21 +12,13 @@ use App\Services\LinkTokens\CreateLinkCommand;
 use App\Services\LinkTokens\DeleteLinkTokensCommand;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 final class LinksController extends Controller
 {
-    /**
-     * @var FilesRepository
-     */
     protected FilesRepository $filesRepository;
-    /**
-     * @var FileTokensRepository
-     */
     protected FileTokensRepository $tokensRepository;
 
     public function __construct(FilesRepository $filesRepository, FileTokensRepository $tokensRepository)
@@ -39,10 +31,10 @@ final class LinksController extends Controller
      * Display a listing of the resource.
      *
      * @param int $fileId
-     * @return Application|Factory|View
+     * @return View
      * @throws AuthorizationException
      */
-    public function index(int $fileId)
+    public function index(int $fileId): View
     {
         $file = $this->filesRepository->findWithTokensById($fileId);
         $this->authorize('viewAnyOf', [FileLinkToken::class, $file]);
@@ -57,10 +49,10 @@ final class LinksController extends Controller
      * Show the form for creating a new resource.
      *
      * @param int $fileId
-     * @return Application|Factory|View
+     * @return View
      * @throws AuthorizationException
      */
-    public function create(int $fileId)
+    public function create(int $fileId): View
     {
         $file = $this->filesRepository->findById($fileId);
         $this->authorize('createOf', [FileLinkToken::class, $file]);
@@ -82,7 +74,7 @@ final class LinksController extends Controller
      */
     public function store(int $fileId,
                           CreateLinkRequest $request,
-                          CreateLinkCommand $command)
+                          CreateLinkCommand $command): RedirectResponse
     {
         $file = $this->filesRepository->findById($fileId);
 
@@ -101,7 +93,9 @@ final class LinksController extends Controller
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy(int $fileId, int $linkId, DeleteLinkTokensCommand $command)
+    public function destroy(int $fileId,
+                            int $linkId,
+                            DeleteLinkTokensCommand $command): RedirectResponse
     {
         $token = $this->tokensRepository->findWithTrashedById($linkId);
         $file = $this->filesRepository->findById($fileId);

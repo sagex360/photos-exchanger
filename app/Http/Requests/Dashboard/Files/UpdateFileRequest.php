@@ -26,7 +26,7 @@ final class UpdateFileRequest extends AppFormRequest
      */
     public function rules(FilePublicNameRules $nameRules,
                           FileDescriptionRules $descriptionRules,
-                          FileDateRules $dateRules)
+                          FileDateRules $dateRules): array
     {
         return [
             'public_name'    => $nameRules->get(),
@@ -39,7 +39,7 @@ final class UpdateFileRequest extends AppFormRequest
      * @param File $file
      * @return UpdateFileDto
      */
-    public function createDto(File $file)
+    public function createDto(File $file): UpdateFileDto
     {
         return new UpdateFileDto(
             $file,

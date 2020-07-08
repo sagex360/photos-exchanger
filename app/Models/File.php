@@ -12,6 +12,9 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Carbon;
@@ -62,17 +65,17 @@ final class File extends Model
         'will_be_deleted_at' => DeletionDateCast::class,
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(Client::class);
     }
 
-    public function linkTokens()
+    public function linkTokens(): HasMany
     {
         return $this->hasMany(FileLinkToken::class);
     }
 
-    public function views()
+    public function views(): HasManyThrough
     {
         return $this->hasManyThrough(
             LinkVisit::class,
@@ -86,7 +89,7 @@ final class File extends Model
      * @param EloquentBuilder $query
      * @return EloquentBuilder
      */
-    public function scopeOverdue(EloquentBuilder $query)
+    public function scopeOverdue(EloquentBuilder $query): EloquentBuilder
     {
         return $query->where('will_be_deleted_at', '<=', Carbon::now());
     }

@@ -9,49 +9,49 @@ use PHPUnit\Framework\TestCase;
 
 final class ApiTokenTest extends TestCase
 {
-    public function testTooShortTokenLength()
+    public function testTooShortTokenLength(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         $token = ApiToken::create(Str::random(ApiToken::TOKEN_MIN_LENGTH - 1));
     }
 
-    public function testTokenWithMinLength()
+    public function testTokenWithMinLength(): void
     {
         $rawToken = Str::random(ApiToken::TOKEN_MIN_LENGTH);
         $token = ApiToken::create($rawToken);
 
-        $this->assertSame($rawToken, $token->token());
+        self::assertSame($rawToken, $token->token());
     }
 
-    public function testTooLongTokenLength()
+    public function testTooLongTokenLength(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         $token = ApiToken::create(Str::random(ApiToken::TOKEN_MAX_LENGTH + 1));
     }
 
-    public function testTokenWithMaxLength()
+    public function testTokenWithMaxLength(): void
     {
         $rawToken = Str::random(ApiToken::TOKEN_MAX_LENGTH);
         $token = ApiToken::create($rawToken);
 
-        $this->assertSame($rawToken, $token->token());
+        self::assertSame($rawToken, $token->token());
     }
 
-    public function testAverageTokenLength()
+    public function testAverageTokenLength(): void
     {
         $rawToken = 'oa34ADE99VmgwbiiBNx4L8JisLKvgTk8clstWtBQmLc6cVKNo2';
 
         $token = ApiToken::create($rawToken);
 
-        $this->assertSame($rawToken, $token->token());
+        self::assertSame($rawToken, $token->token());
     }
 
-    public function testAutomaticCreation()
+    public function testAutomaticCreation(): void
     {
         $apiToken = ApiToken::generate();
 
-        $this->assertIsString($apiToken->token());
+        self::assertIsString($apiToken->token());
     }
 }

@@ -11,9 +11,9 @@ final class CreateLinkVisitsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('link_visits', function (Blueprint $table) {
+        Schema::create('link_visits', static function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('link_token_id')
@@ -30,7 +30,7 @@ final class CreateLinkVisitsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('link_visits');
     }

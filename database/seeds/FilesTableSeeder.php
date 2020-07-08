@@ -19,7 +19,7 @@ final class FilesTableSeeder extends Seeder
         $this->folderLocator = $folderLocator;
     }
 
-    public static function limit()
+    public static function limit(): int
     {
         return 30;
     }
@@ -29,7 +29,7 @@ final class FilesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $faker = Faker\Factory::create();
         $faker->addProvider(new PicsumImage($faker));

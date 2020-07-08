@@ -19,7 +19,7 @@ final class PasswordCast implements CastsAttributes
      * @param array $attributes
      * @return Password
      */
-    public function get($model, string $key, $value, $attributes)
+    public function get($model, string $key, $value, $attributes): Password
     {
         return Password::fromHash($value);
     }
@@ -33,7 +33,7 @@ final class PasswordCast implements CastsAttributes
      * @param array $attributes
      * @return array
      */
-    public function set($model, string $key, $setPassword, $attributes)
+    public function set($model, string $key, $setPassword, $attributes): array
     {
         if (!$setPassword instanceof Password) {
             throw new InvalidArgumentException('Parameter $setPassword must be instance of ' . Pass::class);

@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Client\Dashboard;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 
 final class HomeController extends Controller
 {
-    public function index()
+    /**
+     * @return View
+     */
+    public function index(): View
     {
         return view('pages.client.dashboard.index');
     }
