@@ -24,7 +24,7 @@ final class DeleteOverdueFilesJob implements ShouldQueue
      * @param  DeleteFilesCompletelyCommand  $deleteFilesCommand
      * @return void
      */
-    public function handle(FilesRepository $filesRepository, DeleteFilesCompletelyCommand $deleteFilesCommand)
+    public function handle(FilesRepository $filesRepository, DeleteFilesCompletelyCommand $deleteFilesCommand): void
     {
         $deleteFilesCommand->execute($filesRepository->overdue());
     }

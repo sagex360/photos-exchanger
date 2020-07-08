@@ -7,10 +7,7 @@ use Illuminate\Session\Store as Session;
 
 class RegenerateCsrfToken
 {
-    /**
-     * @var Session
-     */
-    protected $session;
+    protected Session $session;
 
     /**
      * Create the event listener.
@@ -28,7 +25,7 @@ class RegenerateCsrfToken
      * @param  ClientLoggedOut  $event
      * @return void
      */
-    public function handle(ClientLoggedOut $event)
+    public function handle(ClientLoggedOut $event): void
     {
         $this->session->regenerateToken();
     }

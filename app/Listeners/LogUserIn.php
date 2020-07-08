@@ -8,15 +8,8 @@ use Illuminate\Auth\AuthManager;
 
 final class LogUserIn
 {
-    /**
-     * @var AuthManager
-     */
-    protected $authManager;
-
-    /**
-     * @var GuardResolver
-     */
-    protected $guardResolver;
+    protected AuthManager $authManager;
+    protected GuardResolver $guardResolver;
 
     /**
      * Create the event listener.
@@ -36,7 +29,7 @@ final class LogUserIn
      * @param  UsersRelatedEvent  $event
      * @return void
      */
-    public function handle(UsersRelatedEvent $event)
+    public function handle(UsersRelatedEvent $event): void
     {
         $user = $event->getUser();
 

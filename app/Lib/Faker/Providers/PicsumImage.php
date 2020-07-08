@@ -54,7 +54,7 @@ final class PicsumImage extends Base
         $randomize = true,
         $word = null,
         $gray = false
-    ) {
+    ): string {
         $baseUrl = 'https://picsum.photos/';
         $url = "{$width}/{$height}/";
         $queryParams = [];

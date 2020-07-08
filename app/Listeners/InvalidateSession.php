@@ -7,10 +7,7 @@ use Illuminate\Session\Store as Session;
 
 final class InvalidateSession
 {
-    /**
-     * @var Session
-     */
-    protected $session;
+    protected Session $session;
 
     /**
      * Create the event listener.
@@ -28,7 +25,7 @@ final class InvalidateSession
      * @param  ClientLoggedOut  $event
      * @return void
      */
-    public function handle(ClientLoggedOut $event)
+    public function handle(ClientLoggedOut $event): void
     {
         $this->session->invalidate();
     }
