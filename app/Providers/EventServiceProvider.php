@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\Files\FileDeleted;
 use App\Events\Users\Auth\LoggedOut\ClientLoggedOut;
 use App\Events\Users\Auth\Registered\ClientRegistered;
+use App\Listeners\DeleteFileSubordinateRelationships;
 use App\Listeners\InvalidateSession;
 use App\Listeners\LogUserIn;
 use App\Listeners\RegenerateCsrfToken;
@@ -24,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
             InvalidateSession::class,
             RegenerateCsrfToken::class,
         ],
+        FileDeleted::class      => [
+            DeleteFileSubordinateRelationships::class,
+        ]
     ];
 
     /**

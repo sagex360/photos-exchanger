@@ -12,6 +12,7 @@ use App\Http\Controllers\Client\Dashboard\LinksController;
 use App\Http\Controllers\Client\Dashboard\ReportsController;
 use App\Http\Controllers\Guest\ViewFilesController;
 use App\Jobs\DeleteOverdueFilesJob;
+use App\Listeners\DeleteFileSubordinateRelationships;
 use App\Repositories\Files\EloquentFilesRepository;
 use App\Repositories\Files\FilesRepository;
 use App\Repositories\FileTokens\EloquentFileTokensRepository;
@@ -91,6 +92,7 @@ final class AppServiceProvider extends ServiceProvider
                 FileRelationshipsController::class,
                 ApiLinkTokensController::class,
                 FileLinkTokensController::class,
+                DeleteFileSubordinateRelationships::class,
             ]
         )
             ->needs(FileTokensRepository::class)
