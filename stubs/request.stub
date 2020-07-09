@@ -11,7 +11,7 @@ final class {{ class }} extends AppFormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             //
