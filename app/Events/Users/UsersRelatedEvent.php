@@ -4,6 +4,8 @@
 namespace App\Events\Users;
 
 
+use Illuminate\Contracts\Auth\Authenticatable;
+
 abstract class UsersRelatedEvent
 {
     protected int $userId;
@@ -17,5 +19,5 @@ abstract class UsersRelatedEvent
         $this->userId = $userId;
     }
 
-    abstract public function getUser();
+    abstract public function getUser(): Authenticatable;
 }

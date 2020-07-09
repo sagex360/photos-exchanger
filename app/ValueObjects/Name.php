@@ -10,7 +10,7 @@ final class Name
 {
     public const MIN_LENGTH = 2;
 
-    protected string $name;
+    private string $name;
 
     private function __construct(string $name)
     {

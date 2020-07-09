@@ -6,7 +6,7 @@ namespace App\Events\Files;
 
 final class FileCreated
 {
-    protected int $fileId;
+    private int $fileId;
 
     public function __construct(int $fileId)
     {

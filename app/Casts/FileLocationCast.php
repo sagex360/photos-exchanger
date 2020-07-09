@@ -9,8 +9,8 @@ use InvalidArgumentException;
 
 final class FileLocationCast implements CastsAttributes
 {
-    protected string $storageKey;
-    protected string $fileNameKey;
+    private string $storageKey;
+    private string $fileNameKey;
 
     public function __construct(string $storageKey = 'storage', string $fileNameKey = 'file_name')
     {

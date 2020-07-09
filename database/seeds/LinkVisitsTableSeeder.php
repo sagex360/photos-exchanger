@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 
 final class LinkVisitsTableSeeder extends Seeder
 {
-    protected \Faker\Generator $faker;
+    private \Faker\Generator $faker;
 
     public function __construct()
     {
@@ -21,7 +21,7 @@ final class LinkVisitsTableSeeder extends Seeder
         return 150;
     }
 
-    protected function findLinkToken(bool $useRandomTypes = true): FileLinkToken
+    private function findLinkToken(bool $useRandomTypes = true): FileLinkToken
     {
         $type = (!$useRandomTypes) ?
             'unlimited'

@@ -10,7 +10,7 @@ use Illuminate\Filesystem\FilesystemManager;
 
 final class DeleteFilesFromStorageCommand
 {
-    protected FilesystemManager $filesystemManager;
+    private FilesystemManager $filesystemManager;
 
     public function __construct(FilesystemManager $filesystemManager)
     {

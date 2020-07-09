@@ -17,11 +17,11 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 final class LoginClientCommand
 {
-    protected Dispatcher $dispatcher;
-    protected AuthManager $authManager;
-    protected GuardResolver $guardResolver;
+    private Dispatcher $dispatcher;
+    private AuthManager $authManager;
+    private GuardResolver $guardResolver;
 
-    protected ?string $guard;
+    private ?string $guard;
 
     public function __construct(
         AuthManager $authManager,
@@ -70,7 +70,7 @@ final class LoginClientCommand
         return $this->guard;
     }
 
-    protected function resolveGuard(?Authenticatable $user): ?string
+    private function resolveGuard(?Authenticatable $user): ?string
     {
         $this->guard = ($user === null) ? null : $this->guardResolver->resolveGuard($user);
 

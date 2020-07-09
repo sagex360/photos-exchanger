@@ -14,7 +14,7 @@ final class LinkTokensFactory
         return ['disposable', 'unlimited'];
     }
 
-    protected static function generateToken(): string
+    private static function generateToken(): string
     {
         return Str::orderedUuid();
     }

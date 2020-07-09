@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 final class DeleteFilesCompletelyCommand
 {
-    protected DeleteFilesFromStorageCommand $deleteFromStorage;
-    protected DeleteFilesFromDatabaseCommand $deleteFromDatabase;
+    private DeleteFilesFromStorageCommand $deleteFromStorage;
+    private DeleteFilesFromDatabaseCommand $deleteFromDatabase;
 
     public function __construct(
         DeleteFilesFromStorageCommand $deleteFromStorage,

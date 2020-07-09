@@ -10,9 +10,9 @@ abstract class LinkToken
     public const STATUS_EXPIRED = 'expired';
     public const STATUS_USED_N_TIMES = 'used-n-times';
 
-    protected string $token;
+    private string $token;
 
-    protected function __construct(string $token)
+    private function __construct(string $token)
     {
         $this->token = $token;
     }

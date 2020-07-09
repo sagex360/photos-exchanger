@@ -9,7 +9,7 @@ use InvalidArgumentException;
 
 final class ApiTokenCast implements CastsAttributes
 {
-    protected string $tokenKey;
+    private string $tokenKey;
 
     /**
      * ApiTokenCast constructor.

@@ -12,7 +12,7 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 final class UpdateFileCommand
 {
-    protected Dispatcher $dispatcher;
+    private Dispatcher $dispatcher;
 
     /**
      * UpdateFileCommand constructor.

@@ -17,12 +17,12 @@ final class FileDescription
 
     public const SHORT_DESCRIPTION_LIMIT = 50;
 
-    protected string $publicName;
-    protected string $description;
+    private string $publicName;
+    private string $description;
 
     private function __construct(string $publicName, string $description)
     {
-        $nameLength = mb_strlen($publicName);
+        $nameLength = \mb_strlen($publicName);
 
         if ($nameLength < self::MIN_PUBLIC_NAME) {
             throw new InvalidArgumentException('Name must be at least '.self::MIN_PUBLIC_NAME.' characters');
@@ -32,7 +32,7 @@ final class FileDescription
             throw new InvalidArgumentException('Name could not be more than '.self::MAX_PUBLIC_NAME.' characters');
         }
 
-        $descriptionLength = mb_strlen($description);
+        $descriptionLength = \mb_strlen($description);
 
         if ($descriptionLength < self::MIN_DESCRIPTION) {
             throw new InvalidArgumentException('Description must be at least '.self::MIN_DESCRIPTION.' characters');

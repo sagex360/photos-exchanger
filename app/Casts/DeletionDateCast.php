@@ -10,7 +10,7 @@ use InvalidArgumentException;
 
 final class DeletionDateCast implements CastsAttributes
 {
-    protected string $dateFormat;
+    private string $dateFormat;
 
     public function __construct(string $dateFormat = 'Y-m-d H:i:s')
     {

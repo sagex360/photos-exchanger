@@ -41,7 +41,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->registerBindings();
     }
 
-    protected function registerBindings(): void
+    private function registerBindings(): void
     {
         /**
          * @var Container $app
@@ -63,7 +63,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->registerUsersRepositoryBindings();
     }
 
-    protected function registerFileRepositoryBindings(): void
+    private function registerFileRepositoryBindings(): void
     {
         $this->app->when(
             [
@@ -81,7 +81,7 @@ final class AppServiceProvider extends ServiceProvider
             ->give(EloquentFilesRepository::class);
     }
 
-    protected function registerFileTokensRepositoryBindings(): void
+    private function registerFileTokensRepositoryBindings(): void
     {
         $this->app->when(
             [
@@ -97,7 +97,7 @@ final class AppServiceProvider extends ServiceProvider
             ->give(EloquentFileTokensRepository::class);
     }
 
-    protected function registerUsersRepositoryBindings(): void
+    private function registerUsersRepositoryBindings(): void
     {
         $this->app->when(
             [

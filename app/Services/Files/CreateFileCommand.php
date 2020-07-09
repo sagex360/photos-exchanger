@@ -12,8 +12,8 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 final class CreateFileCommand
 {
-    protected Dispatcher $dispatcher;
-    protected FileSaver $filesUploader;
+    private Dispatcher $dispatcher;
+    private FileSaver $filesUploader;
 
     public function __construct(Dispatcher $dispatcher, FileSaver $imageUploader)
     {

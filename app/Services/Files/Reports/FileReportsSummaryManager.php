@@ -12,7 +12,7 @@ final class FileReportsSummaryManager
     /**
      * @var Collection|File[]
      */
-    protected Collection $files;
+    private Collection $files;
 
     /**
      * FileReportsSummaryManager constructor.

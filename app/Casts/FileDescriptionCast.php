@@ -9,8 +9,8 @@ use InvalidArgumentException;
 
 final class FileDescriptionCast implements CastsAttributes
 {
-    protected string $descriptionKey;
-    protected string $publicNameKey;
+    private string $descriptionKey;
+    private string $publicNameKey;
 
     public function __construct(
         string $descriptionKey = 'description',

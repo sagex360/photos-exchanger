@@ -12,18 +12,17 @@ final class ApiToken
     public const TOKEN_MAX_LENGTH = 80;
     public const TOKEN_MIN_LENGTH = 30;
 
-    protected string $token;
+    private string $token;
 
     /**
      * ApiToken constructor.
      * @param  string  $token
      */
-    protected function __construct(string $token)
+    private function __construct(string $token)
     {
         $this->token = $token;
 
-
-        $len = strlen($token);
+        $len = \strlen($token);
 
         if ($len < self::TOKEN_MIN_LENGTH) {
             throw new InvalidArgumentException('Token must be at least '.self::TOKEN_MIN_LENGTH);

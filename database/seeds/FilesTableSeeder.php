@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 
 final class FilesTableSeeder extends Seeder
 {
-    protected FilesFolderLocator $folderLocator;
+    private FilesFolderLocator $folderLocator;
 
     public function __construct(FilesFolderLocator $folderLocator)
     {

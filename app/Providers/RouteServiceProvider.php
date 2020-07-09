@@ -50,7 +50,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function map()
+    public function map(): void
     {
         $this->mapApiRoutes();
 
@@ -67,16 +67,16 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapWebRoutes(): void
+    private function mapWebRoutes(): void
     {
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
     }
 
-    protected string $apiNamespace = 'App\Http\Controllers\API';
+    private string $apiNamespace = 'App\Http\Controllers\API';
 
-    protected string $guestNamespace = 'App\Http\Controllers\Guest';
+    private string $guestNamespace = 'App\Http\Controllers\Guest';
 
     /**
      * Define the "api" routes for the application.
@@ -85,7 +85,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapApiRoutes(): void
+    private function mapApiRoutes(): void
     {
         Route::prefix('api')
             ->middleware('api')
@@ -94,7 +94,7 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/api.php'));
     }
 
-    protected function mapGuestRoutes(): void
+    private function mapGuestRoutes(): void
     {
         Route::prefix('guest')
             ->namespace($this->guestNamespace)

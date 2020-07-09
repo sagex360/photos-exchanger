@@ -27,7 +27,7 @@ class BladeDirectivesServiceProvider extends ServiceProvider
         $this->registerSectionOnce();
     }
 
-    protected function registerSectionOnce(): void
+    private function registerSectionOnce(): void
     {
         Blade::directive(
             'sectionOnce',

@@ -13,7 +13,7 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 final class RegisterClientCommand
 {
-    protected Dispatcher $dispatcher;
+    private Dispatcher $dispatcher;
 
     /**
      * RegisterClientCommand constructor.

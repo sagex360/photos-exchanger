@@ -8,9 +8,9 @@ use App\Models\FileLinkToken;
 use App\Repositories\FileTokens\Queries\FileLinkTokenQueries;
 use Illuminate\Database\Eloquent\Collection;
 
-final class EloquentFileTokensRepository extends FileTokensRepository
+final class EloquentFileTokensRepository implements FileTokensRepository
 {
-    protected FileLinkTokenQueries $fileLinkTokenQueries;
+    private FileLinkTokenQueries $fileLinkTokenQueries;
 
     public function __construct(FileLinkTokenQueries $fileLinkTokenQueries)
     {

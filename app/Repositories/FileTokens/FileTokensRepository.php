@@ -7,34 +7,34 @@ namespace App\Repositories\FileTokens;
 use App\Models\FileLinkToken;
 use Illuminate\Database\Eloquent\Collection;
 
-abstract class FileTokensRepository
+interface FileTokensRepository
 {
     /**
      * @param  string  $token
      * @return FileLinkToken
      */
-    abstract public function findByToken(string $token): FileLinkToken;
+    public function findByToken(string $token): FileLinkToken;
 
     /**
      * @param  int  $id
      * @return FileLinkToken
      */
-    abstract public function findWithTrashedById(int $id): FileLinkToken;
+    public function findWithTrashedById(int $id): FileLinkToken;
 
     /**
      * @param  int  $fileId
      * @return Collection|FileLinkToken[]
      */
-    abstract public function findByFileId(int $fileId): Collection;
+    public function findByFileId(int $fileId): Collection;
 
     /**
      * @return Collection|FileLinkToken[]
      */
-    abstract public function all(): Collection;
+    public function all(): Collection;
 
     /**
      * @param  int  $id
      * @return FileLinkToken
      */
-    abstract public function findById(int $id): FileLinkToken;
+    public function findById(int $id): FileLinkToken;
 }

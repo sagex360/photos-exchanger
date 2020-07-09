@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 
 final class LinkTokenCast implements CastsAttributes
 {
-    protected string $tokenKey;
-    protected string $tokenTypeKey;
+    private string $tokenKey;
+    private string $tokenTypeKey;
 
     public function __construct(string $tokenKey = 'token', string $tokenTypeKey = 'type')
     {

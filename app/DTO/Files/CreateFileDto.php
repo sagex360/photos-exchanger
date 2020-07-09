@@ -10,10 +10,10 @@ use Illuminate\Http\UploadedFile;
 
 final class CreateFileDto
 {
-    protected int $userId;
-    protected UploadedFile $image;
-    protected DeletionDate $dateToDelete;
-    protected FileDescription $description;
+    private int $userId;
+    private UploadedFile $image;
+    private DeletionDate $dateToDelete;
+    private FileDescription $description;
 
     /**
      * CreateFileDto constructor.

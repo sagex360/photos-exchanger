@@ -8,7 +8,7 @@ use Carbon\CarbonInterface as Carbon;
 
 final class NotNullDeletionDate implements DeletionDate
 {
-    protected Carbon $date;
+    private Carbon $date;
 
     /**
      * NotNullDeletionDate constructor.

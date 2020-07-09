@@ -6,7 +6,7 @@ namespace App\Events\Files;
 
 final class FileUpdated
 {
-    protected int $fileId;
+    private int $fileId;
 
     /**
      * FileUpdated constructor.

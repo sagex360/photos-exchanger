@@ -11,9 +11,9 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 final class ReceiveFileFromStorageCommand
 {
-    protected FilesystemManager $filesystemManager;
-    protected VerifyFileLinkCommand $verifyLink;
-    protected RecordLinkVisitCommand $recordLinkVisit;
+    private FilesystemManager $filesystemManager;
+    private VerifyFileLinkCommand $verifyLink;
+    private RecordLinkVisitCommand $recordLinkVisit;
 
     public function __construct(
         VerifyFileLinkCommand $verifyLink,

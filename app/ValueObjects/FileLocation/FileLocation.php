@@ -12,12 +12,12 @@ use Illuminate\Support\Str;
 
 final class FileLocation
 {
-    protected string $storage;
-    protected string $fileName;
+    private string $storage;
+    private string $fileName;
 
-    protected FilesFolderLocator $folderLocator;
+    private FilesFolderLocator $folderLocator;
 
-    protected function __construct(string $storage, string $fileName)
+    private function __construct(string $storage, string $fileName)
     {
         $this->storage = $storage;
         $this->fileName = $fileName;

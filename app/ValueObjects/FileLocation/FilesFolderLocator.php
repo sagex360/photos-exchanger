@@ -17,7 +17,7 @@ final class FilesFolderLocator
      * @param  string  $disk
      * @return InvalidArgumentException
      */
-    protected function invalidDiskType(string $disk): InvalidArgumentException
+    private function invalidDiskType(string $disk): InvalidArgumentException
     {
         return new InvalidArgumentException("Unknown disk type: '$disk'");
     }

@@ -8,9 +8,9 @@ use App\ValueObjects\Login;
 
 final class LoginClientDto
 {
-    protected Login $login;
-    protected string $password;
-    protected bool $remember;
+    private Login $login;
+    private string $password;
+    private bool $remember;
 
     /**
      * LoginClientDto constructor.

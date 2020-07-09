@@ -9,8 +9,8 @@ use App\ValueObjects\LinkToken\LinkToken;
 
 final class CreateFileLinkDto
 {
-    protected File $file;
-    protected LinkToken $token;
+    private File $file;
+    private LinkToken $token;
 
     /**
      * CreateFileLinkTokenDto constructor.

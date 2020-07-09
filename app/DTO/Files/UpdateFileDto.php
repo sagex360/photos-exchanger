@@ -10,9 +10,9 @@ use App\ValueObjects\FileDescription;
 
 final class UpdateFileDto
 {
-    protected File $file;
-    protected FileDescription $description;
-    protected DeletionDate $dateToDelete;
+    private File $file;
+    private FileDescription $description;
+    private DeletionDate $dateToDelete;
 
     /**
      * UpdateFileDto constructor.

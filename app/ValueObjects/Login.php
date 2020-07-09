@@ -8,7 +8,7 @@ use InvalidArgumentException;
 
 final class Login
 {
-    protected string $email;
+    private string $email;
 
     private function __construct(string $login)
     {

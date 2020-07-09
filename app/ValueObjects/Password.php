@@ -11,9 +11,9 @@ final class Password
 {
     public const MIN_LENGTH = 8;
 
-    protected string $hash;
+    private string $hash;
 
-    protected function __construct(string $string, bool $isHashed)
+    private function __construct(string $string, bool $isHashed)
     {
         if (!$isHashed) {
             if (mb_strlen($string) < self::MIN_LENGTH) {

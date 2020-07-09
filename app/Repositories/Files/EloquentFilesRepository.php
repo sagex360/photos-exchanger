@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 final class EloquentFilesRepository implements FilesRepository
 {
-    protected FileLinkTokenQueries $linkTokenQueries;
+    private FileLinkTokenQueries $linkTokenQueries;
 
     public function __construct(FileLinkTokenQueries $fileLinkTokenQueries)
     {
