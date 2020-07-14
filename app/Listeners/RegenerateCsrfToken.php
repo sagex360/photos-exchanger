@@ -7,7 +7,7 @@ use Illuminate\Session\Store as Session;
 
 class RegenerateCsrfToken
 {
-    protected Session $session;
+    private Session $session;
 
     /**
      * Create the event listener.

@@ -10,13 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class DeleteFileSubordinateRelationships implements ShouldQueue
 {
-    /**
-     * @var FileTokensRepository
-     */
     private FileTokensRepository $tokensRepository;
-    /**
-     * @var DeleteLinkTokensCommand
-     */
     private DeleteLinkTokensCommand $deleteLinkTokens;
 
     /**

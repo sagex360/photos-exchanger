@@ -8,8 +8,8 @@ use Illuminate\Auth\AuthManager;
 
 final class LogUserIn
 {
-    protected AuthManager $authManager;
-    protected GuardResolver $guardResolver;
+    private AuthManager $authManager;
+    private GuardResolver $guardResolver;
 
     /**
      * Create the event listener.
