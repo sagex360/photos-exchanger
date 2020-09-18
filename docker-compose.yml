@@ -1,0 +1,51 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: exchanger
+        uid: 1000
+      context: ./
+    image: photos_exchanger
+    container_name: photos_exchanger_app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - photos_exchanger_network
+    depends_on:
+      - db
+    #command:
+    #  - "bash /var/www/docker/compose/app/setup.sh"
+  db:
+    image: mysql:5.7
+    container_name: photos_exchanger_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker/compose/database:/docker-entrypoint-initdb.d
+    networks:
+      - photos_exchanger_network
+  nginx:
+    image: nginx:1.17-alpine
+    container_name: photos_exchanger_nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker/compose/nginx:/etc/nginx/conf.d
+    networks:
+      - photos_exchanger_network
+    depends_on:
+      - app
+networks:
+  photos_exchanger_network:
+    driver: bridge
