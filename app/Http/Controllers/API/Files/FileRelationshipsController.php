@@ -11,6 +11,12 @@ use App\Repositories\FileTokens\FileTokensRepository;
 use App\Repositories\Users\UsersRepository;
 use Illuminate\Auth\Access\AuthorizationException;
 
+/**
+ * @OA\Tag(
+ *     name="FileRelationships",
+ *     description="This api provides access to relationships of files in the system."
+ * )
+ */
 final class FileRelationshipsController extends ApiController
 {
     protected UsersRepository $usersRepository;

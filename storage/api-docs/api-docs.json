@@ -987,6 +987,10 @@
     },
     "tags": [
         {
+            "name": "FileRelationships",
+            "description": "This api provides access to relationships of files in the system."
+        },
+        {
             "name": "Files",
             "description": "This api provides access to files (photos) in system."
         },
