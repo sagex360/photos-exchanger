@@ -34,6 +34,36 @@ return [
 
             ],
         ],
+        'users' => [
+            'api' => [
+                'title' => 'L5 Swagger UI',
+            ],
+            'routes' => [
+                /*
+                 * Route for accessing api documentation interface
+                */
+                'api' => 'api/documentation/users',
+            ],
+            'paths' => [
+                /*
+                 * File name of the generated json documentation file
+                */
+                'docs_json' => 'users-api-docs.json',
+
+                /*
+                 * File name of the generated YAML documentation file
+                */
+                'docs_yaml' => 'users-api-docs.yaml',
+
+                /*
+                 * Absolute paths to directory containing the swagger annotations are stored.
+                */
+                'annotations' => [
+                    base_path('app/Http/Controllers/API/UsersController.php'),
+                    base_path('app/Http/Resources/User/'),
+                ],
+            ],
+        ],
     ],
     'defaults' => [
         'routes' => [
