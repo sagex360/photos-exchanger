@@ -62,7 +62,7 @@ final class LinkTokensController extends ApiController
      *      ),
      *      @OA\Response(
      *          response=401,
-     *          description="Authorization failed. Bearer token mismatch.",
+     *          description="Authentication failed. Bearer token mismatch.",
      *      ),
      * )
      * @return array
@@ -111,7 +111,7 @@ final class LinkTokensController extends ApiController
      *      ),
      *      @OA\Response(
      *          response=401,
-     *          description="Authorization failed. Bearer token mismatch.",
+     *          description="Authentication failed. Bearer token mismatch.",
      *      ),
      *      @OA\Response(
      *          response=403,

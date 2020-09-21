@@ -76,7 +76,7 @@ final class FileLinkTokensController extends ApiController
      *      ),
      *      @OA\Response(
      *          response=401,
-     *          description="Authorization failed. Bearer token mismatch.",
+     *          description="Authentication failed. Bearer token mismatch.",
      *      ),
      *      @OA\Response(
      *          response=403,
@@ -104,7 +104,7 @@ final class FileLinkTokensController extends ApiController
 
     /**
      * @OA\Post(
-     *      path=" api/files/{fileId}/link_tokens ",
+     *      path="/api/files/{fileId}/link_tokens",
      *      operationId="storeNewFile",
      *      tags={"FileRelationships", "LinkTokens"},
      *      summary="Store new file.",
@@ -142,7 +142,7 @@ final class FileLinkTokensController extends ApiController
      *      ),
      *      @OA\RequestBody(
      *          required=true,
-     *          description="File and it's information.",
+     *          description="Link token information.",
      *          @OA\JsonContent(
      *              required={"link_type"},
      *              @OA\Property(property="link_type", type="string", enum={"disposable", "unlimited"}),
@@ -150,7 +150,7 @@ final class FileLinkTokensController extends ApiController
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Link token was successfully inserted.",
+     *          description="Link token was successfully created.",
      *          @OA\JsonContent(
      *              @OA\Property (
      *                  property="data",
@@ -160,7 +160,7 @@ final class FileLinkTokensController extends ApiController
      *      ),
      *      @OA\Response(
      *          response=401,
-     *          description="Authorization failed. Bearer token mismatch.",
+     *          description="Authentication failed. Bearer token mismatch.",
      *      ),
      *      @OA\Response(
      *          response=403,

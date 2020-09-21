@@ -58,7 +58,7 @@
                         }
                     },
                     "401": {
-                        "description": "Authorization failed. Bearer token mismatch."
+                        "description": "Authentication failed. Bearer token mismatch."
                     },
                     "403": {
                         "description": "Forbidden. Probably you are trying to access link tokens of not your file."
@@ -67,9 +67,7 @@
                         "description": "File with specified id not found."
                     }
                 }
-            }
-        },
-        " api/files/{fileId}/link_tokens ": {
+            },
             "post": {
                 "tags": [
                     "FileRelationships",
@@ -111,7 +109,7 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "File and it's information.",
+                    "description": "Link token information.",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -135,7 +133,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Link token was successfully inserted.",
+                        "description": "Link token was successfully created.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -150,7 +148,7 @@
                         }
                     },
                     "401": {
-                        "description": "Authorization failed. Bearer token mismatch."
+                        "description": "Authentication failed. Bearer token mismatch."
                     },
                     "403": {
                         "description": "Forbidden. You are not allowed to create link tokens for this file."
@@ -184,7 +182,7 @@
                     "FileRelationships",
                     "Users"
                 ],
-                "summary": "Get user id, which file belongs to.",
+                "summary": "Retreive link and user id, which file belongs to.",
                 "operationId": "getFileUserRelationship",
                 "parameters": [
                     {
@@ -230,7 +228,7 @@
                         }
                     },
                     "401": {
-                        "description": "Authorization failed. Bearer token mismatch."
+                        "description": "Authentication failed. Bearer token mismatch."
                     },
                     "404": {
                         "description": "File with specified id not found."
@@ -244,7 +242,7 @@
                     "FileRelationships",
                     "LinkTokens"
                 ],
-                "summary": "Get all link token ids of file.",
+                "summary": "Get all link token ids related to provided file.",
                 "description": "Retreive all link token ids by file id.",
                 "operationId": "getFileLinkTokensRelationship",
                 "parameters": [
@@ -291,7 +289,7 @@
                         }
                     },
                     "401": {
-                        "description": "Authorization failed. Bearer token mismatch."
+                        "description": "Authentication failed. Bearer token mismatch."
                     },
                     "403": {
                         "description": "Forbidden. Probably you are trying to access link tokens of not your file."
@@ -383,7 +381,7 @@
                         }
                     },
                     "401": {
-                        "description": "Authorization failed. Bearer token mismatch."
+                        "description": "Authentication failed. Bearer token mismatch."
                     },
                     "403": {
                         "description": "Forbidden. You are not allowed to create files."
@@ -417,7 +415,7 @@
                     "Files"
                 ],
                 "summary": "Get file by id",
-                "description": "Access file information by it's id",
+                "description": "Access file database information by it's id",
                 "operationId": "getFileById",
                 "parameters": [
                     {
@@ -463,10 +461,10 @@
                         }
                     },
                     "401": {
-                        "description": "Authorization failed. Bearer token mismatch."
+                        "description": "Authentication failed. Bearer token mismatch."
                     },
                     "403": {
-                        "description": "Forbidden. Probably you are trying to access not your file."
+                        "description": "Forbidden. You are not allowed to access this file."
                     },
                     "404": {
                         "description": "File with specified id not found."
@@ -524,7 +522,7 @@
                         }
                     },
                     "401": {
-                        "description": "Authorization failed. Bearer token mismatch."
+                        "description": "Authentication failed. Bearer token mismatch."
                     },
                     "403": {
                         "description": "Forbidden. Probably you are trying to delete not your file."
@@ -541,7 +539,7 @@
                     "Files"
                 ],
                 "summary": "Get file resource by it's link token.",
-                "description": "Retreive file from storage, record visit, return file binary resource.",
+                "description": "Retreive file from storage, record it's visit, return file binary resource.",
                 "operationId": "getFileResourceByLinkToken",
                 "parameters": [
                     {
@@ -612,7 +610,7 @@
                         }
                     },
                     "401": {
-                        "description": "Authorization failed. Bearer token mismatch."
+                        "description": "Authentication failed. Bearer token mismatch."
                     }
                 }
             }
@@ -663,7 +661,7 @@
                         }
                     },
                     "401": {
-                        "description": "Authorization failed. Bearer token mismatch."
+                        "description": "Authentication failed. Bearer token mismatch."
                     },
                     "403": {
                         "description": "Forbidden. You are not allowed to view this token."
@@ -726,7 +724,7 @@
                         "description": "User with specified id not found."
                     },
                     "401": {
-                        "description": "Authorization failed. Bearer token mismatch."
+                        "description": "Authentication failed. Bearer token mismatch."
                     }
                 }
             }
@@ -988,7 +986,7 @@
     "tags": [
         {
             "name": "FileRelationships",
-            "description": "This api provides access to relationships of files in the system."
+            "description": "This api provides access to file relationships in the system."
         },
         {
             "name": "Files",

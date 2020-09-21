@@ -14,7 +14,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 /**
  * @OA\Tag(
  *     name="FileRelationships",
- *     description="This api provides access to relationships of files in the system."
+ *     description="This api provides access to file relationships in the system."
  * )
  */
 final class FileRelationshipsController extends ApiController
@@ -38,7 +38,7 @@ final class FileRelationshipsController extends ApiController
      *      path="/api/files/{fileId}/relationships/user",
      *      operationId="getFileUserRelationship",
      *      tags={"FileRelationships","Users"},
-     *      summary="Get user id, which file belongs to.",
+     *      summary="Retreive link and user id, which file belongs to.",
      *
      *      @OA\Parameter(
      *          name="Accept",
@@ -77,7 +77,7 @@ final class FileRelationshipsController extends ApiController
      *      ),
      *      @OA\Response(
      *          response=401,
-     *          description="Authorization failed. Bearer token mismatch.",
+     *          description="Authentication failed. Bearer token mismatch.",
      *      ),
      *      @OA\Response(
      *          response=404,
@@ -101,7 +101,7 @@ final class FileRelationshipsController extends ApiController
      *      path="/api/files/{fileId}/relationships/link_tokens",
      *      operationId="getFileLinkTokensRelationship",
      *      tags={"FileRelationships", "LinkTokens"},
-     *      summary="Get all link token ids of file.",
+     *      summary="Get all link token ids related to provided file.",
      *      description="Retreive all link token ids by file id.",
      *
      *      @OA\Parameter(
@@ -141,7 +141,7 @@ final class FileRelationshipsController extends ApiController
      *      ),
      *      @OA\Response(
      *          response=401,
-     *          description="Authorization failed. Bearer token mismatch.",
+     *          description="Authentication failed. Bearer token mismatch.",
      *      ),
      *      @OA\Response(
      *          response=403,

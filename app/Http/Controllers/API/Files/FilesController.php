@@ -86,7 +86,7 @@ final class FilesController extends ApiController
      *      ),
      *      @OA\Response(
      *          response=401,
-     *          description="Authorization failed. Bearer token mismatch.",
+     *          description="Authentication failed. Bearer token mismatch.",
      *      ),
      *      @OA\Response(
      *          response=403,
@@ -123,7 +123,7 @@ final class FilesController extends ApiController
      *      operationId="getFileById",
      *      tags={"Files"},
      *      summary="Get file by id",
-     *      description="Access file information by it's id",
+     *      description="Access file database information by it's id",
      *      @OA\Parameter(
      *          name="Accept",
      *          description="Accept type",
@@ -161,11 +161,11 @@ final class FilesController extends ApiController
      *      ),
      *      @OA\Response(
      *          response=401,
-     *          description="Authorization failed. Bearer token mismatch.",
+     *          description="Authentication failed. Bearer token mismatch.",
      *      ),
      *      @OA\Response(
      *          response=403,
-     *          description="Forbidden. Probably you are trying to access not your file.",
+     *          description="Forbidden. You are not allowed to access this file.",
      *      ),
      *      @OA\Response(
      *          response=404,
@@ -229,7 +229,7 @@ final class FilesController extends ApiController
      *      ),
      *      @OA\Response(
      *          response=401,
-     *          description="Authorization failed. Bearer token mismatch.",
+     *          description="Authentication failed. Bearer token mismatch.",
      *      ),
      *      @OA\Response(
      *          response=403,
@@ -262,7 +262,7 @@ final class FilesController extends ApiController
      *      operationId="getFileResourceByLinkToken",
      *      tags={"Files"},
      *      summary="Get file resource by it's link token.",
-     *      description="Retreive file from storage, record visit, return file binary resource.",
+     *      description="Retreive file from storage, record it's visit, return file binary resource.",
      *
      *      @OA\Parameter(
      *          name="linkToken",
