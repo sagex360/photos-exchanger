@@ -2,24 +2,17 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use App\Http\Resources\User\UserResource;
 use App\Repositories\Users\UsersRepository;
 
 
 /**
- * @OA\Info(
- *      version="1.0.0",
- *      title="Users API",
- *      description="This api provides access to users in system.",
- * )
- *
  * @OA\Tag(
  *     name="Users",
  *     description="API Endpoints of Users"
  * )
  */
-final class UsersController extends Controller
+final class UsersController extends ApiController
 {
     protected UsersRepository $usersRepository;
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\Files;
 
 use App\Exceptions\CouldNotSaveFileException;
 use App\Exceptions\FileTokenExpiredException;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\API\ApiController;
 use App\Http\Requests\Dashboard\Files\StoreFileRequest;
 use App\Http\Resources\File\FileIdentifierResource;
 use App\Http\Resources\File\FileResource;
@@ -18,7 +18,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-final class FilesController extends Controller
+final class FilesController extends ApiController
 {
     protected FilesRepository $filesRepository;
     protected FileTokensRepository $fileTokensRepository;

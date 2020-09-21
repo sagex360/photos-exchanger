@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\API\LinkTokens;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\API\ApiController;
 use App\Http\Resources\LinkToken\LinkTokenResource;
 use App\Repositories\FileTokens\FileTokensRepository;
 use App\ValueObjects\LinkToken\LinkTokensFactory;
 use Illuminate\Auth\Access\AuthorizationException;
 
-final class LinkTokensController extends Controller
+final class LinkTokensController extends ApiController
 {
     protected FileTokensRepository $tokensRepository;
 

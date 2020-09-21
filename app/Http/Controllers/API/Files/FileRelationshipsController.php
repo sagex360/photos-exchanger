@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API\Files;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\API\ApiController;
 use App\Http\Resources\File\FileLinkTokensRelationshipResource;
 use App\Http\Resources\File\FileUserRelationshipResource;
 use App\Models\FileLinkToken;
@@ -10,7 +10,7 @@ use App\Repositories\Files\FilesRepository;
 use App\Repositories\FileTokens\FileTokensRepository;
 use App\Repositories\Users\UsersRepository;
 
-final class FileRelationshipsController extends Controller
+final class FileRelationshipsController extends ApiController
 {
     protected UsersRepository $usersRepository;
     protected FilesRepository $filesRepository;

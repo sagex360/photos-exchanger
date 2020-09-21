@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\Files;
 
 
 use App\Exceptions\CouldNotSaveLinkTokenException;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\API\ApiController;
 use App\Http\Requests\Dashboard\Links\CreateLinkRequest;
 use App\Http\Resources\File\FileLinkTokensRelatedResource;
 use App\Http\Resources\LinkToken\LinkTokenResource;
@@ -15,7 +15,7 @@ use App\Repositories\FileTokens\FileTokensRepository;
 use App\Services\LinkTokens\CreateLinkCommand;
 use Illuminate\Auth\Access\AuthorizationException;
 
-final class FileLinkTokensController extends Controller
+final class FileLinkTokensController extends ApiController
 {
     protected FilesRepository $filesRepository;
     protected FileTokensRepository $tokensRepository;
