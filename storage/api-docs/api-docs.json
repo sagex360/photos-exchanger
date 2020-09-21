@@ -1,11 +1,676 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Users API",
-        "description": "This api provides access to users in system.",
+        "title": "Files Exchanger API",
         "version": "1.0.0"
     },
     "paths": {
+        "/api/files/{fileId}/link_tokens": {
+            "get": {
+                "tags": [
+                    "FileRelationships",
+                    "LinkTokens"
+                ],
+                "summary": "Get all link tokens of file.",
+                "description": "Retreive all link tokens by file id.",
+                "operationId": "getFileLinkTokens",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Accept type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "application/json"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Api authorization user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                        }
+                    },
+                    {
+                        "name": "fileId",
+                        "in": "path",
+                        "description": "File id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful get operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FileLinkTokensRelatedResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authorization failed. Bearer token mismatch."
+                    },
+                    "403": {
+                        "description": "Forbidden. Probably you are trying to access link tokens of not your file."
+                    },
+                    "404": {
+                        "description": "File with specified id not found."
+                    }
+                }
+            }
+        },
+        " api/files/{fileId}/link_tokens ": {
+            "post": {
+                "tags": [
+                    "FileRelationships",
+                    "LinkTokens"
+                ],
+                "summary": "Store new file.",
+                "description": "Put file to storage and save it's information to database.",
+                "operationId": "storeNewFile",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Accept type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "application/json"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Api authorization user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                        }
+                    },
+                    {
+                        "name": "fileId",
+                        "in": "path",
+                        "description": "File id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "File and it's information.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "link_type"
+                                ],
+                                "properties": {
+                                    "link_type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "disposable",
+                                            "unlimited"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Link token was successfully inserted.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/LinkTokenResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authorization failed. Bearer token mismatch."
+                    },
+                    "403": {
+                        "description": "Forbidden. You are not allowed to create link tokens for this file."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity. Given data is invalid.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": "{\"link_type\": [ \"The selected link type is invalid.\" ]}"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/files/{fileId}/relationships/user": {
+            "get": {
+                "tags": [
+                    "FileRelationships",
+                    "Users"
+                ],
+                "summary": "Get user id, which file belongs to.",
+                "operationId": "getFileUserRelationship",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Accept type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "application/json"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Api authorization user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                        }
+                    },
+                    {
+                        "name": "fileId",
+                        "in": "path",
+                        "description": "File id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful get operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FileUserRelationshipResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authorization failed. Bearer token mismatch."
+                    },
+                    "404": {
+                        "description": "File with specified id not found."
+                    }
+                }
+            }
+        },
+        "/api/files/{fileId}/relationships/link_tokens": {
+            "get": {
+                "tags": [
+                    "FileRelationships",
+                    "LinkTokens"
+                ],
+                "summary": "Get all link token ids of file.",
+                "description": "Retreive all link token ids by file id.",
+                "operationId": "getFileLinkTokensRelationship",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Accept type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "application/json"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Api authorization user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                        }
+                    },
+                    {
+                        "name": "fileId",
+                        "in": "path",
+                        "description": "File id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful get operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FileLinkTokensRelationshipResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authorization failed. Bearer token mismatch."
+                    },
+                    "403": {
+                        "description": "Forbidden. Probably you are trying to access link tokens of not your file."
+                    },
+                    "404": {
+                        "description": "File with specified id not found."
+                    }
+                }
+            }
+        },
+        "/api/files/": {
+            "post": {
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Store new file.",
+                "description": "Put file to storage and save it's information to database.",
+                "operationId": "storeNewFile",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Accept type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "application/json"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Api authorization user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "File and it's information.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "public_name",
+                                    "description",
+                                    "file"
+                                ],
+                                "properties": {
+                                    "public_name": {
+                                        "type": "string",
+                                        "example": "Some name"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Sensitive Description"
+                                    },
+                                    "date_to_delete": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "File was successfully inserted.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/FileIdentifierResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authorization failed. Bearer token mismatch."
+                    },
+                    "403": {
+                        "description": "Forbidden. You are not allowed to create files."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity. Given data is invalid.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": "{\"file\": [ \"The file field is required.\" ]}"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/files/{fileId}": {
+            "get": {
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Get file by id",
+                "description": "Access file information by it's id",
+                "operationId": "getFileById",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Accept type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "application/json"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Api authorization user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                        }
+                    },
+                    {
+                        "name": "fileId",
+                        "in": "path",
+                        "description": "File id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful get operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FileResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authorization failed. Bearer token mismatch."
+                    },
+                    "403": {
+                        "description": "Forbidden. Probably you are trying to access not your file."
+                    },
+                    "404": {
+                        "description": "File with specified id not found."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Delete file by id.",
+                "description": "Delete file from storage and it's information from database. Returns resource of deleted file.",
+                "operationId": "deleteFileById",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Accept type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "application/json"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Api authorization user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                        }
+                    },
+                    {
+                        "name": "fileId",
+                        "in": "path",
+                        "description": "File id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful delete operation. Return deleted file response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FileResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authorization failed. Bearer token mismatch."
+                    },
+                    "403": {
+                        "description": "Forbidden. Probably you are trying to delete not your file."
+                    },
+                    "404": {
+                        "description": "File with specified id not found."
+                    }
+                }
+            }
+        },
+        "/api/guest/files/{linkToken}": {
+            "get": {
+                "tags": [
+                    "Files"
+                ],
+                "summary": "Get file resource by it's link token.",
+                "description": "Retreive file from storage, record visit, return file binary resource.",
+                "operationId": "getFileResourceByLinkToken",
+                "parameters": [
+                    {
+                        "name": "linkToken",
+                        "in": "path",
+                        "description": "Generated token for visits.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "9194e805-0408-4184-8ad1-22744d1ffe17ff"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful get operation. Returns streamed file response.",
+                        "content": {
+                            "binary": {}
+                        }
+                    },
+                    "404": {
+                        "description": "File with provided link token not found."
+                    }
+                }
+            }
+        },
+        "/api/link_tokens/types": {
+            "get": {
+                "tags": [
+                    "LinkTokens"
+                ],
+                "summary": "Get all supported token types.",
+                "operationId": "getSupportedLinkTokenTypes",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Accept type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "application/json"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Api authorization user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful get operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authorization failed. Bearer token mismatch."
+                    }
+                }
+            }
+        },
+        "/api/link_tokens/{link_token}": {
+            "get": {
+                "tags": [
+                    "LinkTokens"
+                ],
+                "summary": "Get full information about link token by it's id.",
+                "operationId": "getLinkTokenById",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Accept type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "application/json"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Api authorization user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful get.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/LinkTokenResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authorization failed. Bearer token mismatch."
+                    },
+                    "403": {
+                        "description": "Forbidden. You are not allowed to view this token."
+                    }
+                }
+            }
+        },
         "/api/users/{userId}": {
             "get": {
                 "tags": [
@@ -16,18 +681,46 @@
                 "operationId": "getUserById",
                 "parameters": [
                     {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Accept type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "application/json"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Api authorization user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                        }
+                    },
+                    {
                         "name": "userId",
                         "in": "path",
                         "description": "User id",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "integer",
+                            "example": "1"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful get operation"
+                        "description": "Successful get operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "User with specified id not found."
@@ -41,6 +734,215 @@
     },
     "components": {
         "schemas": {
+            "FileIdentifierResource": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "files"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "FileLinkTokensRelatedResource": {
+                "properties": {
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://localhost:8000/api/files/1/link_tokens"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LinkTokenResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "FileLinkTokensRelationshipResource": {
+                "properties": {
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://localhost:8000/api/files/1/relationships/link_tokens"
+                            },
+                            "related": {
+                                "type": "string",
+                                "example": "http://localhost:8000/api/files/1/link_tokens"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LinkTokenIdentifierResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "FileResource": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "files"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "attributes": {
+                        "properties": {
+                            "public_name": {
+                                "type": "string",
+                                "example": "Some name"
+                            },
+                            "description": {
+                                "type": "string",
+                                "example": "Sensitive Description"
+                            },
+                            "will_be_deleted_at": {
+                                "type": "string",
+                                "format": "date-time",
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "relationships": {
+                        "properties": {
+                            "user": {
+                                "$ref": "#/components/schemas/FileUserRelationshipResource"
+                            },
+                            "link_tokens": {
+                                "$ref": "#/components/schemas/FileLinkTokensRelationshipResource"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://localhost:8000/api/files/1"
+                            },
+                            "resource": {
+                                "type": "string",
+                                "example": "http://localhost:8000/storage/uploads/files/qCgqGAf88xif2IHR7ElLHSlaTqLmqMJdjFzBw3LB.png"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "FileUserRelationshipResource": {
+                "properties": {
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://localhost:8000/api/files/1/relationships/user"
+                            },
+                            "related": {
+                                "type": "string",
+                                "example": "http://localhost:8000/api/users/1"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/UserIdentifierResource"
+                    }
+                },
+                "type": "object"
+            },
+            "LinkTokenIdentifierResource": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "link_tokens"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "LinkTokenResource": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "link_tokens"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "attributes": {
+                        "properties": {
+                            "token": {
+                                "type": "string",
+                                "example": "9194e805-0408-4184-8ad1-22744d1ffe17"
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "disposable",
+                                    "unlimited"
+                                ]
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://localhost:8000/api/link_tokens/1"
+                            },
+                            "resource": {
+                                "type": "string",
+                                "example": "http://localhost:8000/api/guest/files/9194e805-0408-4184-8ad1-22744d1ffe17"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "UserIdentifierResource": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "users"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
             "UserResource": {
                 "properties": {
                     "type": {
@@ -52,23 +954,31 @@
                         "example": "1"
                     },
                     "attributes": {
-                        "type": "array",
-                        "items": {
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "email": {
-                                    "type": "string",
-                                    "example": "hello-world@gmail.com"
-                                },
-                                "email_verified_at": {
-                                    "type": "string",
-                                    "format": "date-time"
-                                }
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "example": "John"
                             },
-                            "type": "object"
-                        }
+                            "email": {
+                                "type": "string",
+                                "example": "hello-world@gmail.com"
+                            },
+                            "email_verified_at": {
+                                "type": "string",
+                                "format": "date-time",
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://localhost:8000/api/users/1"
+                            }
+                        },
+                        "type": "object"
                     }
                 },
                 "type": "object"
@@ -76,6 +986,14 @@
         }
     },
     "tags": [
+        {
+            "name": "Files",
+            "description": "This api provides access to files (photos) in system."
+        },
+        {
+            "name": "LinkTokens",
+            "description": "This api provides access to file link tokens in system."
+        },
         {
             "name": "Users",
             "description": "API Endpoints of Users"
