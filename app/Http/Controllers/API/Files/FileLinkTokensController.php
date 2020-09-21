@@ -32,6 +32,61 @@ final class FileLinkTokensController extends ApiController
     }
 
     /**
+     * @OA\Get(
+     *      path="/api/files/{fileId}/link_tokens",
+     *      operationId="getFileLinkTokens",
+     *      tags={"FileRelationships", "LinkTokens"},
+     *      summary="Get all link tokens of file.",
+     *      description="Retreive all link tokens by file id.",
+     *
+     *      @OA\Parameter(
+     *          name="Accept",
+     *          description="Accept type",
+     *          required=true,
+     *          in="header",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="application/json",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="Authorization",
+     *          description="Api authorization user token",
+     *          required=true,
+     *          in="header",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="fileId",
+     *          description="File id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer",
+     *              example="1",
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful get operation",
+     *          @OA\JsonContent(ref="#/components/schemas/FileLinkTokensRelatedResource")
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Authorization failed. Bearer token mismatch.",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden. Probably you are trying to access link tokens of not your file.",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="File with specified id not found.",
+     *      ),
+     * )
      * @param  int  $fileId
      * @return FileLinkTokensRelatedResource
      * @throws AuthorizationException
@@ -48,6 +103,79 @@ final class FileLinkTokensController extends ApiController
     }
 
     /**
+     * @OA\Post(
+     *      path=" api/files/{fileId}/link_tokens ",
+     *      operationId="storeNewFile",
+     *      tags={"FileRelationships", "LinkTokens"},
+     *      summary="Store new file.",
+     *      description="Put file to storage and save it's information to database.",
+     *
+     *      @OA\Parameter(
+     *          name="Accept",
+     *          description="Accept type",
+     *          required=true,
+     *          in="header",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="application/json",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="Authorization",
+     *          description="Api authorization user token",
+     *          required=true,
+     *          in="header",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="fileId",
+     *          description="File id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer",
+     *              example="1",
+     *          ),
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="File and it's information.",
+     *          @OA\JsonContent(
+     *              required={"link_type"},
+     *              @OA\Property(property="link_type", type="string", enum={"disposable", "unlimited"}),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Link token was successfully inserted.",
+     *          @OA\JsonContent(
+     *              @OA\Property (
+     *                  property="data",
+     *                  ref="#/components/schemas/LinkTokenResource",
+     *              ),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Authorization failed. Bearer token mismatch.",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden. You are not allowed to create link tokens for this file.",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity. Given data is invalid.",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="The given data was invalid."),
+     *              @OA\Property(property="errors", type="object", example="{""link_type"": [ ""The selected link type is invalid."" ]}"),
+     *          )
+     *      ),
+     * )
+     *
      * @param  int  $fileId
      * @param  CreateLinkRequest  $request
      * @param  CreateLinkCommand  $command

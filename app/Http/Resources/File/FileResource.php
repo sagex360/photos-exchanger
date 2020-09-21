@@ -6,7 +6,35 @@ use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin File */
+/**
+ * @mixin File
+ * @OA\Schema(
+ *      @OA\Property(property="type", type="string", example="files"),
+ *      @OA\Property(property="id", type="integer", example="1"),
+ *      @OA\Property(
+ *         property="attributes",
+ *         @OA\Property(property="public_name", type="string", example="Some name"),
+ *         @OA\Property(property="description", type="string", example="Sensitive Description"),
+ *         @OA\Property(property="will_be_deleted_at", type="string", nullable=true, format="date-time"),
+ *      ),
+ *      @OA\Property(
+ *         property="relationships",
+ *         @OA\Property(
+ *              property="user",
+ *              ref="#/components/schemas/FileUserRelationshipResource"
+ *         ),
+ *         @OA\Property(
+ *              property="link_tokens",
+ *              ref="#/components/schemas/FileLinkTokensRelationshipResource",
+ *         ),
+ *      ),
+ *      @OA\Property(
+ *         property="links",
+ *         @OA\Property(property="self", type="string", example="http://localhost:8000/api/files/1"),
+ *         @OA\Property(property="resource", type="string", example="http://localhost:8000/storage/uploads/files/qCgqGAf88xif2IHR7ElLHSlaTqLmqMJdjFzBw3LB.png"),
+ *      ),
+ * )
+ */
 final class FileResource extends JsonResource
 {
     /**

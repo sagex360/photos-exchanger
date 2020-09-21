@@ -18,6 +18,12 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
+/**
+ * @OA\Tag(
+ *     name="Files",
+ *     description="This api provides access to files (photos) in system."
+ * )
+ */
 final class FilesController extends ApiController
 {
     protected FilesRepository $filesRepository;
@@ -30,7 +36,71 @@ final class FilesController extends ApiController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *      path="/api/files/",
+     *      operationId="storeNewFile",
+     *      tags={"Files"},
+     *      summary="Store new file.",
+     *      description="Put file to storage and save it's information to database.",
+     *
+     *      @OA\Parameter(
+     *          name="Accept",
+     *          description="Accept type",
+     *          required=true,
+     *          in="header",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="application/json",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="Authorization",
+     *          description="Api authorization user token",
+     *          required=true,
+     *          in="header",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
+     *          ),
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="File and it's information.",
+     *          @OA\JsonContent(
+     *              required={"public_name", "description", "file"},
+     *              @OA\Property(property="public_name", type="string", example="Some name"),
+     *              @OA\Property(property="description", type="string", example="Sensitive Description"),
+     *              @OA\Property(property="date_to_delete", type="string", format="date"),
+     *              @OA\Property(property="file", type="string", format="binary"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="File was successfully inserted.",
+     *          @OA\JsonContent(
+     *              @OA\Property (
+     *                  property="data",
+     *                  ref="#/components/schemas/FileIdentifierResource",
+     *              ),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Authorization failed. Bearer token mismatch.",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden. You are not allowed to create files.",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity. Given data is invalid.",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="The given data was invalid."),
+     *              @OA\Property(property="errors", type="object", example="{""file"": [ ""The file field is required."" ]}"),
+     *          )
+     *      ),
+     * )
      *
      * @param  StoreFileRequest  $request
      * @param  CreateFileCommand  $command
@@ -48,7 +118,60 @@ final class FilesController extends ApiController
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *      path="/api/files/{fileId}",
+     *      operationId="getFileById",
+     *      tags={"Files"},
+     *      summary="Get file by id",
+     *      description="Access file information by it's id",
+     *      @OA\Parameter(
+     *          name="Accept",
+     *          description="Accept type",
+     *          required=true,
+     *          in="header",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="application/json",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="Authorization",
+     *          description="Api authorization user token",
+     *          required=true,
+     *          in="header",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="fileId",
+     *          description="File id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer",
+     *              example="1",
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful get operation",
+     *          @OA\JsonContent(ref="#/components/schemas/FileResource")
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Authorization failed. Bearer token mismatch.",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden. Probably you are trying to access not your file.",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="File with specified id not found.",
+     *      ),
+     * )
      *
      * @param  int  $id
      * @return FileResource
@@ -63,7 +186,60 @@ final class FilesController extends ApiController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete (
+     *      path="/api/files/{fileId}",
+     *      operationId="deleteFileById",
+     *      tags={"Files"},
+     *      summary="Delete file by id.",
+     *      description="Delete file from storage and it's information from database. Returns resource of deleted file.",
+     *      @OA\Parameter(
+     *          name="Accept",
+     *          description="Accept type",
+     *          required=true,
+     *          in="header",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="application/json",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="Authorization",
+     *          description="Api authorization user token",
+     *          required=true,
+     *          in="header",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="fileId",
+     *          description="File id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer",
+     *              example="1",
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful delete operation. Return deleted file response.",
+     *          @OA\JsonContent(ref="#/components/schemas/FileResource")
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Authorization failed. Bearer token mismatch.",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden. Probably you are trying to delete not your file.",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="File with specified id not found.",
+     *      ),
+     * )
      *
      * @param  int  $id
      * @param  DeleteFilesCompletelyCommand  $command
@@ -81,6 +257,35 @@ final class FilesController extends ApiController
     }
 
     /**
+     * @OA\Get(
+     *      path="/api/guest/files/{linkToken}",
+     *      operationId="getFileResourceByLinkToken",
+     *      tags={"Files"},
+     *      summary="Get file resource by it's link token.",
+     *      description="Retreive file from storage, record visit, return file binary resource.",
+     *
+     *      @OA\Parameter(
+     *          name="linkToken",
+     *          description="Generated token for visits.",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="9194e805-0408-4184-8ad1-22744d1ffe17ff",
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful get operation. Returns streamed file response.",
+     *          @OA\MediaType(
+     *              mediaType="binary"
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="File with provided link token not found.",
+     *      ),
+     * )
      * @param  string  $token
      * @param  ReceiveFileFromStorageCommand  $fileStorage
      * @return StreamedResponse

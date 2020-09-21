@@ -6,7 +6,13 @@ use App\Models\FileLinkToken;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin FileLinkToken */
+/**
+ * @mixin FileLinkToken
+ * @OA\Schema(
+ *      @OA\Property(property="type", type="string", example="link_tokens"),
+ *      @OA\Property(property="id", type="integer", example="1"),
+ * )
+ */
 final class LinkTokenIdentifierResource extends JsonResource
 {
     /**

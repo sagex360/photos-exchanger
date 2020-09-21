@@ -8,7 +8,20 @@ use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin Client */
+/**
+ * @mixin Client
+ * @OA\Schema(
+ *      @OA\Property(
+ *         property="links",
+ *         @OA\Property(property="self", type="string", example="http://localhost:8000/api/files/1/relationships/user"),
+ *         @OA\Property(property="related", type="string", example="http://localhost:8000/api/users/1"),
+ *      ),
+ *      @OA\Property(
+ *         property="data",
+ *         ref="#/components/schemas/UserIdentifierResource"
+ *      ),
+ * )
+ */
 final class FileUserRelationshipResource extends JsonResource
 {
     protected File $file;

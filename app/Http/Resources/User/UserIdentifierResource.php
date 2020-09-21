@@ -6,7 +6,13 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin Client */
+/**
+ * @mixin Client
+ * @OA\Schema(
+ *      @OA\Property(property="type", type="string", example="users"),
+ *      @OA\Property(property="id", type="integer", example="1"),
+ * )
+ */
 final class UserIdentifierResource extends JsonResource
 {
     /**
