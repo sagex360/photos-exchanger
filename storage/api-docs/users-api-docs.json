@@ -1,0 +1,123 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Users API",
+        "description": "This api provides access to users in system.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/users/{userId}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get single user by id",
+                "description": "Returns user information",
+                "operationId": "getUserById",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Accept type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "application/json"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Api authorization user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                        }
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful get operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User with specified id not found."
+                    },
+                    "401": {
+                        "description": "Authorization failed. Bearer token mismatch."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "UserResource": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "users"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "attributes": {
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "example": "John"
+                            },
+                            "email": {
+                                "type": "string",
+                                "example": "hello-world@gmail.com"
+                            },
+                            "email_verified_at": {
+                                "type": "string",
+                                "format": "date-time",
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://localhost:8000/api/users/1"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Users",
+            "description": "API Endpoints of Users"
+        }
+    ],
+    "security": [
+        []
+    ]
+}

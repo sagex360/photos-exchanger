@@ -24,6 +24,7 @@ use App\Services\Files\UpdateFileCommand;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
+use L5Swagger\L5SwaggerServiceProvider;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,7 @@ final class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() !== 'production') {
             $this->app->register(IdeHelperServiceProvider::class);
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+            $this->app->register(L5SwaggerServiceProvider::class);
         }
 
         $this->registerBindings();
