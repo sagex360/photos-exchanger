@@ -1,7 +1,8 @@
 FROM php:7.4-fpm
 
 # Arguments defined in docker-compose.yml
-ARG user
+ARG uname
+ARG gid
 ARG uid
 
 # Install system dependencies
@@ -12,7 +13,8 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    unzip
+    unzip \
+    cron
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -24,16 +26,14 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Create system user to run Composer and Artisan Commands
-RUN useradd -G www-data,root -s /bin/bash -u $uid $user
+RUN groupadd --gid $gid $uname
+RUN useradd -G www-data,root -s /bin/bash --uid $uid --gid $gid $uname
 
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
-
-COPY docker/compose/app/setup.sh /var/www/docker/compose/app/setup.sh
-RUN ["chmod", "+x", "/var/www/docker/compose/app/setup.sh"]
+RUN mkdir -p /home/$uname/.composer && \
+    chown -R $uname:$uname /home/$uname
 
 # Set working directory
 WORKDIR /var/www
 
-USER $user
+USER $uname
 
