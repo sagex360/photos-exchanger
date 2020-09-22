@@ -16,11 +16,12 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-      "ext-curl": "*"
+        "ext-curl": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
         "barryvdh/laravel-ide-helper": "^2.7",
+        "brainmaestro/composer-git-hooks": "^2.8",
         "facade/ignition": "^2.0",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.3.1",
@@ -35,6 +36,12 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "hooks": {
+            "pre-commit": [
+                "echo committing as $(git config user.name)",
+                "git diff --cached --name-only | xargs php-cs-fixer fix --config=\".php_cs\" --path-mode=intersection --using-cache=no -- "
+            ]
         }
     },
     "autoload": {
@@ -63,6 +70,7 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "cghooks": "vendor/bin/cghooks"
     }
 }
