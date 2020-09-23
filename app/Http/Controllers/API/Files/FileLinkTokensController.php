@@ -105,14 +105,7 @@ final class FileLinkTokensController extends ApiController
      *              example="1",
      *          ),
      *      ),
-     *      @OA\RequestBody(
-     *          required=true,
-     *          description="Link token information.",
-     *          @OA\JsonContent(
-     *              required={"link_type"},
-     *              @OA\Property(property="link_type", type="string", enum={"disposable", "unlimited"}),
-     *          ),
-     *      ),
+     *      @OA\RequestBody(ref="#/components/requestBodies/create-link-token-request-body"),
      *      @OA\Response(
      *          response=200,
      *          description="Link token was successfully created.",

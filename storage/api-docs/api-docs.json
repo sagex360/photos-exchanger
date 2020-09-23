@@ -81,27 +81,7 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "Link token information.",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "link_type"
-                                ],
-                                "properties": {
-                                    "link_type": {
-                                        "type": "string",
-                                        "enum": [
-                                            "disposable",
-                                            "unlimited"
-                                        ]
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
+                    "$ref": "#/components/requestBodies/create-link-token-request-body"
                 },
                 "responses": {
                     "200": {
@@ -261,38 +241,7 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "File and it's information.",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "public_name",
-                                    "description",
-                                    "file"
-                                ],
-                                "properties": {
-                                    "public_name": {
-                                        "type": "string",
-                                        "example": "Some name"
-                                    },
-                                    "description": {
-                                        "type": "string",
-                                        "example": "Sensitive Description"
-                                    },
-                                    "date_to_delete": {
-                                        "type": "string",
-                                        "format": "date"
-                                    },
-                                    "file": {
-                                        "type": "string",
-                                        "format": "binary"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
+                    "$ref": "#/components/requestBodies/store-file-request-body"
                 },
                 "responses": {
                     "200": {
@@ -861,6 +810,65 @@
                 "schema": {
                     "type": "string",
                     "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                }
+            }
+        },
+        "requestBodies": {
+            "store-file-request-body": {
+                "description": "File and it's information.",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "public_name",
+                                "description",
+                                "file"
+                            ],
+                            "properties": {
+                                "public_name": {
+                                    "type": "string",
+                                    "example": "Some name"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "example": "Sensitive Description"
+                                },
+                                "date_to_delete": {
+                                    "type": "string",
+                                    "format": "date"
+                                },
+                                "file": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "create-link-token-request-body": {
+                "description": "Link token information.",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "link_type"
+                            ],
+                            "properties": {
+                                "link_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "disposable",
+                                        "unlimited"
+                                    ]
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
                 }
             }
         }

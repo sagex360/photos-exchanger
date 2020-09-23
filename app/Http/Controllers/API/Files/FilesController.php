@@ -45,17 +45,7 @@ final class FilesController extends ApiController
      *
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
-     *      @OA\RequestBody(
-     *          required=true,
-     *          description="File and it's information.",
-     *          @OA\JsonContent(
-     *              required={"public_name", "description", "file"},
-     *              @OA\Property(property="public_name", type="string", example="Some name"),
-     *              @OA\Property(property="description", type="string", example="Sensitive Description"),
-     *              @OA\Property(property="date_to_delete", type="string", format="date"),
-     *              @OA\Property(property="file", type="string", format="binary"),
-     *          ),
-     *      ),
+     *      @OA\RequestBody(ref="#/components/requestBodies/store-file-request-body"),
      *      @OA\Response(
      *          response=200,
      *          description="File was successfully inserted.",

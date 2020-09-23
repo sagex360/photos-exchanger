@@ -14,15 +14,30 @@ use App\ValueObjects\DeletionDate\DeletionDateFactory;
 use App\ValueObjects\FileDescription;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @OA\RequestBody(
+ *     request="store-file-request-body",
+ *     required=true,
+ *     description="File and it's information.",
+ *     @OA\JsonContent(
+ *         required={"public_name", "description", "file"},
+ *         @OA\Property(property="public_name", type="string", example="Some name"),
+ *         @OA\Property(property="description", type="string", example="Sensitive Description"),
+ *         @OA\Property(property="date_to_delete", type="string", format="date"),
+ *         @OA\Property(property="file", type="string", format="binary"),
+ *     ),
+ * ),
+ */
 final class StoreFileRequest extends AppFormRequest
 {
     /**
      * Get the validation rules that apply to the request.
      *
-     * @param  FileImageRules  $imageRules
-     * @param  FilePublicNameRules  $nameRules
-     * @param  FileDescriptionRules  $descriptionRules
-     * @param  FileDateRules  $dateRules
+     * @param FileImageRules       $imageRules
+     * @param FilePublicNameRules  $nameRules
+     * @param FileDescriptionRules $descriptionRules
+     * @param FileDateRules        $dateRules
+     *
      * @return array
      */
     public function rules(
@@ -32,10 +47,10 @@ final class StoreFileRequest extends AppFormRequest
         FileDateRules $dateRules
     ): array {
         return [
-            'public_name'    => $nameRules->get(),
-            'description'    => $descriptionRules->get(),
+            'public_name' => $nameRules->get(),
+            'description' => $descriptionRules->get(),
             'date_to_delete' => $dateRules->get(),
-            'file'           => $imageRules->get(),
+            'file' => $imageRules->get(),
         ];
     }
 
@@ -48,8 +63,8 @@ final class StoreFileRequest extends AppFormRequest
             Auth::id(),
             $this->file('file'),
             FileDescription::create(
-                (string)$this->input('public_name'),
-                (string)$this->input('description')
+                (string) $this->input('public_name'),
+                (string) $this->input('description')
             ),
             DeletionDateFactory::fromFormat(
                 FileDateRules::DATE_FORMAT,
