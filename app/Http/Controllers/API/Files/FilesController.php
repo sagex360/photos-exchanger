@@ -200,16 +200,7 @@ final class FilesController extends ApiController
      *      summary="Get file resource by it's link token.",
      *      description="Retreive file from storage, record it's visit, return file binary resource.",
      *
-     *      @OA\Parameter(
-     *          name="linkToken",
-     *          description="Generated token for visits.",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="9194e805-0408-4184-8ad1-22744d1ffe17ff",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/link-token-path-parameter"),
      *      @OA\Response(
      *          response=200,
      *          description="Successful get operation. Returns streamed file response.",

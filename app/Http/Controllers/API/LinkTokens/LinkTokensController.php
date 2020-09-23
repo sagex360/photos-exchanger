@@ -13,6 +13,17 @@ use Illuminate\Auth\Access\AuthorizationException;
  *     name="LinkTokens",
  *     description="This api provides access to file link tokens in system."
  * )
+ * @OA\Parameter(
+ *     parameter="link-token-path-parameter",
+ *     name="linkToken",
+ *     description="Generated token for visits.",
+ *     required=true,
+ *     in="path",
+ *     @OA\Schema(
+ *         type="string",
+ *         example="9194e805-0408-4184-8ad1-22744d1ffe17ff",
+ *     ),
+ * ),
  */
 final class LinkTokensController extends ApiController
 {

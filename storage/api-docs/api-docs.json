@@ -352,14 +352,7 @@
                 "operationId": "getFileResourceByLinkToken",
                 "parameters": [
                     {
-                        "name": "linkToken",
-                        "in": "path",
-                        "description": "Generated token for visits.",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "9194e805-0408-4184-8ad1-22744d1ffe17ff"
-                        }
+                        "$ref": "#/components/parameters/link-token-path-parameter"
                     }
                 ],
                 "responses": {
@@ -778,6 +771,16 @@
                 "schema": {
                     "type": "integer",
                     "example": "1"
+                }
+            },
+            "link-token-path-parameter": {
+                "name": "linkToken",
+                "in": "path",
+                "description": "Generated token for visits.",
+                "required": true,
+                "schema": {
+                    "type": "string",
+                    "example": "9194e805-0408-4184-8ad1-22744d1ffe17ff"
                 }
             }
         },
