@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class DeletionDateCastTest extends TestCase
 {
-    public function testExample(): void
+    public function test_example(): void
     {
         $file = new File();
         $file->user_id = 1;

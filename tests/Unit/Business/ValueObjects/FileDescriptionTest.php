@@ -9,19 +9,19 @@ use PHPUnit\Framework\TestCase;
 
 class FileDescriptionTest extends TestCase
 {
-    public function testEmptyName(): void
+    public function test_empty_name(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $fileDescription = FileDescription::create('', 'some description');
     }
 
-    public function testEmptyDescription(): void
+    public function test_empty_description(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $fileDescription = FileDescription::create('not empty', '');
     }
 
-    public function testTooLongName(): void
+    public function test_too_long_name(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -31,7 +31,7 @@ class FileDescriptionTest extends TestCase
         );
     }
 
-    public function testTooLongDescription(): void
+    public function test_too_long_description(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -41,7 +41,7 @@ class FileDescriptionTest extends TestCase
         );
     }
 
-    public function testSuccessfulCreation(): void
+    public function test_successful_creation(): void
     {
         $fileDescription = FileDescription::create('some name', 'some description');
 
@@ -49,7 +49,7 @@ class FileDescriptionTest extends TestCase
         self::assertSame('some description', $fileDescription->description());
     }
 
-    public function testShortenLongDescription(): void
+    public function test_shorten_long_description(): void
     {
         $longString = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium ad alias atque autem dolore esse, excepturi fuga fugiat ipsa iusto laudantium, magni necessitatibus nesciunt nihil nulla numquam pariatur perspiciatis possimus, quas qui quo sed sunt velit veniam. Alias consectetur cumque debitis dignissimos, error impedit ipsam minima natus nemo nesciunt non, quis saepe similique ullam vel! Consequatur debitis eveniet expedita, id iste nihil quaerat ratione vero. Architecto, blanditiis commodi cupiditate ducimus eius harum ipsa neque numquam, optio praesentium quas totam vero voluptate. Eius, id tempora. Esse fuga inventore, ipsa, labore magni omnis provident quibusdam quo repellendus, sapiente sequi suscipit voluptas!';
 
@@ -63,7 +63,7 @@ class FileDescriptionTest extends TestCase
         );
     }
 
-    public function testShortenShortDescription(): void
+    public function test_shorten_short_description(): void
     {
         $shortString = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, quisquam.';
 

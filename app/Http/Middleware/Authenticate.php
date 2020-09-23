@@ -29,5 +29,7 @@ class Authenticate extends Middleware
         if (!$request->expectsJson()) {
             return route(RouteServiceProvider::loginRoute(...$this->guards));
         }
+
+        return null;
     }
 }
