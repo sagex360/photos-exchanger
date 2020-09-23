@@ -22,7 +22,18 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
  * @OA\Tag(
  *     name="Files",
  *     description="This api provides access to files (photos) in system."
- * )
+ * ),
+ * @OA\Parameter(
+ *     parameter="file-id-path-parameter",
+ *     name="fileId",
+ *     description="File id",
+ *     required=true,
+ *     in="path",
+ *     @OA\Schema(
+ *         type="integer",
+ *         example="1",
+ *     ),
+ * ),
  */
 final class FilesController extends ApiController
 {
@@ -101,16 +112,7 @@ final class FilesController extends ApiController
      *
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
-     *      @OA\Parameter(
-     *          name="fileId",
-     *          description="File id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer",
-     *              example="1",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),
      *      @OA\Response(
      *          response=200,
      *          description="Successful get operation",
@@ -153,16 +155,7 @@ final class FilesController extends ApiController
      *      description="Delete file from storage and it's information from database. Returns resource of deleted file.",
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
-     *      @OA\Parameter(
-     *          name="fileId",
-     *          description="File id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer",
-     *              example="1",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),
      *      @OA\Response(
      *          response=200,
      *          description="Successful delete operation. Return deleted file response.",

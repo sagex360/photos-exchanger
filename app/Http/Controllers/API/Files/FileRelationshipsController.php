@@ -42,16 +42,7 @@ final class FileRelationshipsController extends ApiController
      *
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
-     *      @OA\Parameter(
-     *          name="fileId",
-     *          description="File id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer",
-     *              example="1",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),
      *      @OA\Response(
      *          response=200,
      *          description="Successful get operation",
@@ -89,16 +80,7 @@ final class FileRelationshipsController extends ApiController
      *
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
-     *      @OA\Parameter(
-     *          name="fileId",
-     *          description="File id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer",
-     *              example="1",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),
      *      @OA\Response(
      *          response=200,
      *          description="Successful get operation",

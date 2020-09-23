@@ -39,16 +39,7 @@ final class FileLinkTokensController extends ApiController
      *      description="Retreive all link tokens by file id.",
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
-     *      @OA\Parameter(
-     *          name="fileId",
-     *          description="File id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer",
-     *              example="1",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),
      *      @OA\Response(
      *          response=200,
      *          description="Successful get operation",
@@ -95,16 +86,7 @@ final class FileLinkTokensController extends ApiController
      *
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
-     *      @OA\Parameter(
-     *          name="fileId",
-     *          description="File id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer",
-     *              example="1",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),
      *      @OA\RequestBody(ref="#/components/requestBodies/create-link-token-request-body"),
      *      @OA\Response(
      *          response=200,

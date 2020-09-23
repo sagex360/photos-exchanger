@@ -22,14 +22,7 @@
                         "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
-                        "name": "fileId",
-                        "in": "path",
-                        "description": "File id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "example": "1"
-                        }
+                        "$ref": "#/components/parameters/file-id-path-parameter"
                     }
                 ],
                 "responses": {
@@ -70,14 +63,7 @@
                         "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
-                        "name": "fileId",
-                        "in": "path",
-                        "description": "File id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "example": "1"
-                        }
+                        "$ref": "#/components/parameters/file-id-path-parameter"
                     }
                 ],
                 "requestBody": {
@@ -144,14 +130,7 @@
                         "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
-                        "name": "fileId",
-                        "in": "path",
-                        "description": "File id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "example": "1"
-                        }
+                        "$ref": "#/components/parameters/file-id-path-parameter"
                     }
                 ],
                 "responses": {
@@ -191,14 +170,7 @@
                         "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
-                        "name": "fileId",
-                        "in": "path",
-                        "description": "File id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "example": "1"
-                        }
+                        "$ref": "#/components/parameters/file-id-path-parameter"
                     }
                 ],
                 "responses": {
@@ -304,14 +276,7 @@
                         "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
-                        "name": "fileId",
-                        "in": "path",
-                        "description": "File id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "example": "1"
-                        }
+                        "$ref": "#/components/parameters/file-id-path-parameter"
                     }
                 ],
                 "responses": {
@@ -351,14 +316,7 @@
                         "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
-                        "name": "fileId",
-                        "in": "path",
-                        "description": "File id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "example": "1"
-                        }
+                        "$ref": "#/components/parameters/file-id-path-parameter"
                     }
                 ],
                 "responses": {
@@ -810,6 +768,16 @@
                 "schema": {
                     "type": "string",
                     "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                }
+            },
+            "file-id-path-parameter": {
+                "name": "fileId",
+                "in": "path",
+                "description": "File id",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "example": "1"
                 }
             }
         },
