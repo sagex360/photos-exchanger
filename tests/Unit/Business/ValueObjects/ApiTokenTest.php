@@ -9,14 +9,14 @@ use PHPUnit\Framework\TestCase;
 
 final class ApiTokenTest extends TestCase
 {
-    public function testTooShortTokenLength(): void
+    public function test_too_short_token_length(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         $token = ApiToken::create(Str::random(ApiToken::TOKEN_MIN_LENGTH - 1));
     }
 
-    public function testTokenWithMinLength(): void
+    public function test_token_with_min_length(): void
     {
         $rawToken = Str::random(ApiToken::TOKEN_MIN_LENGTH);
         $token = ApiToken::create($rawToken);
@@ -24,14 +24,14 @@ final class ApiTokenTest extends TestCase
         self::assertSame($rawToken, $token->token());
     }
 
-    public function testTooLongTokenLength(): void
+    public function test_too_long_token_length(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         $token = ApiToken::create(Str::random(ApiToken::TOKEN_MAX_LENGTH + 1));
     }
 
-    public function testTokenWithMaxLength(): void
+    public function test_token_with_max_length(): void
     {
         $rawToken = Str::random(ApiToken::TOKEN_MAX_LENGTH);
         $token = ApiToken::create($rawToken);
@@ -39,7 +39,7 @@ final class ApiTokenTest extends TestCase
         self::assertSame($rawToken, $token->token());
     }
 
-    public function testAverageTokenLength(): void
+    public function test_average_token_length(): void
     {
         $rawToken = 'oa34ADE99VmgwbiiBNx4L8JisLKvgTk8clstWtBQmLc6cVKNo2';
 
@@ -48,7 +48,7 @@ final class ApiTokenTest extends TestCase
         self::assertSame($rawToken, $token->token());
     }
 
-    public function testAutomaticCreation(): void
+    public function test_automatic_creation(): void
     {
         $apiToken = ApiToken::generate();
 

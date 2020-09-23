@@ -8,20 +8,20 @@ use PHPUnit\Framework\TestCase;
 
 class LoginTest extends TestCase
 {
-    public function testEmptyLogin(): void
+    public function test_empty_login(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $login = Login::create('');
     }
 
-    public function testInvalidLogin(): void
+    public function test_invalid_login(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         $login = Login::create('not_valid_email@');
     }
 
-    public function testSuccessfulCreation(): void
+    public function test_successful_creation(): void
     {
         $login = Login::create('admin@gmail.com');
 
@@ -29,7 +29,7 @@ class LoginTest extends TestCase
         self::assertSame('admin@gmail.com', "$login");
     }
 
-    public function testLoginEquals(): void
+    public function test_login_equals(): void
     {
         $login1 = Login::create('admin@gmail.com');
         $login2 = Login::create('admin@gmail.com');
@@ -37,7 +37,7 @@ class LoginTest extends TestCase
         self::assertTrue($login1->equals($login2));
     }
 
-    public function testLoginNotEquals(): void
+    public function test_login_not_equals(): void
     {
         $login1 = Login::create('admin1@gmail.com');
         $login2 = Login::create('admin2@gmail.com');

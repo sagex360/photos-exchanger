@@ -10,26 +10,26 @@ use Tests\TestCase;
 
 class PasswordTest extends TestCase
 {
-    public function testEmptyPassword(): void
+    public function test_empty_password(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $password = Password::create('');
     }
 
-    public function testTooShortPassword(): void
+    public function test_too_short_password(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $password = Password::create(Str::random(Password::MIN_LENGTH - 1));
     }
 
-    public function testSuccessfulCreation(): void
+    public function test_successful_creation(): void
     {
         $password = Password::create('12345678');
 
-        self::assertSame($password->hash(), (string)$password);
+        self::assertSame($password->hash(), (string) $password);
     }
 
-    public function testCreationFromHash(): void
+    public function test_creation_from_hash(): void
     {
         $hashedPassword = Hash::make('my_password');
 
