@@ -459,14 +459,7 @@
                         "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "User id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "example": "1"
-                        }
+                        "$ref": "#/components/parameters/user-id-path-parameter"
                     }
                 ],
                 "responses": {
@@ -781,6 +774,16 @@
                 "schema": {
                     "type": "string",
                     "example": "9194e805-0408-4184-8ad1-22744d1ffe17ff"
+                }
+            },
+            "user-id-path-parameter": {
+                "name": "userId",
+                "in": "path",
+                "description": "User id",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "example": "1"
                 }
             }
         },

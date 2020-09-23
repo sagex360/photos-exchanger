@@ -10,6 +10,17 @@ use App\Repositories\Users\UsersRepository;
  *     name="Users",
  *     description="API Endpoints of Users"
  * )
+ * @OA\Parameter(
+ *     parameter="user-id-path-parameter",
+ *     name="userId",
+ *     description="User id",
+ *     required=true,
+ *     in="path",
+ *     @OA\Schema(
+ *         type="integer",
+ *         example="1",
+ *     ),
+ * ),
  */
 final class UsersController extends ApiController
 {
@@ -29,16 +40,7 @@ final class UsersController extends ApiController
      *      description="Returns user information",
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
-     *      @OA\Parameter(
-     *          name="userId",
-     *          description="User id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer",
-     *              example="1",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/user-id-path-parameter"),
      *      @OA\Response(
      *          response=200,
      *          description="Successful get operation",
