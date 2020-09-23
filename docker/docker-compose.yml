@@ -6,8 +6,7 @@ services:
         uname: ${PHP_UNAME}
         uid: ${PHP_UID}
         gid: ${PHP_GID}
-      context: ./
-      dockerfile: ./compose/php/Dockerfile
+      context: ./compose/php
     image: photos_exchanger
     restart: unless-stopped
     working_dir: /var/www/
