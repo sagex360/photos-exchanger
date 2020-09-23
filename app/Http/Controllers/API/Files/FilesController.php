@@ -43,26 +43,8 @@ final class FilesController extends ApiController
      *      summary="Store new file.",
      *      description="Put file to storage and save it's information to database.",
      *
-     *      @OA\Parameter(
-     *          name="Accept",
-     *          description="Accept type",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="application/json",
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="Authorization",
-     *          description="Api authorization user token",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
+     *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\RequestBody(
      *          required=true,
      *          description="File and it's information.",
@@ -102,9 +84,11 @@ final class FilesController extends ApiController
      *      ),
      * )
      *
-     * @param  StoreFileRequest  $request
-     * @param  CreateFileCommand  $command
+     * @param StoreFileRequest  $request
+     * @param CreateFileCommand $command
+     *
      * @return FileIdentifierResource
+     *
      * @throws CouldNotSaveFileException
      * @throws AuthorizationException
      */
@@ -124,26 +108,9 @@ final class FilesController extends ApiController
      *      tags={"Files"},
      *      summary="Get file by id",
      *      description="Access file database information by it's id",
-     *      @OA\Parameter(
-     *          name="Accept",
-     *          description="Accept type",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="application/json",
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="Authorization",
-     *          description="Api authorization user token",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
-     *          ),
-     *      ),
+     *
+     *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
+     *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(
      *          name="fileId",
      *          description="File id",
@@ -173,8 +140,10 @@ final class FilesController extends ApiController
      *      ),
      * )
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return FileResource
+     *
      * @throws AuthorizationException
      */
     public function show(int $id): FileResource
@@ -192,26 +161,8 @@ final class FilesController extends ApiController
      *      tags={"Files"},
      *      summary="Delete file by id.",
      *      description="Delete file from storage and it's information from database. Returns resource of deleted file.",
-     *      @OA\Parameter(
-     *          name="Accept",
-     *          description="Accept type",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="application/json",
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="Authorization",
-     *          description="Api authorization user token",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
+     *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(
      *          name="fileId",
      *          description="File id",
@@ -241,9 +192,11 @@ final class FilesController extends ApiController
      *      ),
      * )
      *
-     * @param  int  $id
-     * @param  DeleteFilesCompletelyCommand  $command
+     * @param int                          $id
+     * @param DeleteFilesCompletelyCommand $command
+     *
      * @return FileResource
+     *
      * @throws AuthorizationException
      */
     public function destroy(int $id, DeleteFilesCompletelyCommand $command): FileResource
@@ -286,9 +239,12 @@ final class FilesController extends ApiController
      *          description="File with provided link token not found.",
      *      ),
      * )
-     * @param  string  $token
-     * @param  ReceiveFileFromStorageCommand  $fileStorage
+     *
+     * @param string                        $token
+     * @param ReceiveFileFromStorageCommand $fileStorage
+     *
      * @return StreamedResponse
+     *
      * @throws FileTokenExpiredException
      */
     public function fileResource(string $token, ReceiveFileFromStorageCommand $fileStorage): StreamedResponse

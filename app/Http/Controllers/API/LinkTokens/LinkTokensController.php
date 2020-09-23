@@ -30,26 +30,8 @@ final class LinkTokensController extends ApiController
      *      tags={"LinkTokens"},
      *      summary="Get all supported token types.",
      *
-     *      @OA\Parameter(
-     *          name="Accept",
-     *          description="Accept type",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="application/json",
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="Authorization",
-     *          description="Api authorization user token",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
+     *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Response(
      *          response=200,
      *          description="Successful get operation",
@@ -65,6 +47,7 @@ final class LinkTokensController extends ApiController
      *          description="Authentication failed. Bearer token mismatch.",
      *      ),
      * )
+     *
      * @return array
      */
     public function types(): array
@@ -79,26 +62,8 @@ final class LinkTokensController extends ApiController
      *      tags={"LinkTokens"},
      *      summary="Get full information about link token by it's id.",
      *
-     *      @OA\Parameter(
-     *          name="Accept",
-     *          description="Accept type",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="application/json",
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="Authorization",
-     *          description="Api authorization user token",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
+     *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Response(
      *          response=200,
      *          description="Successful get.",
@@ -118,8 +83,11 @@ final class LinkTokensController extends ApiController
      *          description="Forbidden. You are not allowed to view this token.",
      *      ),
      * )
-     * @param  int  $id
+     *
+     * @param int $id
+     *
      * @return LinkTokenResource
+     *
      * @throws AuthorizationException
      */
     public function show(int $id): LinkTokenResource

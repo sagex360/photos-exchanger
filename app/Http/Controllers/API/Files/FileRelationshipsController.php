@@ -40,26 +40,8 @@ final class FileRelationshipsController extends ApiController
      *      tags={"FileRelationships","Users"},
      *      summary="Retreive link and user id, which file belongs to.",
      *
-     *      @OA\Parameter(
-     *          name="Accept",
-     *          description="Accept type",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="application/json",
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="Authorization",
-     *          description="Api authorization user token",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
+     *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(
      *          name="fileId",
      *          description="File id",
@@ -86,6 +68,7 @@ final class FileRelationshipsController extends ApiController
      * )
      *
      * @param int $fileId
+     *
      * @return FileUserRelationshipResource
      */
     public function user(int $fileId): FileUserRelationshipResource
@@ -104,26 +87,8 @@ final class FileRelationshipsController extends ApiController
      *      summary="Get all link token ids related to provided file.",
      *      description="Retreive all link token ids by file id.",
      *
-     *      @OA\Parameter(
-     *          name="Accept",
-     *          description="Accept type",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="application/json",
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="Authorization",
-     *          description="Api authorization user token",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
+     *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(
      *          name="fileId",
      *          description="File id",
@@ -152,8 +117,11 @@ final class FileRelationshipsController extends ApiController
      *          description="File with specified id not found.",
      *      ),
      * )
-     * @param  int  $fileId
+     *
+     * @param int $fileId
+     *
      * @return FileLinkTokensRelationshipResource
+     *
      * @throws AuthorizationException
      */
     public function linkTokens(int $fileId): FileLinkTokensRelationshipResource

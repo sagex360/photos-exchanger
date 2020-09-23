@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\API\Files;
-
 
 use App\Exceptions\CouldNotSaveLinkTokenException;
 use App\Http\Controllers\API\ApiController;
@@ -22,8 +20,9 @@ final class FileLinkTokensController extends ApiController
 
     /**
      * FileLinkTokensController constructor.
-     * @param  FilesRepository  $filesRepository
-     * @param  FileTokensRepository  $tokensRepository
+     *
+     * @param FilesRepository      $filesRepository
+     * @param FileTokensRepository $tokensRepository
      */
     public function __construct(FilesRepository $filesRepository, FileTokensRepository $tokensRepository)
     {
@@ -38,27 +37,8 @@ final class FileLinkTokensController extends ApiController
      *      tags={"FileRelationships", "LinkTokens"},
      *      summary="Get all link tokens of file.",
      *      description="Retreive all link tokens by file id.",
-     *
-     *      @OA\Parameter(
-     *          name="Accept",
-     *          description="Accept type",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="application/json",
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="Authorization",
-     *          description="Api authorization user token",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
+     *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(
      *          name="fileId",
      *          description="File id",
@@ -87,8 +67,11 @@ final class FileLinkTokensController extends ApiController
      *          description="File with specified id not found.",
      *      ),
      * )
-     * @param  int  $fileId
+     *
+     * @param int $fileId
+     *
      * @return FileLinkTokensRelatedResource
+     *
      * @throws AuthorizationException
      */
     public function index(int $fileId): FileLinkTokensRelatedResource
@@ -110,26 +93,8 @@ final class FileLinkTokensController extends ApiController
      *      summary="Store new file.",
      *      description="Put file to storage and save it's information to database.",
      *
-     *      @OA\Parameter(
-     *          name="Accept",
-     *          description="Accept type",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="application/json",
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="Authorization",
-     *          description="Api authorization user token",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
+     *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(
      *          name="fileId",
      *          description="File id",
@@ -176,10 +141,12 @@ final class FileLinkTokensController extends ApiController
      *      ),
      * )
      *
-     * @param  int  $fileId
-     * @param  CreateLinkRequest  $request
-     * @param  CreateLinkCommand  $command
+     * @param int               $fileId
+     * @param CreateLinkRequest $request
+     * @param CreateLinkCommand $command
+     *
      * @return LinkTokenResource
+     *
      * @throws CouldNotSaveLinkTokenException
      * @throws AuthorizationException
      */

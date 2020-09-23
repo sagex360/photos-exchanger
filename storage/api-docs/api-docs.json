@@ -16,24 +16,10 @@
                 "operationId": "getFileLinkTokens",
                 "parameters": [
                     {
-                        "name": "Accept",
-                        "in": "header",
-                        "description": "Accept type",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
+                        "$ref": "#/components/parameters/header-accept-type"
                     },
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Api authorization user token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
-                        }
+                        "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
                         "name": "fileId",
@@ -78,24 +64,10 @@
                 "operationId": "storeNewFile",
                 "parameters": [
                     {
-                        "name": "Accept",
-                        "in": "header",
-                        "description": "Accept type",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
+                        "$ref": "#/components/parameters/header-accept-type"
                     },
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Api authorization user token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
-                        }
+                        "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
                         "name": "fileId",
@@ -186,24 +158,10 @@
                 "operationId": "getFileUserRelationship",
                 "parameters": [
                     {
-                        "name": "Accept",
-                        "in": "header",
-                        "description": "Accept type",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
+                        "$ref": "#/components/parameters/header-accept-type"
                     },
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Api authorization user token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
-                        }
+                        "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
                         "name": "fileId",
@@ -247,24 +205,10 @@
                 "operationId": "getFileLinkTokensRelationship",
                 "parameters": [
                     {
-                        "name": "Accept",
-                        "in": "header",
-                        "description": "Accept type",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
+                        "$ref": "#/components/parameters/header-accept-type"
                     },
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Api authorization user token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
-                        }
+                        "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
                         "name": "fileId",
@@ -310,24 +254,10 @@
                 "operationId": "storeNewFile",
                 "parameters": [
                     {
-                        "name": "Accept",
-                        "in": "header",
-                        "description": "Accept type",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
+                        "$ref": "#/components/parameters/header-accept-type"
                     },
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Api authorization user token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
-                        }
+                        "$ref": "#/components/parameters/header-authorization-token"
                     }
                 ],
                 "requestBody": {
@@ -419,24 +349,10 @@
                 "operationId": "getFileById",
                 "parameters": [
                     {
-                        "name": "Accept",
-                        "in": "header",
-                        "description": "Accept type",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
+                        "$ref": "#/components/parameters/header-accept-type"
                     },
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Api authorization user token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
-                        }
+                        "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
                         "name": "fileId",
@@ -480,24 +396,10 @@
                 "operationId": "deleteFileById",
                 "parameters": [
                     {
-                        "name": "Accept",
-                        "in": "header",
-                        "description": "Accept type",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
+                        "$ref": "#/components/parameters/header-accept-type"
                     },
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Api authorization user token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
-                        }
+                        "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
                         "name": "fileId",
@@ -575,24 +477,10 @@
                 "operationId": "getSupportedLinkTokenTypes",
                 "parameters": [
                     {
-                        "name": "Accept",
-                        "in": "header",
-                        "description": "Accept type",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
+                        "$ref": "#/components/parameters/header-accept-type"
                     },
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Api authorization user token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
-                        }
+                        "$ref": "#/components/parameters/header-authorization-token"
                     }
                 ],
                 "responses": {
@@ -624,24 +512,10 @@
                 "operationId": "getLinkTokenById",
                 "parameters": [
                     {
-                        "name": "Accept",
-                        "in": "header",
-                        "description": "Accept type",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
+                        "$ref": "#/components/parameters/header-accept-type"
                     },
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Api authorization user token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
-                        }
+                        "$ref": "#/components/parameters/header-authorization-token"
                     }
                 ],
                 "responses": {
@@ -679,24 +553,10 @@
                 "operationId": "getUserById",
                 "parameters": [
                     {
-                        "name": "Accept",
-                        "in": "header",
-                        "description": "Accept type",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
+                        "$ref": "#/components/parameters/header-accept-type"
                     },
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Api authorization user token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
-                        }
+                        "$ref": "#/components/parameters/header-authorization-token"
                     },
                     {
                         "name": "userId",
@@ -980,6 +840,28 @@
                     }
                 },
                 "type": "object"
+            }
+        },
+        "parameters": {
+            "header-accept-type": {
+                "name": "Accept",
+                "in": "header",
+                "description": "Accept type",
+                "required": true,
+                "schema": {
+                    "type": "string",
+                    "example": "application/json"
+                }
+            },
+            "header-authorization-token": {
+                "name": "Authorization",
+                "in": "header",
+                "description": "Api authorization user token",
+                "required": true,
+                "schema": {
+                    "type": "string",
+                    "example": "Bearer 9194773b-3f24-42bb-93ca-654557dd303c"
+                }
             }
         }
     },
