@@ -6,15 +6,21 @@ ARG gid
 ARG uid
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip \
-    cron
+RUN apt-get update \
+    && apt-get install -y \
+        git \
+        curl \
+        libpng-dev \
+        libonig-dev \
+        libxml2-dev \
+        zip \
+        unzip \
+        cron
+
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
+
+ADD ./php.ini /usr/local/etc/php/php.ini
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

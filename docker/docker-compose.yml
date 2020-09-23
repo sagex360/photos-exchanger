@@ -12,6 +12,9 @@ services:
     working_dir: /var/www/
     volumes:
       - ../:/var/www
+    environment:
+      XDEBUG_CONFIG: remote_host=${XDEBUG_REMOTE_HOST} remote_enable=1 remote_autostart=off remote_port=${XDEBUG_STORM_PORT}
+      PHP_IDE_CONFIG: serverName=${XDEBUG_STORM_SERVER_NAME}
     networks:
       - main_network
     depends_on:
@@ -45,3 +48,7 @@ services:
 networks:
   main_network:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${XDEBUG_SUBNET_IP}/${XDEBUG_SUBNET_MASK}
