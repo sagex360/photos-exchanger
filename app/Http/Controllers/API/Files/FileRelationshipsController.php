@@ -38,7 +38,7 @@ final class FileRelationshipsController extends ApiController
      *      path="/api/files/{fileId}/relationships/user",
      *      operationId="getFileUserRelationship",
      *      tags={"FileRelationships","Users"},
-     *      summary="Retreive link and user id, which file belongs to.",
+     *      summary="Retrieve link and user id, which file belongs to.",
      *      security={
      *          { "bearer_auth": {} }
      *      },
@@ -78,7 +78,7 @@ final class FileRelationshipsController extends ApiController
      *      operationId="getFileLinkTokensRelationship",
      *      tags={"FileRelationships", "LinkTokens"},
      *      summary="Get all link token ids related to provided file.",
-     *      description="Retreive all link token ids by file id.",
+     *      description="Retrieve all link token ids by file id.",
      *      security={
      *          { "bearer_auth": {} }
      *      },

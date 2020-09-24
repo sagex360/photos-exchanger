@@ -205,7 +205,7 @@ final class FilesController extends ApiController
      *      operationId="getFileResourceByLinkToken",
      *      tags={"Files"},
      *      summary="Get file resource by it's link token.",
-     *      description="Retreive file from storage, record it's visit, return file binary resource.",
+     *      description="Retrieve file from storage, record it's visit, return file binary resource.",
      *
      *      @OA\Parameter(ref="#/components/parameters/link-token-path-parameter"),
      *      @OA\Response(

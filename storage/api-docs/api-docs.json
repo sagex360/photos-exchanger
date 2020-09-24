@@ -12,7 +12,7 @@
                     "LinkTokens"
                 ],
                 "summary": "Get all link tokens of file.",
-                "description": "Retreive all link tokens by file id.",
+                "description": "Retrieve all link tokens by file id.",
                 "operationId": "getFileLinkTokens",
                 "parameters": [
                     {
@@ -130,7 +130,7 @@
                     "FileRelationships",
                     "Users"
                 ],
-                "summary": "Retreive link and user id, which file belongs to.",
+                "summary": "Retrieve link and user id, which file belongs to.",
                 "operationId": "getFileUserRelationship",
                 "parameters": [
                     {
@@ -175,7 +175,7 @@
                     "LinkTokens"
                 ],
                 "summary": "Get all link token ids related to provided file.",
-                "description": "Retreive all link token ids by file id.",
+                "description": "Retrieve all link token ids by file id.",
                 "operationId": "getFileLinkTokensRelationship",
                 "parameters": [
                     {
@@ -383,7 +383,7 @@
                     "Files"
                 ],
                 "summary": "Get file resource by it's link token.",
-                "description": "Retreive file from storage, record it's visit, return file binary resource.",
+                "description": "Retrieve file from storage, record it's visit, return file binary resource.",
                 "operationId": "getFileResourceByLinkToken",
                 "parameters": [
                     {

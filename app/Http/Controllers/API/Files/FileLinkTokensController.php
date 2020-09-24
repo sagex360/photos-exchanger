@@ -36,7 +36,7 @@ final class FileLinkTokensController extends ApiController
      *      operationId="getFileLinkTokens",
      *      tags={"FileRelationships", "LinkTokens"},
      *      summary="Get all link tokens of file.",
-     *      description="Retreive all link tokens by file id.",
+     *      description="Retrieve all link tokens by file id.",
      *      security={
      *          { "bearer_auth": {} }
      *      },
