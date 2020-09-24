@@ -57,9 +57,9 @@
                     "FileRelationships",
                     "LinkTokens"
                 ],
-                "summary": "Store new file.",
-                "description": "Put file to storage and save it's information to database.",
-                "operationId": "storeNewFile",
+                "summary": "Create new link token.",
+                "description": "Generate new token of provided type. Store it into database. Return corresponding json resource.",
+                "operationId": "storeLinkTokenOfFile",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/header-accept-type"

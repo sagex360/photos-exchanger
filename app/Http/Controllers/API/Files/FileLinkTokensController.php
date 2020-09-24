@@ -82,10 +82,10 @@ final class FileLinkTokensController extends ApiController
     /**
      * @OA\Post(
      *      path="/api/files/{fileId}/link_tokens",
-     *      operationId="storeNewFile",
+     *      operationId="storeLinkTokenOfFile",
      *      tags={"FileRelationships", "LinkTokens"},
-     *      summary="Store new file.",
-     *      description="Put file to storage and save it's information to database.",
+     *      summary="Create new link token.",
+     *      description="Generate new token of provided type. Store it into database. Return corresponding json resource.",
      *      security={
      *          { "bearer_auth": {} }
      *      },
