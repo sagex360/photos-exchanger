@@ -39,7 +39,9 @@ final class FileRelationshipsController extends ApiController
      *      operationId="getFileUserRelationship",
      *      tags={"FileRelationships","Users"},
      *      summary="Retreive link and user id, which file belongs to.",
-     *
+     *      security={
+     *          { "bearer_auth": {} }
+     *      },
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),
@@ -77,7 +79,9 @@ final class FileRelationshipsController extends ApiController
      *      tags={"FileRelationships", "LinkTokens"},
      *      summary="Get all link token ids related to provided file.",
      *      description="Retreive all link token ids by file id.",
-     *
+     *      security={
+     *          { "bearer_auth": {} }
+     *      },
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),

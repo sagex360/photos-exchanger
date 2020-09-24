@@ -37,6 +37,9 @@ final class FileLinkTokensController extends ApiController
      *      tags={"FileRelationships", "LinkTokens"},
      *      summary="Get all link tokens of file.",
      *      description="Retreive all link tokens by file id.",
+     *      security={
+     *          { "bearer_auth": {} }
+     *      },
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),
@@ -83,7 +86,9 @@ final class FileLinkTokensController extends ApiController
      *      tags={"FileRelationships", "LinkTokens"},
      *      summary="Store new file.",
      *      description="Put file to storage and save it's information to database.",
-     *
+     *      security={
+     *          { "bearer_auth": {} }
+     *      },
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),

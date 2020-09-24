@@ -31,6 +31,13 @@ use App\Http\Controllers\Controller;
  *         example="Bearer 9194773b-3f24-42bb-93ca-654557dd303c",
  *     ),
  * ),
+ * @OA\SecurityScheme(
+ *     securityScheme="bearer_auth",
+ *     name="bearer_auth",
+ *     type="http",
+ *     scheme="bearer",
+ *     in="header",
+ * ),
  */
 abstract class ApiController extends Controller
 {

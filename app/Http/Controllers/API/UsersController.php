@@ -38,6 +38,9 @@ final class UsersController extends ApiController
      *      tags={"Users"},
      *      summary="Get single user by id",
      *      description="Returns user information",
+     *      security={
+     *          { "bearer_auth": {} }
+     *      },
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(ref="#/components/parameters/user-id-path-parameter"),

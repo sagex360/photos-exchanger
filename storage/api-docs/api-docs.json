@@ -45,7 +45,12 @@
                     "404": {
                         "description": "File with specified id not found."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer_auth": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -111,7 +116,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer_auth": []
+                    }
+                ]
             }
         },
         "/api/files/{fileId}/relationships/user": {
@@ -150,7 +160,12 @@
                     "404": {
                         "description": "File with specified id not found."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer_auth": []
+                    }
+                ]
             }
         },
         "/api/files/{fileId}/relationships/link_tokens": {
@@ -193,7 +208,12 @@
                     "404": {
                         "description": "File with specified id not found."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer_auth": []
+                    }
+                ]
             }
         },
         "/api/files/": {
@@ -257,7 +277,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer_auth": []
+                    }
+                ]
             }
         },
         "/api/files/{fileId}": {
@@ -299,7 +324,12 @@
                     "404": {
                         "description": "File with specified id not found."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer_auth": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -339,7 +369,12 @@
                     "404": {
                         "description": "File with specified id not found."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer_auth": []
+                    }
+                ]
             }
         },
         "/api/guest/files/{linkToken}": {
@@ -400,7 +435,12 @@
                     "401": {
                         "description": "Authentication failed. Bearer token mismatch."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer_auth": []
+                    }
+                ]
             }
         },
         "/api/link_tokens/{link_token}": {
@@ -440,7 +480,12 @@
                     "403": {
                         "description": "Forbidden. You are not allowed to view this token."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer_auth": []
+                    }
+                ]
             }
         },
         "/api/users/{userId}": {
@@ -479,7 +524,12 @@
                     "401": {
                         "description": "Authentication failed. Bearer token mismatch."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer_auth": []
+                    }
+                ]
             }
         }
     },
@@ -844,6 +894,14 @@
                         }
                     }
                 }
+            }
+        },
+        "securitySchemes": {
+            "bearer_auth": {
+                "type": "http",
+                "name": "bearer_auth",
+                "in": "header",
+                "scheme": "bearer"
             }
         }
     },

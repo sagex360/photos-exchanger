@@ -40,7 +40,9 @@ final class LinkTokensController extends ApiController
      *      operationId="getSupportedLinkTokenTypes",
      *      tags={"LinkTokens"},
      *      summary="Get all supported token types.",
-     *
+     *      security={
+     *          { "bearer_auth": {} }
+     *      },
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Response(
@@ -72,7 +74,9 @@ final class LinkTokensController extends ApiController
      *      operationId="getLinkTokenById",
      *      tags={"LinkTokens"},
      *      summary="Get full information about link token by it's id.",
-     *
+     *      security={
+     *          { "bearer_auth": {} }
+     *      },
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Response(

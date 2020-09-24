@@ -53,7 +53,9 @@ final class FilesController extends ApiController
      *      tags={"Files"},
      *      summary="Store new file.",
      *      description="Put file to storage and save it's information to database.",
-     *
+     *      security={
+     *          { "bearer_auth": {} }
+     *      },
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\RequestBody(ref="#/components/requestBodies/store-file-request-body"),
@@ -109,7 +111,9 @@ final class FilesController extends ApiController
      *      tags={"Files"},
      *      summary="Get file by id",
      *      description="Access file database information by it's id",
-     *
+     *      security={
+     *          { "bearer_auth": {} }
+     *      },
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),
@@ -153,6 +157,9 @@ final class FilesController extends ApiController
      *      tags={"Files"},
      *      summary="Delete file by id.",
      *      description="Delete file from storage and it's information from database. Returns resource of deleted file.",
+     *      security={
+     *          { "bearer_auth": {} }
+     *      },
      *      @OA\Parameter(ref="#/components/parameters/header-accept-type"),
      *      @OA\Parameter(ref="#/components/parameters/header-authorization-token"),
      *      @OA\Parameter(ref="#/components/parameters/file-id-path-parameter"),
